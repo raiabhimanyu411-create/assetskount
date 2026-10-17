@@ -131,10 +131,10 @@ const erpSteps = [
 ];
 
 const outputs = [
-  ["Verified asset Register", "Recorded findings on existence and location.", <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />],
+  ["Verified Asset Register", "Recorded findings on existence and location.", <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />],
   ["Supporting Evidence", "Evidence linked to the verification record.", <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 16 5-5 4 4 3-3 6 6" /><circle cx="15.5" cy="9.5" r="1.5" /></>],
   ["Exception Summary", "Missing assets, mismatches and items to resolve.", <path d="M12 3 2 21h20L12 3ZM12 10v5M12 18h.01" />],
-  ["Reconciliation And Closeout", "Reviewed differences and agreed follow-up actions.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
+  ["Reconciliation and Closeout", "Reviewed differences and agreed follow-up actions.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
 ];
 
 const models = [
@@ -684,11 +684,15 @@ function HomePage() {
             <div className={styles.copy}>
               <Badge>Verification to Action</Badge>
               <h2 id="reconciliation-title">Physical Evidence.<br /><em>Financial Clarity.</em></h2>
-              <p className={styles.leadLine}><Brand /> Complements Your ERP.</p>
+              <p className={styles.leadLine}><Brand /> Complements and Integrates with your ERP.</p>
               <p className={styles.body}>Import the asset register. Verify physical assets. Reconcile the findings and release approved outcomes for the next agreed action.</p>
               <div className={styles.erpSequence}>
-                {erpSteps.map(([label, icon]) => (
-                  <div key={label}><Icon className={styles.seqIcon}>{icon}</Icon><strong>{label}</strong></div>
+                {erpSteps.map(([label, icon], index) => (
+                  <div key={label}>
+                    <Icon className={styles.seqIcon}>{icon}</Icon>
+                    <small>{pad(index)}</small>
+                    <strong>{label}</strong>
+                  </div>
                 ))}
               </div>
             </div>
