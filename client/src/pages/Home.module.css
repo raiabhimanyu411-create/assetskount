@@ -1123,111 +1123,31 @@
 .rtPropIcon { display: grid; place-items: center; flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%; background: var(--secondary); box-shadow: 0 0 0 3px #fff, 0 0 0 4.5px var(--secondary); }
 .rtPropIcon svg { width: 21px; height: 21px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-/* Phone */
+/* Phone and laptop frames around the product screenshots */
 .rtPhone {
   justify-self: center;
   width: 100%;
-  max-width: 260px;
+  max-width: 250px;
   overflow: hidden;
   border: 9px solid #15181c;
   border-radius: 34px;
-  background: #f4f6f8;
+  background: #fff;
   box-shadow: 0 22px 48px rgba(16, 32, 48, .22);
-  font-size: 8px;
-  line-height: 1.35;
-  color: #2b3540;
 }
 
-.rtPhoneTop { background: var(--primary); color: #fff; }
-.rtStatus { display: flex; justify-content: space-between; padding: 7px 14px 2px; font-size: 8px; }
-.rtAppBar { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px 10px; }
-.rtAppBar b { font-size: 11px; font-weight: 600; }
-.rtAppBar i { font-style: normal; font-size: 10px; opacity: .9; }
-.rtPhoneBody { display: flex; flex-direction: column; gap: 8px; padding: 10px; }
-.rtHello { font-weight: 700; font-size: 10px; color: #111; }
-.rtHello small { display: block; font-weight: 400; font-size: 8px; color: #6c7883; }
-.rtStats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.rtStats > div { display: flex; justify-content: space-between; align-items: flex-start; padding: 7px; border-radius: 6px; background: #fff; box-shadow: 0 1px 3px rgba(20, 40, 60, .06); }
-.rtStats small { display: block; font-weight: 600; color: #111; font-size: 7.5px; }
-.rtStats b { display: block; margin-top: 2px; font-size: 13px; color: #111; }
-.rtStats em { font-style: normal; font-size: 7px; color: #7a8792; }
-.rtStats i { width: 14px; height: 14px; border-radius: 4px; opacity: .85; }
-.rtProgress, .rtActivity { padding: 8px; border-radius: 6px; background: #fff; box-shadow: 0 1px 3px rgba(20, 40, 60, .06); }
-.rtProgress > p, .rtActivity > p { display: flex; justify-content: space-between; margin-bottom: 6px !important; }
-.rtProgress > p b, .rtActivity > p b { color: #111; font-size: 8.5px; }
-.rtProgress > p small { color: #7a8792; }
-.rtActivity > p small { color: #173F62; font-weight: 600; }
-.rtProgress > div { display: flex; align-items: center; gap: 10px; }
-.rtDonut { display: grid; place-items: center; flex-shrink: 0; width: 58px; height: 58px; border-radius: 50%; background: conic-gradient(#1f9a5b 0 68%, #2f6db5 68% 88%, #d5dbe0 88%); }
-.rtDonut b { display: grid; place-items: center; align-content: center; width: 44px; height: 44px; border-radius: 50%; background: #fff; font-size: 11px; color: #111; }
-.rtDonut small { font-size: 6px; font-weight: 400; color: #7a8792; }
-.rtProgress ul { flex: 1; list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.rtProgress li { display: flex; align-items: center; gap: 5px; }
-.rtProgress li b { margin-left: auto; color: #111; }
-.rtProgress li i { width: 5px; height: 5px; border-radius: 50%; }
-.rtActivity > div { display: flex; align-items: center; gap: 6px; padding: 5px 0; border-top: 1px solid #f0f2f4; }
-.rtActivity > div > i { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
-.rtActivity span { flex: 1; min-width: 0; }
-.rtActivity span b { display: block; color: #111; font-size: 8px; }
-.rtActivity em { display: block; font-style: normal; color: #7a8792; font-size: 7px; }
-.rtActivity time { color: #9aa5ae; font-size: 7px; white-space: nowrap; }
-.page .rtAlert { color: #c62f3d; }
-.rtTabs { display: flex; justify-content: space-around; align-items: center; padding: 6px 4px 10px; background: #fff; border-top: 1px solid #e9edf1; color: #7a8792; font-size: 7px; }
-.rtTabs b { width: 30px; height: 30px; margin-top: -14px; border-radius: 50%; background: var(--secondary); box-shadow: 0 0 0 3px #fff, 0 4px 10px rgba(135, 43, 58, .35); }
-.rtTabActive { color: var(--secondary); font-weight: 600; }
+.rtPhone img,
+.rtScreen img { display: block; width: 100%; height: auto; }
 
-.tone_blue { background: #2f6db5; }
-.tone_green { background: #1f9a5b; }
-.tone_orange { background: #e8892b; }
-.tone_red { background: #c62f3d; }
-.tone_grey { background: #c5ccd3; }
-
-/* Laptop */
 .rtLaptop { min-width: 0; }
 
 .rtScreen {
-  display: grid;
-  grid-template-columns: 92px minmax(0, 1fr);
   overflow: hidden;
   border: 10px solid #1d2126;
   border-radius: 12px 12px 4px 4px;
   background: #fff;
-  font-size: 6.5px;
-  line-height: 1.35;
-  color: #2b3540;
 }
 
 .rtBase { height: 13px; margin: 0 -7%; border-radius: 0 0 16px 16px; background: linear-gradient(#d6dbe0, #a9b1b9); box-shadow: 0 16px 26px rgba(23, 63, 98, .16); }
-
-.rtSide { display: flex; flex-direction: column; gap: 4px; padding: 8px 6px; border-right: 1px solid #edf0f3; background: #fafbfc; }
-.rtSide img { width: 64px; height: auto; margin-bottom: 6px; }
-.rtSide > span { padding: 3px 5px; border-radius: 3px; color: #5d6a75; }
-.rtSide .rtSideActive { background: #fbe9ec; color: var(--secondary); font-weight: 600; }
-.rtUser { display: flex; align-items: center; gap: 4px; margin-top: auto; padding-top: 6px; border-top: 1px solid #edf0f3; }
-.rtUser i { width: 14px; height: 14px; border-radius: 50%; background: #173F62; }
-.rtUser b { display: block; color: #111; }
-
-.rtMain { display: flex; flex-direction: column; min-width: 0; padding: 8px 10px 10px; }
-.rtSearch { width: 55%; padding: 4px 7px; border: 1px solid #e3e8ed; border-radius: 4px; color: #9aa5ae; margin-bottom: 6px; }
-.rtCrumb { color: #8a96a0; }
-.rtTitle { font-size: 11px; color: #111; margin: 1px 0; }
-.rtTiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; margin: 8px 0; }
-.rtTiles > div { min-width: 0; padding: 6px; border-radius: 4px; background: #173F62; color: #fff; }
-.rtTiles small { display: block; opacity: .8; text-transform: uppercase; font-size: 5.5px; letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rtTiles b { display: block; margin: 3px 0 2px; font-size: 11px; }
-.rtTiles em { font-style: normal; font-size: 5.5px; opacity: .75; }
-.rtPanels { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.rtPanels > div { min-width: 0; padding: 6px; border: 1px solid #edf0f3; border-radius: 4px; }
-.rtPanels p { display: flex; justify-content: space-between; margin-bottom: 4px !important; }
-.rtPanels p b { color: #111; }
-.rtPanels p small { color: #8a96a0; }
-.rtPanels > div > div { display: flex; justify-content: space-between; align-items: center; gap: 4px; padding: 3px 0; border-top: 1px solid #f2f4f6; white-space: nowrap; }
-.rtPanels > div > div span { display: flex; align-items: center; gap: 3px; overflow: hidden; text-overflow: ellipsis; }
-.rtPanels > div > div span i { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
-.rtPanels > div > em { display: block; margin-top: 4px; font-style: normal; color: #173F62; }
-.rtDone, .rtProgressPill { font-style: normal; padding: 1px 5px; border-radius: 8px; font-size: 5.5px; font-weight: 600; }
-.rtDone { background: #e5f4ea; color: #1f7a3d; }
-.rtProgressPill { background: #fdf1dc; color: #a2620b; }
 
 @media (max-width: 1150px) {
   .rtGrid {

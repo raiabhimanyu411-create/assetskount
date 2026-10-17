@@ -82,35 +82,6 @@ const rtProps = [
   ["Defensible evidence.", "Complete confidence.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
 ];
 
-const rtPhoneStats = [
-  ["My Tasks", "12", "Pending", "blue"],
-  ["Verified Assets", "1,245", "This Month", "green"],
-  ["Locations", "28", "Active", "orange"],
-  ["Discrepancies", "15", "Requires Action", "red"],
-];
-
-const rtPhoneActivity = [
-  ["Main Office – Floor 3", "Workstation verification", "2m ago", "orange", false],
-  ["Warehouse A", "Discrepancy found: 3 assets", "1h ago", "red", true],
-  ["IT Department", "Verified 8 assets", "1d ago", "green", false],
-];
-
-const rtTiles = [
-  ["Total Assets", "13,450", "View all assets"],
-  ["Active Users", "318", "View users"],
-  ["Active Locations", "42", "View locations"],
-  ["Verifications (MTD)", "56", "View events"],
-  ["Pending Approvals", "45", "View approvals"],
-  ["Verification Rate", "93%", "This month"],
-  ["Open Discrepancies", "84", "View discrepancies"],
-  ["Overdue Assets", "7", "View overdue"],
-];
-
-const rtNav = ["My Dashboard", "Verification Management", "Pending Verifications", "Active Verifications", "Batch Verifications", "Asset Groups", "Asset Owners", "Asset Locations", "Custom Groups", "Location Management", "Manage Users"];
-
-const rtSetup = [["Location Hierarchy", "Completed"], ["Asset Category", "Completed"], ["Asset Field", "Completed"], ["Workflow Configuration", "Completed"], ["Email Templates", "In Progress"]];
-const rtHealth = [["SAP S/4HANA", "Today, 10:24 AM", true], ["Oracle ERP", "Today, 10:18 AM", true], ["Barcode Service", "Today, 09:51 AM", false], ["Email Service", "Today, 09:40 AM", true], ["RFID Gateway", "Today, 09:12 AM", true]];
-
 const stages = [
   { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria.", tag: "A clear starting point" },
   { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise.", tag: "Accountability from the start" },
@@ -455,84 +426,20 @@ function Walkthrough({ dialogRef }) {
   );
 }
 
-// Illustrative mobile app and web control centre, drawn in markup so the text stays crisp.
+// Product screens: the field app on a phone and the campaign control centre on a laptop.
 function RtPhone() {
   return (
-    <div className={styles.rtPhone} aria-hidden="true">
-      <div className={styles.rtPhoneTop}>
-        <span className={styles.rtStatus}><b>9:30</b><b>▾ ▮</b></span>
-        <span className={styles.rtAppBar}><i>☰</i><b>Dashboard</b><i>🔔︎</i></span>
-      </div>
-      <div className={styles.rtPhoneBody}>
-        <p className={styles.rtHello}>Hello, John 👋<small>Here’s your verification overview</small></p>
-        <div className={styles.rtStats}>
-          {rtPhoneStats.map(([label, value, note, tone]) => (
-            <div key={label}><span><small>{label}</small><b>{value}</b><em>{note}</em></span><i className={styles[`tone_${tone}`]} /></div>
-          ))}
-        </div>
-        <div className={styles.rtProgress}>
-          <p><b>Verification Progress</b><small>This Month</small></p>
-          <div>
-            <span className={styles.rtDonut}><b>68%<small>Completed</small></b></span>
-            <ul>
-              <li><i className={styles.tone_green} />Completed<b>68%</b></li>
-              <li><i className={styles.tone_blue} />In Progress<b>20%</b></li>
-              <li><i className={styles.tone_grey} />Pending<b>12%</b></li>
-            </ul>
-          </div>
-        </div>
-        <div className={styles.rtActivity}>
-          <p><b>Recent Activities</b><small>View all</small></p>
-          {rtPhoneActivity.map(([place, note, time, tone, alert]) => (
-            <div key={place}>
-              <i className={styles[`tone_${tone}`]} />
-              <span><b>{place}</b><em className={alert ? styles.rtAlert : undefined}>{note}</em></span>
-              <time className={alert ? styles.rtAlert : undefined}>{time}</time>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className={styles.rtTabs}>
-        <span className={styles.rtTabActive}>Dashboard</span><span>Tasks</span><b /><span>Assets</span><span>More</span>
-      </div>
+    <div className={styles.rtPhone}>
+      <img src={`${IMG}/control-centre-app.webp`} width="362" height="809" alt="The ASSETKOUNT mobile app home screen with assigned, verified and remaining assets" loading="lazy" decoding="async" />
     </div>
   );
 }
 
 function RtLaptop() {
   return (
-    <div className={styles.rtLaptop} aria-hidden="true">
+    <div className={styles.rtLaptop}>
       <div className={styles.rtScreen}>
-        <aside className={styles.rtSide}>
-          <img src="/assets/deck/image2.png" alt="" width="584" height="207" />
-          {rtNav.map((item, index) => <span key={item} className={index === 0 ? styles.rtSideActive : undefined}>{item}</span>)}
-          <div className={styles.rtUser}><i /><span><b>Archie Alert</b>Manage users</span></div>
-        </aside>
-        <div className={styles.rtMain}>
-          <div className={styles.rtSearch}>Search by asset name, location or ID…</div>
-          <small className={styles.rtCrumb}>Dashboard / Control Centre</small>
-          <b className={styles.rtTitle}>Control Centre</b>
-          <small className={styles.rtCrumb}>Organisation-wide verification and asset performance</small>
-          <div className={styles.rtTiles}>
-            {rtTiles.map(([label, value, link]) => <div key={label}><small>{label}</small><b>{value}</b><em>{link} →</em></div>)}
-          </div>
-          <div className={styles.rtPanels}>
-            <div>
-              <p><b>Platform Setup (New!)</b><small>Status</small></p>
-              {rtSetup.map(([item, state]) => (
-                <div key={item}><span>{item}</span><i className={state === "Completed" ? styles.rtDone : styles.rtProgressPill}>{state}</i></div>
-              ))}
-              <em>View all setup steps →</em>
-            </div>
-            <div>
-              <p><b>Integrations Health</b><small>Last sync</small></p>
-              {rtHealth.map(([item, time, ok]) => (
-                <div key={item}><span><i className={ok ? styles.tone_green : styles.tone_red} />{item}</span><span>{time}</span></div>
-              ))}
-              <em>View all integrations →</em>
-            </div>
-          </div>
-        </div>
+        <img src={`${IMG}/control-centre-web.webp`} width="888" height="392" alt="The ASSETKOUNT campaign control centre showing verification progress gauges" loading="lazy" decoding="async" />
       </div>
       <div className={styles.rtBase} />
     </div>
