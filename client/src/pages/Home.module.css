@@ -1328,6 +1328,47 @@
   .routeSteps span { font-size: 11px; }
 }
 
+/* Reconciliation outputs: white deliverable cards with brand-navy accents. */
+.recolor .outputs {
+  margin-top: 56px;
+  padding: 34px 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.outputsHead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 24px; }
+.page .outputsHead h3 { font-size: 24px; line-height: 1.25; color: #000; }
+.page .outputsHead em { color: var(--secondary); }
+.outputsEyebrow[class] { margin: 0 0 8px; }
+
+.recolor .outputList { gap: 14px; }
+
+.recolor .outputList article {
+  padding: 20px 18px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 22px rgba(23, 63, 98, .05);
+  transition: border-color .2s, box-shadow .2s, transform .2s;
+}
+
+.recolor .outputList article:hover { border-color: #9fb6cb; box-shadow: 0 16px 32px rgba(23, 63, 98, .12); transform: translateY(-3px); }
+
+.outputTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.outputTop small { padding: 4px 9px; border-radius: 999px; background: #e8eff7; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #173F62; }
+.outputTop > .issueIcon { margin: 0; background: #173F62; }
+
+.recolor .smallNote { display: flex; align-items: center; gap: 8px; margin-top: 20px !important; color: var(--muted); font-size: 13px; }
+.recolor .smallNote .noteIcon svg { stroke: #173F62; }
+
+@media (max-width: 760px) {
+  .outputsHead { display: block; }
+  .page .outputsHead h3 { font-size: 21px; }
+}
+
+@media (max-width: 480px) {
+  .recolor .outputList { grid-template-columns: 1fr; }
+}
+
 /* One size for every bullet list (title + line below), matching The Asset Reality Gap.
    Placed last so it holds at every breakpoint. */
 .page .issueList strong,

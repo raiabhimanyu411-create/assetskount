@@ -105,7 +105,7 @@ const routeIcons = {
   "Verification": <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />,
   "Supervisor review": <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>,
   "Finance approval": <><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M7 15h4" /></>,
-  "Independent re-verification": <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>,
+  "Independent reverification": <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>,
 };
 
 const stages = [
@@ -124,17 +124,17 @@ const controls = [
 ];
 
 const erpSteps = [
-  ["Import register", <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />],
-  ["Verify assets", <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />],
+  ["Import Register", <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />],
+  ["Verify Assets", <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />],
   ["Reconcile", <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />],
-  ["Approve outcomes", <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>],
+  ["Approve Outcomes", <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>],
 ];
 
 const outputs = [
-  ["Verified asset register", "Recorded findings on existence and location.", <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />],
-  ["Supporting evidence", "Evidence linked to the verification record.", <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 16 5-5 4 4 3-3 6 6" /><circle cx="15.5" cy="9.5" r="1.5" /></>],
-  ["Exception summary", "Missing assets, mismatches and items to resolve.", <path d="M12 3 2 21h20L12 3ZM12 10v5M12 18h.01" />],
-  ["Reconciliation and closeout", "Reviewed differences and agreed follow-up actions.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
+  ["Verified asset Register", "Recorded findings on existence and location.", <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />],
+  ["Supporting Evidence", "Evidence linked to the verification record.", <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 16 5-5 4 4 3-3 6 6" /><circle cx="15.5" cy="9.5" r="1.5" /></>],
+  ["Exception Summary", "Missing assets, mismatches and items to resolve.", <path d="M12 3 2 21h20L12 3ZM12 10v5M12 18h.01" />],
+  ["Reconciliation And Closeout", "Reviewed differences and agreed follow-up actions.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
 ];
 
 const models = [
@@ -142,7 +142,7 @@ const models = [
     key: "full",
     name: "Full Service",
     note: "Our teams execute",
-    title: ["Our teams lead", "your verification."],
+    title: ["Our Teams Lead", "Your Verification."],
     description: "We manage and execute the verification at your premises using ASSETKOUNT.",
     items: [["Project management and site coordination", <><rect x="4" y="5" width="16" height="16" rx="2" /><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h6" /></>], ["Physical verification at your premises", <><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></>], ["Evidence capture and exception review", <><path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" /><circle cx="12" cy="13" r="3.5" /></>], ["Reporting and agreed closeout", <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />]],
     responsibility: "Your team provides records, access and approvals.",
@@ -154,7 +154,7 @@ const models = [
     key: "self",
     name: "Self Service",
     note: "Your teams execute",
-    title: ["Your people.", "ASSETKOUNT platform."],
+    title: ["Your People.", "ASSETKOUNT Platform."],
     description: "Your representatives set up and verify assets on the ASSETKOUNT platform.",
     items: [["Configure the exercise scope and roles", <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0M14 4v4M8 10v4M16 16v4" />], ["Assign your teams and capture evidence", <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>], ["Review findings and reconcile differences", <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />], ["Approve outcomes and complete the workflow", <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>]],
     responsibility: "Customer-led execution using ASSETKOUNT.",
@@ -348,7 +348,7 @@ function Delivery() {
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <Badge>Two ways to work with <Brand /></Badge>
+            <Badge>Two Ways To Work With <Brand /></Badge>
             <h2 id="delivery-title">One platform.<br /><em>Your delivery model.</em></h2>
             <p className={styles.journeyIntro}>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
           </div>
@@ -682,9 +682,9 @@ function HomePage() {
         <div className={site.container}>
           <div className={styles.split}>
             <div className={styles.copy}>
-              <Badge>Verification to action</Badge>
-              <h2 id="reconciliation-title">Physical evidence.<br /><em>Financial clarity.</em></h2>
-              <p className={styles.leadLine}><Brand /> complements your ERP.</p>
+              <Badge>Verification to Action</Badge>
+              <h2 id="reconciliation-title">Physical Evidence.<br /><em>Financial Clarity.</em></h2>
+              <p className={styles.leadLine}><Brand /> Complements Your ERP.</p>
               <p className={styles.body}>Import the asset register. Verify physical assets. Reconcile the findings and release approved outcomes for the next agreed action.</p>
               <div className={styles.erpSequence}>
                 {erpSteps.map(([label, icon]) => (
@@ -695,13 +695,23 @@ function HomePage() {
             <Slide name="reconciliation" className={styles.reconciliationArt} alt="A tagged device is checked against an asset register displayed on a laptop" />
           </div>
           <div className={styles.outputs}>
-            <Eyebrow>Clear evidence. Actionable outputs.</Eyebrow>
+            <div className={styles.outputsHead}>
+              <Eyebrow className={styles.outputsEyebrow}>What you receive</Eyebrow>
+              <h3>Clear evidence. <em>Actionable outputs.</em></h3>
+            </div>
             <div className={styles.outputList}>
-              {outputs.map(([title, text, icon]) => (
-                <article key={title}><Icon>{icon}</Icon><h3>{title}</h3><p>{text}</p></article>
+              {outputs.map(([title, text, icon], index) => (
+                <article key={title}>
+                  <div className={styles.outputTop}><Icon>{icon}</Icon><small>Output {pad(index)}</small></div>
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                </article>
               ))}
             </div>
-            <p className={styles.smallNote}>Deliverables and review roles are agreed as part of the scope.</p>
+            <p className={styles.smallNote}>
+              <Icon className={styles.noteIcon}><><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></></Icon>
+              Deliverables and review roles are agreed as part of the scope.
+            </p>
           </div>
         </div>
       </section>
