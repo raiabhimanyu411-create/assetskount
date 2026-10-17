@@ -704,18 +704,14 @@ function HomePage() {
               <h3>Clear evidence. <em>Actionable outputs.</em></h3>
             </div>
             <div className={styles.outputList}>
-              {outputs.map(([title, text, icon], index) => (
+              {outputs.map(([title, text, icon]) => (
                 <article key={title}>
-                  <div className={styles.outputTop}><Icon>{icon}</Icon><small>Output {pad(index)}</small></div>
+                  <div className={styles.outputTop}><Icon>{icon}</Icon></div>
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </article>
               ))}
             </div>
-            <p className={styles.smallNote}>
-              <Icon className={styles.noteIcon}><><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></></Icon>
-              Deliverables and review roles are agreed as part of the scope.
-            </p>
           </div>
         </div>
       </section>
