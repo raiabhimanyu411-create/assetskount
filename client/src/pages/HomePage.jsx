@@ -404,7 +404,7 @@ function HomePage() {
               The Asset Reality Gap
             </p>
             <h2 id="reality-title">Recorded in the books.<br /><em>Uncertain on the ground.</em></h2>
-            <p className={styles.body}>Your register can record an asset long after its location, custodian or condition has changed. Verification brings those differences into view.</p>
+            <p className={styles.body}>Your fixed asset register can record an asset long after its location, custodian or condition has changed. Verification brings those differences into view.</p>
             <ul className={styles.issueList}>
               {issues.map(([title, text, icon]) => (
                 <li key={title}>
@@ -413,7 +413,7 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-            <p className={styles.closingLine}>ASSETKOUNT connects asset records to physical evidence.</p>
+            <p className={styles.closingLine}>ASSETKOUNT connects asset records to physical evidence seamlessly.</p>
           </div>
         </div>
       </section>
