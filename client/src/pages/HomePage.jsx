@@ -723,15 +723,15 @@ function HomePage() {
       <section className={`${styles.section} ${styles.recolor}`} id="pilot" aria-labelledby="pilot-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
-            <Badge>A focused pilot</Badge>
-            <h2 id="pilot-title">A clear scope.<br /><em>Measurable findings.</em></h2>
+            <Badge>Focused Pilot</Badge>
+            <h2 id="pilot-title">Clear Scope.<br /><em>Measurable findings.</em></h2>
             <p className={styles.body}>Start with representative assets and locations. Use the pilot to see how the verification workflow, evidence and review requirements fit your organisation.</p>
             <ul className={`${styles.numberedList} ${styles.iconList}`}>
               {pilotSteps.map(([title, text, icon]) => (
                 <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
               ))}
             </ul>
-            <button className={site.button} type="button" onClick={() => openEnquiry("Pilot discussion")}>Discuss your pilot <span aria-hidden="true">↗</span></button>
+            <button className={site.button} type="button" onClick={() => openEnquiry("Pilot discussion")}>Discuss your Pilot <span aria-hidden="true">↗</span></button>
           </div>
           <Slide name="pilot" className={styles.pilotArt} alt="A customer and project lead plan a focused verification pilot using asset records and location photographs" />
         </div>
@@ -742,18 +742,14 @@ function HomePage() {
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <div className={styles.demoVisual}>
             <Slide name="demo" alt="A smartphone and laptop show the connection between a tagged physical asset and its verification record" />
-            <button type="button" className={styles.walkthroughLaunch} onClick={openWalkthrough}>
-              <span className={styles.launchArrow} aria-hidden="true">→</span>
-              <span><small>Explore the workflow</small><strong>Follow one asset.</strong></span>
-            </button>
           </div>
           <div className={styles.copy}>
             <Badge>See <Brand /> in action</Badge>
             <h2 id="demo-title">One asset.<br /><em>The complete<br />verification journey.</em></h2>
             <p className={styles.body}>See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
             <div className={styles.actions}>
-              <button className={site.button} type="button" onClick={() => openEnquiry("Live product demo")}>Book a live demo <span aria-hidden="true">↗</span></button>
-              <button className={site.textLink} type="button" onClick={openWalkthrough}>Explore the walkthrough <span aria-hidden="true">→</span></button>
+              <button className={site.button} type="button" onClick={() => openEnquiry("Live product demo")}>Book a Live Demo <span aria-hidden="true">↗</span></button>
+              <button className={site.textLink} type="button" onClick={openWalkthrough}>Explore the Walkthrough <span aria-hidden="true">→</span></button>
             </div>
           </div>
         </div>
