@@ -82,6 +82,14 @@ const rtProps = [
   ["Defensible evidence.", "Complete confidence.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
 ];
 
+const rtLocations = [
+  ["Head Office – Floor 1", 6, 6, "Completed"],
+  ["Head Office – Floor 2", 5, 5, "Completed"],
+  ["Warehouse A", 7, 12, "In Progress"],
+  ["Retail Store – Indiranagar", 4, 9, "In Progress"],
+  ["IT Department", 0, 8, "Not Started"],
+];
+
 const stages = [
   { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria.", tag: "A clear starting point" },
   { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise.", tag: "Accountability from the start" },
@@ -440,6 +448,16 @@ function RtLaptop() {
     <div className={styles.rtLaptop}>
       <div className={styles.rtScreen}>
         <img src={`${IMG}/control-centre-web.webp`} width="888" height="392" alt="The ASSETKOUNT campaign control centre showing verification progress gauges" loading="lazy" decoding="async" />
+        <div className={styles.rtScreenMore} aria-hidden="true">
+          {rtLocations.map(([place, done, total, state]) => (
+            <div key={place}>
+              <span>{place}</span>
+              <i><b style={{ width: `${(done / total) * 100}%` }} /></i>
+              <span>{done} / {total}</span>
+              <em className={styles[`rtState${state.replace(" ", "")}`]}>{state}</em>
+            </div>
+          ))}
+        </div>
       </div>
       <div className={styles.rtBase} />
     </div>
