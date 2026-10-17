@@ -51,48 +51,65 @@ const dimensions = [
 ];
 
 const mobileSteps = [
-  ["Scan The Asset ID", "Identify the asset being verified.", (
+  ["Scan the asset ID", "Identify the asset being verified.", (
     <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />
   )],
-  ["Record Physical Findings", "Confirm condition and capture photos and location.", (
+  ["Record the physical findings", "Confirm condition and capture photos and location.", (
     <>
       <path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" />
       <circle cx="12" cy="13" r="3.5" />
     </>
   )],
-  ["Retain Verification Context", "Keep the verifier and timestamp with the submission.", (
+  ["Retain the verification context", "Keep the verifier and timestamp with the submission.", (
     <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />
   )],
 ];
 
-const evidenceChecks = [
-  "QR / Barcode / RFID / NFC Scan Evidence",
-  "GPS Location And Geofence Confirmation",
-  "Photo Or Video Proof Of Physical Existence",
-  "Serial Number / Nameplate OCR Capture",
-  "Asset Condition And Damage Checklist",
-  "Custodian Confirmation And Digital Signature",
-  "Timestamp, Verifier ID, Device ID And Full Audit Trail",
+const rtChecks = [
+  "QR / barcode / RFID / NFC scan evidence",
+  "GPS location and geofence confirmation",
+  "Photo or video proof of physical existence",
+  "Serial number / nameplate OCR capture",
+  "Asset condition and damage checklist",
+  "Custodian confirmation and digital signature",
+  "Timestamp, verifier ID, device ID, and full audit trail",
 ];
 
-const valueProps = [
-  ["Capture At Source", "Trust It Forever.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
-  ["Verify With Context", "Control Everywhere.", <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></>],
-  ["Review With Confidence", "Smarter Decisions.", <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></>],
-  ["Act With Clarity", "Defensible Evidence.", <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />],
+const rtProps = [
+  ["Capture it once.", "Trust it forever.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
+  ["Verify anywhere.", "Control everywhere.", <><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="2.5" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></>],
+  ["Real-time visibility.", "Smarter decisions.", <><circle cx="12" cy="12" r="8" /><path d="M12 8v4l2.5 2.5M4 4l2 2" /></>],
+  ["Defensible evidence.", "Complete confidence.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
 ];
 
-const phoneStats = [["My Tasks", "12", "Pending"], ["Verified Assets", "1,245", "Today"], ["Exceptions", "28", "Review"], ["Pending Review", "15", "Submissions"]];
-const phoneActivity = [["POS Printer · Floor 3", "Verified by Sarah M.", "2m ago", false], ["Monitor · IT", "Exception found: 1 issue", "18m ago", true], ["Laptop · Finance", "Verified by Daniel K.", "1h ago", false]];
-const consoleTiles = [["Total Assets", "11,450"], ["Verified Assets", "8,392"], ["Pending Review", "1,245"], ["Exceptions", "413"]];
-const consoleNav = ["Dashboard", "Asset Verification", "Assets", "Locations", "People & Custodians", "Verification Tasks", "Exceptions", "Audit Trail", "Settings"];
-const consoleRows = [
-  ["POS Printer · Floor 3", "Verified", "New York · Store 12", "2m ago"],
-  ["Monitor · IT", "Exception", "Head Office", "18m ago"],
-  ["Laptop · Finance", "Verified", "London · HQ", "1h ago"],
-  ["Barcode Scanner", "Pending", "Chicago · Store 08", "3h ago"],
-  ["Network Switch", "Verified", "Frankfurt · DC", "5h ago"],
+const rtPhoneStats = [
+  ["My Tasks", "12", "Pending", "blue"],
+  ["Verified Assets", "1,245", "This Month", "green"],
+  ["Locations", "28", "Active", "orange"],
+  ["Discrepancies", "15", "Requires Action", "red"],
 ];
+
+const rtPhoneActivity = [
+  ["Main Office – Floor 3", "Workstation verification", "2m ago", "orange", false],
+  ["Warehouse A", "Discrepancy found: 3 assets", "1h ago", "red", true],
+  ["IT Department", "Verified 8 assets", "1d ago", "green", false],
+];
+
+const rtTiles = [
+  ["Total Assets", "13,450", "View all assets"],
+  ["Active Users", "318", "View users"],
+  ["Active Locations", "42", "View locations"],
+  ["Verifications (MTD)", "56", "View events"],
+  ["Pending Approvals", "45", "View approvals"],
+  ["Verification Rate", "93%", "This month"],
+  ["Open Discrepancies", "84", "View discrepancies"],
+  ["Overdue Assets", "7", "View overdue"],
+];
+
+const rtNav = ["My Dashboard", "Verification Management", "Pending Verifications", "Active Verifications", "Batch Verifications", "Asset Groups", "Asset Owners", "Asset Locations", "Custom Groups", "Location Management", "Manage Users"];
+
+const rtSetup = [["Location Hierarchy", "Completed"], ["Asset Category", "Completed"], ["Asset Field", "Completed"], ["Workflow Configuration", "Completed"], ["Email Templates", "In Progress"]];
+const rtHealth = [["SAP S/4HANA", "Today, 10:24 AM", true], ["Oracle ERP", "Today, 10:18 AM", true], ["Barcode Service", "Today, 09:51 AM", false], ["Email Service", "Today, 09:40 AM", true], ["RFID Gateway", "Today, 09:12 AM", true]];
 
 const stages = [
   { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria.", tag: "A clear starting point" },
@@ -274,7 +291,7 @@ function Controls() {
   const [active, setActive] = useState(0);
   const control = controls[active];
   return (
-    <section className={`${styles.section} ${styles.recolor}`} id="controls" aria-labelledby="controls-title">
+    <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="controls" aria-labelledby="controls-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
@@ -327,7 +344,7 @@ function Delivery() {
   const [active, setActive] = useState(0);
   const model = models[active];
   return (
-    <section className={`${styles.section} ${styles.recolor} ${styles.delivery}`} id="delivery" aria-labelledby="delivery-title">
+    <section className={`${styles.section} ${styles.tint} ${styles.recolor} ${styles.delivery}`} id="delivery" aria-labelledby="delivery-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
@@ -438,64 +455,119 @@ function Walkthrough({ dialogRef }) {
   );
 }
 
-// Illustrative phone app and web control centre, drawn in markup so the text stays crisp.
-function DeviceShowcase() {
+// Illustrative mobile app and web control centre, drawn in markup so the text stays crisp.
+function RtPhone() {
   return (
-    <div className={styles.devices} aria-label="Illustration of the ASSETKOUNT mobile app and web control centre" role="img">
-      <div className={styles.laptop} aria-hidden="true">
-        <div className={styles.laptopScreen}>
-          <aside className={styles.consoleNav}>
-            <img src="/assets/deck/image2.png" alt="" width="584" height="207" />
-            {consoleNav.map((item, index) => <span key={item} className={index === 0 ? styles.consoleNavActive : undefined}>{item}</span>)}
-          </aside>
-          <div className={styles.consoleMain}>
-            <strong className={styles.consoleTitle}>Control Centre</strong>
-            <small>Monitor verification progress and asset status</small>
-            <div className={styles.consoleTiles}>
-              {consoleTiles.map(([label, value]) => <div key={label}><small>{label}</small><b>{value}</b></div>)}
+    <div className={styles.rtPhone} aria-hidden="true">
+      <div className={styles.rtPhoneTop}>
+        <span className={styles.rtStatus}><b>9:30</b><b>▾ ▮</b></span>
+        <span className={styles.rtAppBar}><i>☰</i><b>Dashboard</b><i>🔔︎</i></span>
+      </div>
+      <div className={styles.rtPhoneBody}>
+        <p className={styles.rtHello}>Hello, John 👋<small>Here’s your verification overview</small></p>
+        <div className={styles.rtStats}>
+          {rtPhoneStats.map(([label, value, note, tone]) => (
+            <div key={label}><span><small>{label}</small><b>{value}</b><em>{note}</em></span><i className={styles[`tone_${tone}`]} /></div>
+          ))}
+        </div>
+        <div className={styles.rtProgress}>
+          <p><b>Verification Progress</b><small>This Month</small></p>
+          <div>
+            <span className={styles.rtDonut}><b>68%<small>Completed</small></b></span>
+            <ul>
+              <li><i className={styles.tone_green} />Completed<b>68%</b></li>
+              <li><i className={styles.tone_blue} />In Progress<b>20%</b></li>
+              <li><i className={styles.tone_grey} />Pending<b>12%</b></li>
+            </ul>
+          </div>
+        </div>
+        <div className={styles.rtActivity}>
+          <p><b>Recent Activities</b><small>View all</small></p>
+          {rtPhoneActivity.map(([place, note, time, tone, alert]) => (
+            <div key={place}>
+              <i className={styles[`tone_${tone}`]} />
+              <span><b>{place}</b><em className={alert ? styles.rtAlert : undefined}>{note}</em></span>
+              <time className={alert ? styles.rtAlert : undefined}>{time}</time>
             </div>
-            <div className={styles.consoleTable}>
-              <div className={styles.consoleTableHead}><span>Recent Verification Activity</span><span>View all</span></div>
-              <div className={styles.consoleRow}><span>Asset Name</span><span>Status</span><span>Location</span><span>Date</span></div>
-              {consoleRows.map(([name, status, place, time]) => (
-                <div className={styles.consoleRow} key={name}>
-                  <span>{name}</span>
-                  <span><i className={styles[`pill${status}`]}>{status}</i></span>
-                  <span>{place}</span>
-                  <span>{time}</span>
-                </div>
+          ))}
+        </div>
+      </div>
+      <div className={styles.rtTabs}>
+        <span className={styles.rtTabActive}>Dashboard</span><span>Tasks</span><b /><span>Assets</span><span>More</span>
+      </div>
+    </div>
+  );
+}
+
+function RtLaptop() {
+  return (
+    <div className={styles.rtLaptop} aria-hidden="true">
+      <div className={styles.rtScreen}>
+        <aside className={styles.rtSide}>
+          <img src="/assets/deck/image2.png" alt="" width="584" height="207" />
+          {rtNav.map((item, index) => <span key={item} className={index === 0 ? styles.rtSideActive : undefined}>{item}</span>)}
+          <div className={styles.rtUser}><i /><span><b>Archie Alert</b>Manage users</span></div>
+        </aside>
+        <div className={styles.rtMain}>
+          <div className={styles.rtSearch}>Search by asset name, location or ID…</div>
+          <small className={styles.rtCrumb}>Dashboard / Control Centre</small>
+          <b className={styles.rtTitle}>Control Centre</b>
+          <small className={styles.rtCrumb}>Organisation-wide verification and asset performance</small>
+          <div className={styles.rtTiles}>
+            {rtTiles.map(([label, value, link]) => <div key={label}><small>{label}</small><b>{value}</b><em>{link} →</em></div>)}
+          </div>
+          <div className={styles.rtPanels}>
+            <div>
+              <p><b>Platform Setup (New!)</b><small>Status</small></p>
+              {rtSetup.map(([item, state]) => (
+                <div key={item}><span>{item}</span><i className={state === "Completed" ? styles.rtDone : styles.rtProgressPill}>{state}</i></div>
               ))}
+              <em>View all setup steps →</em>
+            </div>
+            <div>
+              <p><b>Integrations Health</b><small>Last sync</small></p>
+              {rtHealth.map(([item, time, ok]) => (
+                <div key={item}><span><i className={ok ? styles.tone_green : styles.tone_red} />{item}</span><span>{time}</span></div>
+              ))}
+              <em>View all integrations →</em>
             </div>
           </div>
         </div>
-        <div className={styles.laptopBase} />
       </div>
+      <div className={styles.rtBase} />
+    </div>
+  );
+}
 
-      <div className={styles.phone} aria-hidden="true">
-        <div className={styles.phoneNotch} />
-        <div className={styles.phoneBar}><span>9:41</span><b>Dashboard</b><span>•••</span></div>
-        <div className={styles.phoneBody}>
-          <p className={styles.phoneHello}>Hello, John<small>Here’s your verification overview</small></p>
-          <div className={styles.phoneStats}>
-            {phoneStats.map(([label, value, note]) => <div key={label}><small>{label}</small><b>{value}</b><em>{note}</em></div>)}
-          </div>
-          <div className={styles.phoneProgress}>
-            <small>Verification Progress</small>
-            <div>
-              <span className={styles.donut}><b>68%</b></span>
-              <ul><li><i />Completed 68%</li><li><i />In Progress 24%</li><li><i />Pending 8%</li></ul>
+function RealTimeControl() {
+  return (
+    <section className={`${styles.section} ${styles.tint} ${styles.rtSection}`} id="control-centre" aria-labelledby="rt-title">
+      <div className={site.container}>
+        <div className={styles.rtHead}>
+          <h2 id="rt-title">Mobile Evidence + Real-Time Control</h2>
+          <span className={styles.rtRule} aria-hidden="true"><i /></span>
+          <p>Every verification activity produces defensible evidence and live management visibility.</p>
+        </div>
+        <div className={styles.rtGrid}>
+          <RtPhone />
+          <div className={styles.rtChecks}>
+            <div className={styles.rtChecksHead}>
+              <Icon className={styles.rtShield}><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" /></Icon>
+              <h3>Evidence captured at the point of verification</h3>
             </div>
+            <ul>
+              {rtChecks.map((item) => <li key={item}><Icon className={styles.rtCheck}><path d="m7.5 12.5 3 3 6-6.5" /></Icon>{item}</li>)}
+            </ul>
           </div>
-          <div className={styles.phoneActivity}>
-            <small>Recent Activities</small>
-            {phoneActivity.map(([name, note, time, alert]) => (
-              <div key={name}><i className={alert ? styles.dotAlert : styles.dotOk} /><span>{name}<em className={alert ? styles.textAlert : undefined}>{note}</em></span><time>{time}</time></div>
+          <RtLaptop />
+          <div className={styles.rtProps}>
+            {rtProps.map(([first, second, icon]) => (
+              <article key={first}><Icon className={styles.rtPropIcon}>{icon}</Icon><p>{first}<br />{second}</p></article>
             ))}
           </div>
         </div>
-        <div className={styles.phoneTabs}><span>Home</span><span>Scan</span><b /><span>Assets</span><span>More</span></div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -592,48 +664,33 @@ function HomePage() {
 
       {/* 04: presentation visual 05 */}
       <section className={`${styles.section} ${styles.mobileSection}`} id="mobile" aria-labelledby="mobile-title">
-        <div className={site.container}>
-          <div className={styles.mobileHead}>
+        <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
+          <Slide name="mobile-verification" className={styles.mobileArt} alt="A smartphone captures the asset tag on a point of sale printer">
+            <div className={styles.evidenceSlip}>
+              <small>Evidence linked to the asset</small>
+              <strong>Asset ID + photograph</strong>
+              <span>Location · Condition</span>
+              <span>Verifier · Timestamp</span>
+            </div>
+          </Slide>
+          <div className={styles.copy}>
             <Badge>Verification at the asset</Badge>
-            <h2 id="mobile-title">Mobile Evidence + <em>Real-Time Control</em></h2>
-            <p className={styles.mobileSub}>A Smartphone Connects The Asset To Its Evidence.</p>
-            <p className={styles.body}>Capture physical findings where the asset stands, with the context reviewers need.</p>
-          </div>
-
-          <div className={styles.mobileGrid}>
-            <Slide name="mobile-verification" className={styles.mobileArt} alt="A smartphone captures the asset tag on a point of sale printer" />
-
-            <div className={styles.evidenceChecks}>
-              <h3>Evidence Captured At The Point Of Verification</h3>
-              <ul>
-                {evidenceChecks.map((item) => (
-                  <li key={item}><Icon className={styles.checkDot}><path d="m7.5 12.5 3 3 6-6.5" /></Icon>{item}</li>
-                ))}
-              </ul>
-            </div>
-
-            <DeviceShowcase />
-
-            <div className={styles.mobileSteps}>
-              <div className={styles.mobileStepRow}>
-                {mobileSteps.map(([title, text, icon]) => (
-                  <article key={title}><Icon className={styles.ringIcon}>{icon}</Icon><h3>{title}</h3><p>{text}</p></article>
-                ))}
-              </div>
-              <Link className={site.textLink} to="/#journey">Explore The Verification Journey <span aria-hidden="true">→</span></Link>
-            </div>
-
-            <div className={styles.valueProps}>
-              {valueProps.map(([title, text, icon]) => (
-                <article key={title}><Icon className={styles.ringIcon}>{icon}</Icon><div><h3>{title}</h3><p>{text}</p></div></article>
+            <h2 id="mobile-title">A smartphone connects<br />the asset <em>to its evidence.</em></h2>
+            <p className={styles.body}>Bring the verification record to the physical asset. Capture the findings where the asset stands, with the context reviewers need.</p>
+            <ul className={`${styles.numberedList} ${styles.iconList}`}>
+              {mobileSteps.map(([title, text, icon]) => (
+                <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
               ))}
-            </div>
+            </ul>
+            <Link className={site.textLink} to="/#demo">Explore the complete journey <span aria-hidden="true">→</span></Link>
           </div>
         </div>
       </section>
 
+      <RealTimeControl />
+
       {/* 05: presentation visual 06 */}
-      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.exceptions}`} id="exceptions" aria-labelledby="exceptions-title">
+      <section className={`${styles.section} ${styles.exceptions}`} id="exceptions" aria-labelledby="exceptions-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
             <p className={styles.sectionBadge}>
@@ -656,7 +713,7 @@ function HomePage() {
       <Controls />
 
       {/* 07: presentation visuals 08 and 14 */}
-      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="reconciliation" aria-labelledby="reconciliation-title">
+      <section className={`${styles.section} ${styles.recolor}`} id="reconciliation" aria-labelledby="reconciliation-title">
         <div className={site.container}>
           <div className={styles.split}>
             <div className={styles.copy}>
@@ -688,7 +745,7 @@ function HomePage() {
       <Delivery />
 
       {/* 09: presentation visual 09 */}
-      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="pilot" aria-labelledby="pilot-title">
+      <section className={`${styles.section} ${styles.recolor}`} id="pilot" aria-labelledby="pilot-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
             <Badge>A focused pilot</Badge>
@@ -706,7 +763,7 @@ function HomePage() {
       </section>
 
       {/* 10: presentation visual 10 */}
-      <section className={`${styles.section} ${styles.recolor}`} id="demo" aria-labelledby="demo-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="demo" aria-labelledby="demo-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <div className={styles.demoVisual}>
             <Slide name="demo" alt="A smartphone and laptop show the connection between a tagged physical asset and its verification record" />
