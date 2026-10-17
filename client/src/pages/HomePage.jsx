@@ -373,29 +373,21 @@ function HomePage() {
               </Link>
             </div>
           </div>
-          <Slide name="hero" priority className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations">
-            <div className={styles.imageNote}>
-              <span className={styles.noteMark} aria-hidden="true">✓</span>
-              <div><small>Records meet reality</small><strong>Evidence at the asset.</strong></div>
-            </div>
-          </Slide>
-        </div>
-        <div className={styles.promiseBar}>
-          <div className={`${site.container} ${styles.promiseInner}`}>
-            <span>Existence <i /> Location <i /> Custody <i /> Condition</span>
-            <strong>Because Every Asset Matters.</strong>
-          </div>
+          <Slide name="hero" priority className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations" />
         </div>
       </section>
 
       {/* 01: presentation visuals 02 / 02A */}
-      <section className={styles.section} id="reality" aria-labelledby="reality-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.reality}`} id="reality" aria-labelledby="reality-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <Slide name="reality-gap" className={styles.gapArt} alt="An asset register alongside a workplace with a missing asset and damaged equipment">
             <div className={styles.gapLabel}><span>Book record</span><b aria-hidden="true">≠</b><span>Physical reality</span></div>
           </Slide>
           <div className={styles.copy}>
-            <Eyebrow>01 / The asset reality gap</Eyebrow>
+            <p className={styles.sectionBadge}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+              The asset reality gap
+            </p>
             <h2 id="reality-title">Recorded in the books.<br /><em>Uncertain on the ground.</em></h2>
             <p className={styles.body}>Your register can record an asset long after its location, custodian or condition has changed. Verification brings those differences into view.</p>
             <ul className={styles.issueList}>

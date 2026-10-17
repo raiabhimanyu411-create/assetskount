@@ -161,64 +161,6 @@
     linear-gradient(0deg, #fff 0%, transparent 13%);
 }
 
-.imageNote {
-  position: absolute;
-  z-index: 2;
-  bottom: 45px;
-  right: 20px;
-  display: flex;
-  gap: 13px;
-  align-items: center;
-  background: #fff;
-  padding: 17px 21px;
-  box-shadow: 0 10px 40px #153e6410;
-  border: 1px solid #e4e9ed;
-  border-radius: 5px;
-}
-
-.imageNote small {
-  display: block;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.imageNote strong { font-size: 17px; color: var(--primary); line-height: 1.2; }
-
-.noteMark {
-  display: grid;
-  place-items: center;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  color: var(--secondary);
-  background: #f6ebed;
-}
-
-.promiseBar { background: var(--primary); color: #fff; }
-
-.promiseInner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 25px;
-  padding-block: 21px;
-}
-
-.promiseInner > span {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  font-size: 12px;
-  letter-spacing: .06em;
-  color: #dfebf5;
-}
-
-.promiseInner i { width: 3px; height: 3px; border-radius: 50%; background: #b6c7d6; }
-.promiseInner strong { font-size: 16px; font-weight: 600; letter-spacing: -.02em; }
-
 /* Section scaffolding */
 .section { padding: 96px 0; background: #fff; }
 .tint { background: var(--tint); }
@@ -310,6 +252,38 @@
 }
 
 .gapLabel b { font-size: 26px; line-height: 1; color: var(--secondary); }
+
+/* Reality gap on grey: black text, fades blend into the tint. */
+.page .reality h2,
+.reality .issueList strong,
+.reality .closingLine,
+.reality .gapLabel { color: #000; }
+
+.reality .gapArt::after {
+  background:
+    linear-gradient(90deg, var(--tint) 0%, rgba(245, 247, 249, .96) 6%, transparent 30%),
+    linear-gradient(0deg, var(--tint) 0%, transparent 13%);
+}
+
+/* Section label set in an outlined pill. */
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20px !important;
+  padding: 7px 16px;
+  border: 1px solid #e3c6cb;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--secondary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  gap: 8px;
+}
+
+.sectionBadge svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
 
 /* 02 What ASSETKOUNT verifies */
 .evidenceLayout {
@@ -843,10 +817,6 @@
   .heroDescription { max-width: 325px; }
   .hero .actions { gap: 18px; }
   .heroArt { width: 62%; right: -40px; }
-  .imageNote { padding: 13px 15px; right: 8px; bottom: 34px; }
-  .imageNote strong { font-size: 14px; }
-  .promiseInner strong { font-size: 14px; }
-  .promiseInner > span { gap: 12px; font-size: 11px; }
   .split, .controlsLayout { gap: 32px; }
   .heading { gap: 25px; }
   .heading > p { max-width: 270px; font-size: 14px; }
@@ -903,12 +873,6 @@
       linear-gradient(90deg, #fff, rgba(255, 255, 255, .9) 6%, transparent 28%),
       linear-gradient(0deg, #fff, transparent 9%);
   }
-
-  .imageNote { bottom: 20px; right: 2px; padding: 12px 17px; }
-  .noteMark { width: 28px; height: 28px; }
-  .promiseInner { padding-block: 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
-  .promiseInner > span { gap: 13px; }
-  .promiseInner strong { font-size: 15px; }
 
   .section { padding: 60px 0; }
   .split, .controlsLayout, .evidenceLayout { grid-template-columns: 1fr; gap: 28px; }
@@ -990,11 +954,8 @@
   .page .hero h1 { font-size: 30px; }
   .heroDescription { font-size: 14px; }
   .hero .actions { gap: 16px; }
-  .promiseInner > span { gap: 9px; font-size: 10px; }
   .page h2 { font-size: 28px; }
   .erpSequence { grid-template-columns: 1fr 1fr; gap: 18px; }
-  .imageNote { padding: 10px 14px; }
-  .imageNote strong { font-size: 13px; }
   .stagePanel h3 { font-size: 20px; }
   .stageNumber { font-size: 36px; }
   .deliverySelector button { padding: 12px; font-size: 14px; }
