@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Link } from "react-router-dom";
 import styles from "../pages/Pages.module.css";
+import { Brand, withBrand } from "./Brand.jsx";
 
 const HeroScene = lazy(() => import("./HeroScene.jsx"));
 
@@ -72,9 +73,9 @@ export function PageHero({ number, category, title, accent, description, photo, 
       <AmbientScene />
       <div className={styles.heroCopy}>
         <Kicker hero>{category}</Kicker>
-        <span className={styles.heroNumber} data-hero-item="">{number} <i /> ASSETKOUNT / STOCKTAKE WORKSPACE</span>
+        <span className={styles.heroNumber} data-hero-item="">{number} <i /> <Brand /> / STOCKTAKE WORKSPACE</span>
         <Lines as="h1" hero lines={[title, <em key="accent">{accent}</em>]} />
-        <p data-hero-item="">{description}</p>
+        <p data-hero-item="">{withBrand(description)}</p>
         <Link className={styles.buttonPrimary} to={actionTo} data-hero-item="" data-magnetic="">{action}<Arrow /></Link>
       </div>
       <div className={styles.heroVisual} data-hero-item="" data-tilt="5">
@@ -93,7 +94,7 @@ export function SectionHeading({ kicker, title, accent, copy }) {
     <div className={styles.sectionHeading}>
       <Kicker>{kicker}</Kicker>
       <Lines lines={[title, <em key="accent">{accent}</em>]} />
-      {copy && <p data-reveal="">{copy}</p>}
+      {copy && <p data-reveal="">{withBrand(copy)}</p>}
     </div>
   );
 }

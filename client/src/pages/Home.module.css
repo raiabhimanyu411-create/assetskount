@@ -277,8 +277,10 @@
 
 /* What ASSETKOUNT verifies on white, with black text. */
 .page .verifies h2,
-.verifies .dimensionList h3,
-.verifies .industryLine b { color: #000; }
+.verifies .dimensionList h3 { color: #000; }
+
+.page .verifies h2 { font-size: clamp(26px, 2.7vw, 38px); }
+.verifies .dimensionList article { align-items: center; }
 
 .verifies .evidenceArt { background: #fff; }
 
@@ -340,20 +342,6 @@
     linear-gradient(90deg, var(--tint) 0%, rgba(245, 247, 249, .96) 6%, transparent 26%),
     linear-gradient(0deg, var(--tint) 0%, transparent 12%);
 }
-
-.industryLine {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  border-top: 1px solid var(--line);
-  margin-top: 48px;
-  padding-top: 25px;
-  font-size: 14px;
-}
-
-.industryLine > span { color: var(--muted); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
-.industryLine b { font-weight: 600; color: var(--primary); }
 
 /* 03 Journey */
 .workflowTabs {
@@ -921,9 +909,6 @@
   .dimensionList article:last-child { border-bottom: 0; }
   .evidenceLayout { gap: 10px; }
   .evidenceArt { aspect-ratio: 1.4; }
-
-  .industryLine { flex-wrap: wrap; justify-content: flex-start; gap: 17px 25px; margin-top: 30px; padding-top: 22px; }
-  .industryLine > span { flex-basis: 100%; }
 
   .workflowTabs { grid-template-columns: repeat(3, 1fr); row-gap: 8px; }
   .workflowTabs button { font-size: 13px; padding: 11px 15px; }

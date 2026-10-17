@@ -2,6 +2,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Arrow, Kicker, Lines, NextStep, Photo } from "../components/PageHero.jsx";
 import styles from "./AssetManagementPage.module.css";
+import { Brand } from "../components/Brand.jsx";
 
 const modules = [
   ["01", "Enterprise asset register", "Bring tags, serial numbers, category, assigned custodian, cost centre, location and book value into one structured asset record.", "▤"],
@@ -170,7 +171,7 @@ function AssetManagementPage() {
       <section className={styles.assetHero}>
         <div className={styles.heroCopy}>
           <Kicker hero>ENTERPRISE ASSET MANAGEMENT</Kicker>
-          <span className={styles.heroIndex} data-hero-item=""><i /> ASSETKOUNT / PORTFOLIO CONTROL</span>
+          <span className={styles.heroIndex} data-hero-item=""><i /> <Brand /> / PORTFOLIO CONTROL</span>
           <Lines as="h1" hero lines={["Know every asset.", <em key="accent">Understand every change.</em>]} />
           <p data-hero-item="">Connect asset records to field evidence, movement history and finance review—so your team can see more than a line in a register.</p>
           <Link className={styles.heroAction} to="/contact" data-hero-item="" data-magnetic="">Explore your asset programme <Arrow diagonal /></Link>
@@ -228,7 +229,7 @@ function AssetManagementPage() {
       <section className={styles.registerSection}>
         <div className={styles.registerVisual}>
           <div className={styles.registerWindow}>
-            <div className={styles.registerTop}><span className={styles.registerMark}>A</span><b>ASSETKOUNT</b><small>ASSET REGISTER / ASSET DETAIL</small><span className={styles.recordState}><i /> IN SERVICE</span></div>
+            <div className={styles.registerTop}><span className={styles.registerMark}>A</span><b><Brand /></b><small>ASSET REGISTER / ASSET DETAIL</small><span className={styles.recordState}><i /> IN SERVICE</span></div>
             <div className={styles.registerBody}>
               <div className={styles.registerTitle}><div><small>FIXED ASSET / PLANT & EQUIPMENT</small><h3>Electric forklift FL-07</h3></div><span>•••</span></div>
               <div className={styles.registerIdentity}><span><small>ASSET TAG</small><b>AK-20417</b></span><span><small>SERIAL NUMBER</small><b>FLT-882941</b></span><span><small>CONDITION</small><b className={styles.condition}>● Good</b></span></div>
@@ -322,7 +323,7 @@ function AssetManagementPage() {
             <div className={styles.roleMetrics}>
               {selectedRole.metrics.map(([label, value, note]) => <div key={label}><span>{label}</span><b>{value}</b><small>{note}</small></div>)}
             </div>
-            <div className={styles.rolePanelFoot}><span>ASSETKOUNT / ROLE-SCOPED VIEW</span><span>Illustrative dashboard preview</span></div>
+            <div className={styles.rolePanelFoot}><span><Brand /> / ROLE-SCOPED VIEW</span><span>Illustrative dashboard preview</span></div>
           </div>
         </div>
       </section>
@@ -379,7 +380,7 @@ function AssetManagementPage() {
         <div className={styles.intelligenceIntro}>
           <div><Kicker>AI ASSET INTELLIGENCE</Kicker><Lines lines={["Asset risk signals before", <em key="a">they become audit issues.</em>]} /></div>
           <div>
-            <p data-reveal="">ASSETKOUNT can surface potential ghost assets, duplicate records, repeated location drift, missing evidence and disposal opportunities—so teams know where to look first.</p>
+            <p data-reveal=""><Brand /> can surface potential ghost assets, duplicate records, repeated location drift, missing evidence and disposal opportunities—so teams know where to look first.</p>
             <Link className={styles.intelligenceLink} to="/contact">Discuss AI roadmap <Arrow diagonal /></Link>
           </div>
         </div>

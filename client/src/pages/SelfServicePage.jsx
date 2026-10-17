@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Arrow, Kicker, Lines, NextStep, PageHero, Photo, SectionHeading } from "../components/PageHero.jsx";
 import styles from "./Pages.module.css";
+import { Brand } from "../components/Brand.jsx";
 
 const steps = [
   ["01", "Set up your stocktake", "Choose locations, load inventory and decide how teams will split the count."],
@@ -30,7 +31,7 @@ function SelfServicePage() {
             <article className={styles.serviceStep} key={number}><span>{number}</span><h3>{title}</h3><p>{copy}</p></article>
           ))}
         </div>
-        <p className={styles.serviceFootnote} data-reveal="">Your authorised counters and reviewers complete the stocktake using ASSETKOUNT.</p>
+        <p className={styles.serviceFootnote} data-reveal="">Your authorised counters and reviewers complete the stocktake using <Brand />.</p>
       </section>
       <section className={styles.selfServiceControls}>
         <div className={styles.selfServiceIntro}>

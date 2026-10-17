@@ -4,6 +4,7 @@ import { openEnquiry } from "../components/Enquiry.jsx";
 import site from "../components/Site.module.css";
 import { lockScroll } from "../lib/motion.js";
 import styles from "./Home.module.css";
+import { Brand, withBrand } from "../components/Brand.jsx";
 
 const IMG = "/assets/enterprise";
 
@@ -29,10 +30,24 @@ const issues = [
 ];
 
 const dimensions = [
-  ["Existence", "Is the recorded asset physically present?"],
-  ["Location", "Is it at the location shown in your records?"],
-  ["Custody", "Who is responsible for the asset?"],
-  ["Condition", "Does its physical condition match the record?"],
+  ["Existence", "Is the recorded asset physically present?", (
+    <path d="M21 8 12 3 3 8v8l9 5 9-5V8ZM3 8l9 5 9-5M12 13v8" />
+  )],
+  ["Location", "Is it at the location shown in your records?", (
+    <>
+      <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </>
+  )],
+  ["Custody", "Who is responsible for the asset?", (
+    <>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21a8 8 0 0 1 16 0" />
+    </>
+  )],
+  ["Condition", "Does its physical condition match the record?", (
+    <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />
+  )],
 ];
 
 const stages = [
@@ -249,7 +264,7 @@ function Delivery() {
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <Eyebrow>08 / Two ways to work with ASSETKOUNT</Eyebrow>
+            <Eyebrow>08 / Two ways to work with <Brand /></Eyebrow>
             <h2 id="delivery-title">One platform.<br /><em>Your delivery model.</em></h2>
           </div>
           <p>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
@@ -276,12 +291,12 @@ function Delivery() {
             <img src={`${IMG}/${model.image}.webp`} width="1672" height="941" alt={model.alt} loading="lazy" decoding="async" />
           </div>
           <div className={styles.copy}>
-            <h3 className={styles.modelTitle}>{model.title[0]}<br />{model.title[1]}</h3>
-            <p className={styles.body}>{model.description}</p>
+            <h3 className={styles.modelTitle}>{withBrand(model.title[0])}<br />{withBrand(model.title[1])}</h3>
+            <p className={styles.body}>{withBrand(model.description)}</p>
             <ul className={styles.checkList}>
               {model.items.map((item) => <li key={item}>{item}</li>)}
             </ul>
-            <p className={styles.modelResponsibility}>{model.responsibility}</p>
+            <p className={styles.modelResponsibility}>{withBrand(model.responsibility)}</p>
             <button className={site.textLink} type="button" onClick={() => openEnquiry(model.enquiry)}>
               Discuss {model.name} <span aria-hidden="true">→</span>
             </button>
@@ -311,7 +326,7 @@ function Walkthrough({ dialogRef }) {
       <div className={styles.walkthroughHeader}>
         <Eyebrow>Illustrative walkthrough</Eyebrow>
         <h2 id="walkthrough-title">One asset.<br /><em>A controlled journey.</em></h2>
-        <p className={styles.body}>Explore the stages, then book a live demo to see ASSETKOUNT in operation.</p>
+        <p className={styles.body}>Explore the stages, then book a live demo to see <Brand /> in operation.</p>
       </div>
       <div className={styles.walkthroughContent}>
         <div className={styles.walkthroughAsset}>
@@ -373,7 +388,7 @@ function HomePage() {
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
               Enterprise Asset Verification
             </p>
-            <h1 id="hero-title">Your ERP says<br />what should exist.<br /><em>ASSETKOUNT<br />proves what does.</em></h1>
+            <h1 id="hero-title">Your ERP says<br />what should exist.<br /><em><Brand /><br />proves what does.</em></h1>
             <p className={styles.heroDescription}>Connect your fixed asset register to physical evidence of existence, location, custody and condition.</p>
             <div className={styles.actions}>
               <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}>
@@ -413,7 +428,7 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-            <p className={styles.closingLine}>ASSETKOUNT connects asset records to physical evidence seamlessly.</p>
+            <p className={styles.closingLine}><Brand /> connects asset records to physical evidence seamlessly.</p>
           </div>
         </div>
       </section>
@@ -425,22 +440,21 @@ function HomePage() {
             <div>
               <p className={styles.sectionBadge}>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-                What ASSETKOUNT verifies
+                What <Brand /> verifies
               </p>
               <h2 id="platform-title">Evidence behind<br /><em>every asset record.</em></h2>
             </div>
-            <p>Establish what is physically present, where it is, who is responsible and what condition it is in.</p>
           </div>
           <div className={styles.evidenceLayout}>
             <div className={styles.dimensionList}>
-              {dimensions.map(([title, text], index) => (
-                <article key={title}><span>{pad(index)}</span><div><h3>{title}</h3><p>{text}</p></div></article>
+              {dimensions.map(([title, text, icon]) => (
+                <article key={title}>
+                  <i className={styles.issueIcon} aria-hidden="true"><svg viewBox="0 0 24 24">{icon}</svg></i>
+                  <div><h3>{title}</h3><p>{text}</p></div>
+                </article>
               ))}
             </div>
             <Slide name="evidence" className={styles.evidenceArt} alt="A verification officer scans the asset tag on a pharmacy refrigerator while a colleague reviews the record" />
-          </div>
-          <div className={styles.industryLine}>
-            <span>Across your business</span><b>Retail</b><b>Healthcare</b><b>Warehousing</b><b>Offices</b>
           </div>
         </div>
       </section>
@@ -500,7 +514,7 @@ function HomePage() {
             <div className={styles.copy}>
               <Eyebrow>07 / Verification to action</Eyebrow>
               <h2 id="reconciliation-title">Physical evidence.<br /><em>Financial clarity.</em></h2>
-              <p className={styles.leadLine}>ASSETKOUNT complements your ERP.</p>
+              <p className={styles.leadLine}><Brand /> complements your ERP.</p>
               <p className={styles.body}>Import the asset register. Verify physical assets. Reconcile the findings and release approved outcomes for the next agreed action.</p>
               <div className={styles.erpSequence}>
                 {["Import register", "Verify assets", "Reconcile", "Approve outcomes"].map((label, index) => (
@@ -552,7 +566,7 @@ function HomePage() {
             </button>
           </div>
           <div className={styles.copy}>
-            <Eyebrow>10 / See ASSETKOUNT in action</Eyebrow>
+            <Eyebrow>10 / See <Brand /> in action</Eyebrow>
             <h2 id="demo-title">One asset.<br /><em>The complete<br />verification journey.</em></h2>
             <p className={styles.body}>See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
             <div className={styles.actions}>

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Arrow, Kicker, Lines, NextStep, PageHero, Photo, SectionHeading, Steps } from "../components/PageHero.jsx";
 import styles from "./Pages.module.css";
+import { Brand } from "../components/Brand.jsx";
 
 const capabilities = [
   ["01", "A guided mobile count", "Give counters a clear way to scan products and record quantities at the shelf."],
@@ -71,7 +72,7 @@ function PlatformPage() {
         <div className={styles.platformControlIntro}>
           <Kicker>FOR THE PEOPLE RUNNING THE COUNT</Kicker>
           <Lines lines={["The shelf is one view.", <em key="a">The operation is another.</em>]} />
-          <p data-reveal="">Counters need an uncluttered way to record what they find. Managers need the bigger picture. ASSETKOUNT brings both into the same stocktake.</p>
+          <p data-reveal="">Counters need an uncluttered way to record what they find. Managers need the bigger picture. <Brand /> brings both into the same stocktake.</p>
         </div>
         <div className={styles.controlCards} data-stagger="">
           <article><span>01 / FIELD TEAM</span><b>Keep moving</b><p>Scan items, enter quantities and see the work assigned to your location or zone.</p><i aria-hidden="true">⌗</i></article>

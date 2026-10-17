@@ -13,6 +13,7 @@ import FullServicePage from "./pages/FullServicePage.jsx";
 import SelfServicePage from "./pages/SelfServicePage.jsx";
 import AssetManagementPage from "./pages/AssetManagementPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
+import { Brand } from "./components/Brand.jsx";
 
 const navigation = [
   { id: "platform", label: "The Platform" },
@@ -175,7 +176,7 @@ function SiteFooter() {
       </div>
       <div className={`${site.container} ${site.footerBottom}`}>
         <span>© {new Date().getFullYear()} ACREBIS. All rights reserved.</span>
-        <span>ASSETKOUNT · Because Every Asset Matters.</span>
+        <span><Brand /> · Because Every Asset Matters.</span>
         <button type="button" onClick={() => scrollToTop(false)}>Back to top ↑</button>
       </div>
     </footer>

@@ -5,6 +5,11 @@
   margin-inline: auto;
 }
 
+/* Product name: ASSET in burgundy, KOUNT in black. */
+.brandName { white-space: nowrap; }
+.brandAsset { color: var(--secondary); }
+.brandKount { color: #000; }
+
 /* Buttons and links */
 .button {
   border: 1px solid var(--secondary);

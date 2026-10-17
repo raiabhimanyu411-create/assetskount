@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Arrow, Kicker, Lines, Photo } from "../components/PageHero.jsx";
 import styles from "./Pages.module.css";
+import { Brand } from "../components/Brand.jsx";
 
 // Optional fallback inbox, shown only if the API cannot be reached.
 const CONTACT_EMAIL = import.meta.env.VITE_CONTACT_EMAIL;
@@ -37,7 +38,7 @@ function ContactPage() {
     <main className={styles.contactPage}>
       <section className={styles.contactHeading}>
         <Kicker hero>YOUR NEXT STEP / PRODUCT WALKTHROUGH</Kicker>
-        <span className={styles.heroNumber} data-hero-item="">06 <i /> ASSETKOUNT DEMO</span>
+        <span className={styles.heroNumber} data-hero-item="">06 <i /> <Brand /> DEMO</span>
         <Lines as="h1" hero lines={["See a clearer", <em key="a">way to count.</em>]} />
         <p data-hero-item="">Tell us a little about your operation and what you manage. We'll follow up to arrange a product walkthrough around your locations, inventory or fixed assets.</p>
         <div className={styles.contactInfo} data-hero-item="">
@@ -66,7 +67,7 @@ function ContactPage() {
         </div>
       ) : (
         <form className={styles.contactForm} onSubmit={handleSubmit} data-hero-item="" aria-busy={status === "sending"}>
-          <div className={styles.formIntro}><span>LET'S FIND THE RIGHT ASSETKOUNT OFFERING</span><h2>Book your product demo.</h2></div>
+          <div className={styles.formIntro}><span>LET'S FIND THE RIGHT <Brand /> OFFERING</span><h2>Book your product demo.</h2></div>
           <label>Full name<input name="name" autoComplete="name" placeholder="Jane Smith" required maxLength={120} /></label>
           <label>Business email<input name="email" type="email" autoComplete="email" placeholder="jane@company.com" required maxLength={160} /></label>
           <label>Phone number<input name="phone" type="tel" autoComplete="tel" placeholder="+1 555 012 3456" maxLength={32} /></label>
