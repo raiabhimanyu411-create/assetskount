@@ -1040,7 +1040,8 @@
   stroke-linejoin: round;
 }
 
-.controlIcon { display: block; color: var(--secondary); }
+.controlIcon { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; background: var(--secondary); color: #fff; }
+.controlIcon svg { width: 18px; height: 18px; }
 .controlTabs button > .controlIcon { margin-left: 0; font-size: inherit; }
 .recolor .controlTabs button > strong { font-size: 16px; }
 .recolor .controlPanel h3 { font-size: 20px; }
@@ -1268,6 +1269,63 @@
 
 @media (max-width: 480px) {
   .featureGrid { grid-template-columns: 1fr; }
+}
+
+/* Assurance: selected approach as a card with a level meter and a connected approval route. */
+.recolor .controlPanel {
+  margin-top: 18px;
+  padding: 24px 24px 22px;
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(23, 63, 98, .06);
+}
+
+.panelTop { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.panelTop .eyebrowSmall { margin: 0 !important; }
+
+.levelMeter { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 999px; background: #f6ebed; color: var(--secondary); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.levelMeter i { width: 5px; height: 12px; border-radius: 2px; background: #e3c6cb; }
+.levelMeter i:nth-of-type(2) { height: 15px; }
+.levelMeter i:nth-of-type(3) { height: 18px; margin-right: 5px; }
+.levelMeter .levelOn { background: var(--secondary); }
+
+.routeSteps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.routeSteps::before {
+  content: "";
+  position: absolute;
+  top: 37px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--secondary), #e3c6cb);
+}
+
+.routeSteps li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; text-align: center; }
+.routeSteps li:first-child { align-items: flex-start; text-align: left; }
+.routeSteps li:last-child { align-items: flex-end; text-align: right; }
+.routeSteps span { max-width: 120px; font-size: 12px; font-weight: 600; line-height: 1.35; color: #000; }
+
+.routeIcon { position: relative; z-index: 1; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--secondary); background: #fff; box-shadow: 0 0 0 4px #fff; }
+.routeIcon svg { width: 18px; height: 18px; fill: none; stroke: var(--secondary); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.routeDone .routeIcon { background: var(--secondary); }
+.routeDone .routeIcon svg { stroke: #fff; stroke-width: 2.4; }
+.routeDone span { color: var(--secondary); }
+
+@media (max-width: 480px) {
+  .panelTop { flex-direction: column; align-items: flex-start; }
+  .routeSteps span { font-size: 11px; }
 }
 
 /* One size for every bullet list (title + line below), matching The Asset Reality Gap.

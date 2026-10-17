@@ -98,8 +98,15 @@ const reviewFlow = [
 
 const reviewRoles = [
   ["Field teams", "Record findings at the asset.", <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>],
-  ["Supervisors", "Review the evidence and decide.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
+  ["Supervisors", "Review the evidence.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
 ];
+
+const routeIcons = {
+  "Verification": <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />,
+  "Supervisor review": <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>,
+  "Finance approval": <><rect x="3" y="6" width="18" height="13" rx="2" /><path d="M3 10h18M7 15h4" /></>,
+  "Independent re-verification": <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>,
+};
 
 const stages = [
   { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria." },
@@ -111,9 +118,9 @@ const stages = [
 ];
 
 const controls = [
-  { name: "Rapid Verification", icon: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />, title: "Supervisor review", description: "Verification findings are reviewed by the supervisor before completion.", route: ["Verification", "Supervisor review"] },
-  { name: "Standard Control", icon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>, title: "Supervisor review + Finance approval", description: "Combine operational review with Finance approval for the verification exercise.", route: ["Verification", "Supervisor review", "Finance approval"] },
-  { name: "Independent Audit", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>, title: "Independent re-verification + Finance approval", description: "Apply an independent re-verification and Finance approval to the selected exercise.", route: ["Verification", "Independent re-verification", "Finance approval"] },
+  { name: "Rapid Verification", level: 1, levelLabel: "Fast turnaround", icon: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />, title: "Supervisor review", description: "Verification findings are reviewed by the supervisor before completion.", route: ["Verification", "Supervisor review"] },
+  { name: "Standard Control", level: 2, levelLabel: "Balanced control", icon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>, title: "Supervisor review + Finance approval", description: "Combine operational review with Finance approval for the verification exercise.", route: ["Verification", "Supervisor review", "Finance approval"] },
+  { name: "Independent Audit", level: 3, levelLabel: "Highest assurance", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>, title: "Independent re-verification + Finance approval", description: "Apply an independent re-verification and Finance approval to the selected exercise.", route: ["Verification", "Independent re-verification", "Finance approval"] },
 ];
 
 const erpSteps = [
@@ -284,7 +291,7 @@ function Controls() {
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <Badge>Assurance to match your controls</Badge>
+            <Badge>Assurance To Match Your Controls</Badge>
             <h2 id="controls-title">The right review.<br /><em>For each verification.</em></h2>
             <p className={styles.journeyIntro}>Choose the review approach that fits the exercise and your organisation’s control requirements.</p>
           </div>
@@ -309,17 +316,21 @@ function Controls() {
               ))}
             </div>
             <div className={styles.controlPanel} id="control-panel" role="tabpanel" aria-labelledby={`control-tab-${active}`} tabIndex={0}>
-              <Eyebrow className={styles.eyebrowSmall}>Selected review approach</Eyebrow>
+              <div className={styles.panelTop}>
+                <Eyebrow className={styles.eyebrowSmall}>Selected review approach</Eyebrow>
+                <span className={styles.levelMeter} aria-label={`Assurance level ${control.level} of 3`}>
+                  {[1, 2, 3].map((bar) => <i key={bar} className={bar <= control.level ? styles.levelOn : undefined} />)}
+                  {control.levelLabel}
+                </span>
+              </div>
               <h3>{control.title}</h3>
               <p>{control.description}</p>
-              <div className={styles.approvalRoute}>
-                {control.route.map((step, index) => (
-                  <React.Fragment key={step}>
-                    {index > 0 && <i aria-hidden="true">→</i>}
-                    <span>{step}</span>
-                  </React.Fragment>
+              <ol className={styles.routeSteps} aria-label="Approval route">
+                {control.route.map((step) => (
+                  <li key={step}><Icon className={styles.routeIcon}>{routeIcons[step]}</Icon><span>{step}</span></li>
                 ))}
-              </div>
+                <li className={styles.routeDone}><Icon className={styles.routeIcon}><path d="m7.5 12.5 3 3 6-6.5" /></Icon><span>Approved</span></li>
+              </ol>
             </div>
           </div>
           <Slide name="assurance" className={styles.assuranceArt} alt="Finance and operational reviewers discuss asset records and supporting evidence" />
