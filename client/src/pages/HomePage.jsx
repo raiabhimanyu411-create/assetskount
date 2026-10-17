@@ -458,7 +458,7 @@ function HomePage() {
             <div>
               <p className={styles.sectionBadge}>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-                What <Brand /> verifies
+                What <Brand /> Verifies
               </p>
               <h2 id="platform-title">Evidence behind<br /><em>every asset record.</em></h2>
             </div>

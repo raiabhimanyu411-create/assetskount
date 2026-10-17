@@ -279,7 +279,9 @@
 .page .verifies h2,
 .verifies .dimensionList h3 { color: #000; }
 
-.page .verifies h2 { font-size: clamp(26px, 2.7vw, 38px); }
+.page .verifies h2 { font-size: clamp(25px, 2.4vw, 34px); }
+.verifies .dimensionList h3 { font-size: 19px; margin-bottom: 5px; }
+.verifies .dimensionList p { font-size: 13px; }
 .verifies .dimensionList article { align-items: center; }
 
 .verifies .evidenceArt { background: #fff; }
@@ -289,12 +291,18 @@
 .journey .stagePanel h3 { color: #000; }
 
 .journeyIntro {
-  max-width: 520px;
-  margin-top: 18px !important;
+  max-width: 500px;
+  margin-top: 16px !important;
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.85;
 }
+
+.page .journey h2 { font-size: clamp(25px, 2.4vw, 34px); }
+.journey .workflowTabs button { font-size: 14px; }
+.journey .stagePanel h3 { font-size: 20px; }
+.journey .stagePanel p { font-size: 14px; }
+.journey .stageTag { font-size: 12px; }
 
 .tabIcon {
   display: block;
@@ -317,14 +325,22 @@
 .mobileSection .evidenceSlip strong,
 .mobileSection .copy > a { color: #000; }
 
-.iconList li {
+.numberedList.iconList li {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 16px 0;
+  padding: 15px 0;
 }
 
-.iconList li::before { content: none; }
+.numberedList.iconList li::before { content: none; }
+
+.page .mobileSection h2 { font-size: clamp(25px, 2.4vw, 34px); }
+.mobileSection .copy > p.body { font-size: 14px; }
+.mobileSection .numberedList strong { font-size: 14px; }
+.mobileSection .numberedList span { font-size: 12.5px; }
+.mobileSection .evidenceSlip strong { font-size: 14px; }
+.mobileSection .evidenceSlip > span { font-size: 12px; }
+.mobileSection .copy > a { font-size: 13px; }
 
 .stageIcon { width: 54px; height: 54px; }
 .stageIcon svg { width: 25px; height: 25px; }
