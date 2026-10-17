@@ -359,7 +359,7 @@ function HomePage() {
             <p className={styles.heroDescription}>Connect your fixed asset register to physical evidence of existence, location, custody and condition.</p>
             <div className={styles.actions}>
               <button className={site.button} type="button" onClick={() => openEnquiry("Live product demo")}>Book a live demo <span aria-hidden="true">↗</span></button>
-              <Link className={site.textLink} to="/#journey">Explore the journey <span aria-hidden="true">→</span></Link>
+              <Link className={site.textLink} to="/#journey">Learn more <span aria-hidden="true">→</span></Link>
             </div>
             <p className={styles.heroNote}>Mobile verification. Controlled review. Approved outcomes.</p>
           </div>

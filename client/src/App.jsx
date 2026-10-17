@@ -132,8 +132,11 @@ function SiteHeader() {
           {navigation.map(({ id, label }) => (
             <Link key={id} to={`/#${id}`} aria-current={current === id ? "location" : undefined}>{label}</Link>
           ))}
-          <button className={`${site.button} ${site.buttonSmall}`} type="button" onClick={() => { setMenuOpen(false); openEnquiry("Live product demo"); }}>
-            Book a demo <span aria-hidden="true">↗</span>
+          <button className={site.requestDemo} type="button" onClick={() => { setMenuOpen(false); openEnquiry("Live product demo"); }}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12.6 3.4c2.6-1.5 5.6-1.9 7.6-1.6.3 2-.1 5-1.6 7.6-1 1.8-2.6 3.4-4.4 4.6l-.4 3.7a1 1 0 0 1-.5.8l-3 1.8a.6.6 0 0 1-.9-.6l.5-3.2-2.5-2.5-3.2.5a.6.6 0 0 1-.6-.9l1.8-3a1 1 0 0 1 .8-.5l3.7-.4c1.2-1.8 2.8-3.4 4.7-4.3Zm2.9 3.1a2 2 0 1 0 0 2.9 2 2 0 0 0 0-2.9ZM5.3 16.1c.7-.7 1.9-.7 2.6 0s.7 1.9 0 2.6c-.9.9-3.6 1.5-3.6 1.5s.5-2.7 1-4.1Z" />
+            </svg>
+            Request Demo
           </button>
         </nav>
       </div>
