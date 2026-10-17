@@ -280,8 +280,6 @@
 .verifies .dimensionList h3 { color: #000; }
 
 .page .verifies h2 { font-size: clamp(25px, 2.4vw, 34px); }
-.verifies .dimensionList h3 { font-size: 19px; margin-bottom: 5px; }
-.verifies .dimensionList p { font-size: 13px; }
 .verifies .dimensionList article { align-items: center; }
 
 .verifies .evidenceArt { background: #fff; }
@@ -336,11 +334,21 @@
 
 .page .mobileSection h2 { font-size: clamp(25px, 2.4vw, 34px); }
 .mobileSection .copy > p.body { font-size: 14px; }
-.mobileSection .numberedList strong { font-size: 14px; }
-.mobileSection .numberedList span { font-size: 12.5px; }
 .mobileSection .evidenceSlip strong { font-size: 14px; }
 .mobileSection .evidenceSlip > span { font-size: 12px; }
 .mobileSection .copy > a { font-size: 13px; }
+
+/* Exceptions on grey: black text, smaller type. */
+.page .exceptions h2,
+.exceptions .reviewPath > span,
+.exceptions .closingLine,
+.exceptions .copy > a { color: #000; }
+
+.page .exceptions h2 { font-size: clamp(25px, 2.4vw, 34px); }
+.exceptions .copy > p.body { font-size: 14px; }
+.exceptions .reviewPath { font-size: 12px; }
+.exceptions .closingLine { font-size: 14px; }
+.exceptions .copy > a { font-size: 13px; }
 
 .stageIcon { width: 54px; height: 54px; }
 .stageIcon svg { width: 25px; height: 25px; }
@@ -1034,3 +1042,59 @@
   .deliverySelector button { padding: 12px; font-size: 14px; }
   .walkthroughLaunch { left: 12%; }
 }
+
+/* Assurance → Demo: brand blue text turns black, numbers become icons, type matches earlier sections. */
+.recolor { --primary: #000; }
+
+.page .recolor h2 { font-size: clamp(25px, 2.4vw, 34px); }
+.recolor .heading > p,
+.recolor .copy > p.body { font-size: 14px; }
+.recolor .copy > a,
+.recolor .copy > button.textLink,
+.recolor .actions .textLink { font-size: 13px; }
+
+.controlIcon svg,
+.seqIcon svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.controlIcon { display: block; color: var(--secondary); }
+.controlTabs button > .controlIcon { margin-left: 0; font-size: inherit; }
+.recolor .controlTabs button > strong { font-size: 16px; }
+.recolor .controlPanel h3 { font-size: 20px; }
+.recolor .controlPanel > p:not([class]) { font-size: 13px; }
+
+.seqIcon { display: block; margin-bottom: 8px; color: var(--secondary); }
+.recolor .leadLine { font-size: 16px; }
+.outputList article > .issueIcon { margin-bottom: 14px; }
+
+.delivery .deliverySelector button[aria-selected="true"] { background: #173F62; color: #fff; }
+.delivery .modelPhoto::after { background: linear-gradient(90deg, #fff, transparent 28%); }
+.page .delivery .modelTitle { font-size: 26px; }
+.delivery .checkList li { font-size: 13px; }
+.delivery .modelResponsibility { font-size: 13px; }
+
+.recolor .walkthroughLaunch strong { font-size: 16px; }
+
+/* One size for every bullet list (title + line below), matching The Asset Reality Gap.
+   Placed last so it holds at every breakpoint. */
+.page .issueList strong,
+.page .dimensionList h3,
+.page .numberedList strong,
+.page .outputList h3,
+.page .scopeSummary strong { font-size: 15px; line-height: 1.5; letter-spacing: -.01em; }
+
+.page .issueList span,
+.page .dimensionList p,
+.page .numberedList span,
+.page .outputList p,
+.page .scopeSummary p { font-size: 13px; line-height: 1.7; }
+
+.page .dimensionList h3 { margin-bottom: 3px; }

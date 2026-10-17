@@ -75,16 +75,23 @@ const stages = [
 ];
 
 const controls = [
-  { name: "Rapid Verification", title: "Supervisor review", description: "Verification findings are reviewed by the supervisor before completion.", route: ["Verification", "Supervisor review"] },
-  { name: "Standard Control", title: "Supervisor review + Finance approval", description: "Combine operational review with Finance approval for the verification exercise.", route: ["Verification", "Supervisor review", "Finance approval"] },
-  { name: "Independent Audit", title: "Independent re-verification + Finance approval", description: "Apply an independent re-verification and Finance approval to the selected exercise.", route: ["Verification", "Independent re-verification", "Finance approval"] },
+  { name: "Rapid Verification", icon: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />, title: "Supervisor review", description: "Verification findings are reviewed by the supervisor before completion.", route: ["Verification", "Supervisor review"] },
+  { name: "Standard Control", icon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>, title: "Supervisor review + Finance approval", description: "Combine operational review with Finance approval for the verification exercise.", route: ["Verification", "Supervisor review", "Finance approval"] },
+  { name: "Independent Audit", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>, title: "Independent re-verification + Finance approval", description: "Apply an independent re-verification and Finance approval to the selected exercise.", route: ["Verification", "Independent re-verification", "Finance approval"] },
+];
+
+const erpSteps = [
+  ["Import register", <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />],
+  ["Verify assets", <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />],
+  ["Reconcile", <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />],
+  ["Approve outcomes", <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>],
 ];
 
 const outputs = [
-  ["Verified asset register", "Recorded findings on existence and location."],
-  ["Supporting evidence", "Evidence linked to the verification record."],
-  ["Exception summary", "Missing assets, mismatches and items to resolve."],
-  ["Reconciliation and closeout", "Reviewed differences and agreed follow-up actions."],
+  ["Verified asset register", "Recorded findings on existence and location.", <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />],
+  ["Supporting evidence", "Evidence linked to the verification record.", <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 16 5-5 4 4 3-3 6 6" /><circle cx="15.5" cy="9.5" r="1.5" /></>],
+  ["Exception summary", "Missing assets, mismatches and items to resolve.", <path d="M12 3 2 21h20L12 3ZM12 10v5M12 18h.01" />],
+  ["Reconciliation and closeout", "Reviewed differences and agreed follow-up actions.", <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>],
 ];
 
 const models = [
@@ -115,9 +122,9 @@ const models = [
 ];
 
 const pilotSteps = [
-  ["Define the first scope", "Agree sites, asset classes and register availability."],
-  ["Agree evidence and responsibilities", "Confirm the review roles and completion criteria."],
-  ["Assess the findings", "Review verification coverage, exceptions and reconciliation."],
+  ["Define the first scope", "Agree sites, asset classes and register availability.", <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>],
+  ["Agree evidence and responsibilities", "Confirm the review roles and completion criteria.", <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>],
+  ["Assess the findings", "Review verification coverage, exceptions and reconciliation.", <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />],
 ];
 
 const scopeItems = [
@@ -153,6 +160,19 @@ function Slide({ name, alt, className = "", children, priority = false }) {
       {children}
     </div>
   );
+}
+
+function Badge({ children }) {
+  return (
+    <p className={styles.sectionBadge}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+      {children}
+    </p>
+  );
+}
+
+function Icon({ children, className = styles.issueIcon }) {
+  return <i className={className} aria-hidden="true"><svg viewBox="0 0 24 24">{children}</svg></i>;
 }
 
 function Eyebrow({ children, className = "" }) {
@@ -225,11 +245,11 @@ function Controls() {
   const [active, setActive] = useState(0);
   const control = controls[active];
   return (
-    <section className={`${styles.section} ${styles.tint} ${styles.onTint}`} id="controls" aria-labelledby="controls-title">
+    <section className={`${styles.section} ${styles.recolor}`} id="controls" aria-labelledby="controls-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <Eyebrow>06 / Assurance to match your controls</Eyebrow>
+            <Badge>Assurance to match your controls</Badge>
             <h2 id="controls-title">The right review.<br /><em>For each verification.</em></h2>
           </div>
           <p>Choose the review approach that fits the exercise and your organisation’s control requirements.</p>
@@ -249,7 +269,7 @@ function Controls() {
                   onClick={() => setActive(index)}
                   onKeyDown={(event) => onTabKeys(event, index, controls.length, setActive)}
                 >
-                  <span>{pad(index)}</span><strong>{item.name}</strong><i aria-hidden="true">↗</i>
+                  <Icon className={styles.controlIcon}>{item.icon}</Icon><strong>{item.name}</strong><i aria-hidden="true">↗</i>
                 </button>
               ))}
             </div>
@@ -278,11 +298,11 @@ function Delivery() {
   const [active, setActive] = useState(0);
   const model = models[active];
   return (
-    <section className={`${styles.section} ${styles.tint}`} id="delivery" aria-labelledby="delivery-title">
+    <section className={`${styles.section} ${styles.recolor} ${styles.delivery}`} id="delivery" aria-labelledby="delivery-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <Eyebrow>08 / Two ways to work with <Brand /></Eyebrow>
+            <Badge>Two ways to work with <Brand /></Badge>
             <h2 id="delivery-title">One platform.<br /><em>Your delivery model.</em></h2>
           </div>
           <p>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
@@ -512,10 +532,13 @@ function HomePage() {
       </section>
 
       {/* 05: presentation visual 06 */}
-      <section className={styles.section} id="exceptions" aria-labelledby="exceptions-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.exceptions}`} id="exceptions" aria-labelledby="exceptions-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
-            <Eyebrow>05 / Exceptions with accountability</Eyebrow>
+            <p className={styles.sectionBadge}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+              Exceptions with Accountability
+            </p>
             <h2 id="exceptions-title">Every discrepancy<br /><em>has a review path.</em></h2>
             <p className={styles.body}>Missing asset. Wrong location. Changed condition. Record the finding, attach the evidence and give reviewers a clear basis for follow-up.</p>
             <div className={styles.reviewPath}>
@@ -532,17 +555,17 @@ function HomePage() {
       <Controls />
 
       {/* 07: presentation visuals 08 and 14 */}
-      <section className={styles.section} id="reconciliation" aria-labelledby="reconciliation-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="reconciliation" aria-labelledby="reconciliation-title">
         <div className={site.container}>
           <div className={styles.split}>
             <div className={styles.copy}>
-              <Eyebrow>07 / Verification to action</Eyebrow>
+              <Badge>Verification to action</Badge>
               <h2 id="reconciliation-title">Physical evidence.<br /><em>Financial clarity.</em></h2>
               <p className={styles.leadLine}><Brand /> complements your ERP.</p>
               <p className={styles.body}>Import the asset register. Verify physical assets. Reconcile the findings and release approved outcomes for the next agreed action.</p>
               <div className={styles.erpSequence}>
-                {["Import register", "Verify assets", "Reconcile", "Approve outcomes"].map((label, index) => (
-                  <div key={label}><small>{pad(index)}</small><strong>{label}</strong></div>
+                {erpSteps.map(([label, icon]) => (
+                  <div key={label}><Icon className={styles.seqIcon}>{icon}</Icon><strong>{label}</strong></div>
                 ))}
               </div>
             </div>
@@ -551,8 +574,8 @@ function HomePage() {
           <div className={styles.outputs}>
             <Eyebrow>Clear evidence. Actionable outputs.</Eyebrow>
             <div className={styles.outputList}>
-              {outputs.map(([title, text], index) => (
-                <article key={title}><span>{pad(index)}</span><h3>{title}</h3><p>{text}</p></article>
+              {outputs.map(([title, text, icon]) => (
+                <article key={title}><Icon>{icon}</Icon><h3>{title}</h3><p>{text}</p></article>
               ))}
             </div>
             <p className={styles.smallNote}>Deliverables and review roles are agreed as part of the scope.</p>
@@ -564,15 +587,17 @@ function HomePage() {
       <Delivery />
 
       {/* 09: presentation visual 09 */}
-      <section className={styles.section} id="pilot" aria-labelledby="pilot-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="pilot" aria-labelledby="pilot-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
-            <Eyebrow>09 / A focused pilot</Eyebrow>
+            <Badge>A focused pilot</Badge>
             <h2 id="pilot-title">A clear scope.<br /><em>Measurable findings.</em></h2>
             <p className={styles.body}>Start with representative assets and locations. Use the pilot to see how the verification workflow, evidence and review requirements fit your organisation.</p>
-            <ol className={styles.numberedList}>
-              {pilotSteps.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}
-            </ol>
+            <ul className={`${styles.numberedList} ${styles.iconList}`}>
+              {pilotSteps.map(([title, text, icon]) => (
+                <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
+              ))}
+            </ul>
             <button className={site.button} type="button" onClick={() => openEnquiry("Pilot discussion")}>Discuss your pilot <span aria-hidden="true">↗</span></button>
           </div>
           <Slide name="pilot" className={styles.pilotArt} alt="A customer and project lead plan a focused verification pilot using asset records and location photographs" />
@@ -580,7 +605,7 @@ function HomePage() {
       </section>
 
       {/* 10: presentation visual 10 */}
-      <section className={`${styles.section} ${styles.tint} ${styles.onTint}`} id="demo" aria-labelledby="demo-title">
+      <section className={`${styles.section} ${styles.recolor}`} id="demo" aria-labelledby="demo-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <div className={styles.demoVisual}>
             <Slide name="demo" alt="A smartphone and laptop show the connection between a tagged physical asset and its verification record" />
@@ -590,7 +615,7 @@ function HomePage() {
             </button>
           </div>
           <div className={styles.copy}>
-            <Eyebrow>10 / See <Brand /> in action</Eyebrow>
+            <Badge>See <Brand /> in action</Badge>
             <h2 id="demo-title">One asset.<br /><em>The complete<br />verification journey.</em></h2>
             <p className={styles.body}>See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
             <div className={styles.actions}>
