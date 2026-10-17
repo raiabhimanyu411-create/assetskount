@@ -1,0 +1,136 @@
+.loginPage {
+  align-items: center;
+  background:
+    radial-gradient(ellipse at 16% 19%, rgba(135, 43, 58, .12), transparent 32%),
+    radial-gradient(ellipse at 84% 86%, rgba(23, 63, 98, .13), transparent 38%),
+    #f5f7f9;
+  display: flex;
+  justify-content: center;
+  min-height: min(780px, 100svh);
+  padding: 120px 24px 76px;
+}
+
+.loginPanel {
+  background: #fff;
+  border: 1px solid #e1e7eb;
+  border-radius: 12px;
+  box-shadow: 0 24px 70px rgba(20, 48, 69, .1);
+  max-width: 620px;
+  padding: clamp(27px, 6vw, 56px);
+  width: 100%;
+}
+
+.loginMark {
+  align-items: center;
+  background: #872b3a;
+  border-radius: 9px;
+  color: white;
+  display: flex;
+  font-size: 18px;
+  font-weight: 800;
+  height: 42px;
+  justify-content: center;
+  margin-bottom: 27px;
+  width: 42px;
+}
+
+.loginPanel h1 {
+  color: #202b34;
+  font-size: clamp(30px, 4.25vw, 44px);
+  font-weight: 750;
+  letter-spacing: -.015em;
+  line-height: 1.08;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.loginLead {
+  color: #5e6b75;
+  font-size: 14px;
+  line-height: 1.75;
+  margin: 19px 0 22px;
+  max-width: 480px;
+}
+
+.loginNotice {
+  align-items: flex-start;
+  background: #f5f7f8;
+  border: 1px solid #e6ebee;
+  border-radius: 7px;
+  display: flex;
+  gap: 11px;
+  padding: 14px;
+}
+
+.loginNotice > span {
+  align-items: center;
+  background: #e6edf2;
+  border-radius: 50%;
+  color: #173f62;
+  display: flex;
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 800;
+  height: 21px;
+  justify-content: center;
+  width: 21px;
+}
+
+.loginNotice p {
+  color: #52616b;
+  font-size: 11px;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.loginAction {
+  align-items: center;
+  background: #872b3a;
+  border: 1px solid #872b3a;
+  color: #fff;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  gap: 20px;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding: 13px 16px;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.loginAction:hover {
+  background: #173f62;
+  border-color: #173f62;
+  transform: translateY(-1px);
+}
+
+.loginAction svg {
+  fill: none;
+  height: 16px;
+  stroke: currentColor;
+  width: 16px;
+}
+
+.homeLink {
+  color: #53636e;
+  display: block;
+  font-size: 10px;
+  margin-top: 19px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  width: fit-content;
+}
+
+@media (max-width: 480px) {
+  .loginPage {
+    padding: 95px 18px 56px;
+  }
+
+  .loginPanel {
+    padding: 25px 20px;
+  }
+
+  .loginPanel h1 {
+    font-size: 31px;
+  }
+}

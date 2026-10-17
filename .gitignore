@@ -1,0 +1,7 @@
+node_modules
+dist
+backend/data
+.env
+
+# Source presentation (large, not needed by the site)
+*.pptx
