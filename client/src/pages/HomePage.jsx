@@ -50,13 +50,28 @@ const dimensions = [
   )],
 ];
 
+const mobileSteps = [
+  ["Scan the asset ID", "Identify the asset being verified.", (
+    <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />
+  )],
+  ["Record the physical findings", "Confirm condition and capture photos and location.", (
+    <>
+      <path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" />
+      <circle cx="12" cy="13" r="3.5" />
+    </>
+  )],
+  ["Retain the verification context", "Keep the verifier and timestamp with the submission.", (
+    <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />
+  )],
+];
+
 const stages = [
-  { name: "Scope", title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria.", tag: "A clear starting point" },
-  { name: "Assign", title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise.", tag: "Accountability from the start" },
-  { name: "Verify", title: "Connect the record to the physical asset.", description: "Scan the asset ID, record the physical findings and capture supporting photos, location, verifier and timestamp.", tag: "Evidence at the asset" },
-  { name: "Review", title: "Review the findings and the evidence.", description: "Use the selected review approach to examine submissions, investigate exceptions and agree the required follow-up.", tag: "Controls that fit the exercise" },
-  { name: "Reconcile", title: "Resolve differences against the register.", description: "Compare the verification findings with recorded asset details. Review the differences and agree follow-up actions.", tag: "Reviewed differences" },
-  { name: "Lock", title: "Complete the exercise with approved outcomes.", description: "Finish the authorised closeout workflow and retain the agreed verification outputs and supporting evidence.", tag: "A controlled finish" },
+  { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria.", tag: "A clear starting point" },
+  { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise.", tag: "Accountability from the start" },
+  { name: "Verify", icon: <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />, title: "Connect the record to the physical asset.", description: "Scan the asset ID, record the physical findings and capture supporting photos, location, verifier and timestamp.", tag: "Evidence at the asset" },
+  { name: "Review", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></>, title: "Review the findings and the evidence.", description: "Use the selected review approach to examine submissions, investigate exceptions and agree the required follow-up.", tag: "Controls that fit the exercise" },
+  { name: "Reconcile", icon: <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />, title: "Resolve differences against the register.", description: "Compare the verification findings with recorded asset details. Review the differences and agree follow-up actions.", tag: "Reviewed differences" },
+  { name: "Lock", icon: <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>, title: "Complete the exercise with approved outcomes.", description: "Finish the authorised closeout workflow and retain the agreed verification outputs and supporting evidence.", tag: "A controlled finish" },
 ];
 
 const controls = [
@@ -161,14 +176,17 @@ function Journey() {
   const [active, setActive] = useState(0);
   const stage = stages[active];
   return (
-    <section className={styles.section} id="journey" aria-labelledby="journey-title">
+    <section className={`${styles.section} ${styles.tint} ${styles.journey}`} id="journey" aria-labelledby="journey-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <Eyebrow>03 / The verification journey</Eyebrow>
+            <p className={styles.sectionBadge}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+              The verification journey
+            </p>
             <h2 id="journey-title">A controlled process.<br /><em>From scope to lock.</em></h2>
+            <p className={styles.journeyIntro}>Give every exercise a defined scope, clear responsibilities and a controlled route to completion.</p>
           </div>
-          <p>Give every exercise a defined scope, clear responsibilities and a controlled route to completion.</p>
         </div>
         <div className={styles.workflowTabs} role="tablist" aria-label="Verification stages">
           {stages.map((item, index) => (
@@ -183,12 +201,12 @@ function Journey() {
               onClick={() => setActive(index)}
               onKeyDown={(event) => onTabKeys(event, index, stages.length, setActive)}
             >
-              <span>{pad(index)}</span>{item.name}
+              <svg className={styles.tabIcon} viewBox="0 0 24 24" aria-hidden="true">{item.icon}</svg>{item.name}
             </button>
           ))}
         </div>
         <div className={styles.stagePanel} id="stage-panel" role="tabpanel" aria-labelledby={`stage-tab-${active}`} tabIndex={0}>
-          <span className={styles.stageNumber} aria-hidden="true">{pad(active)}</span>
+          <i className={`${styles.issueIcon} ${styles.stageIcon}`} aria-hidden="true"><svg viewBox="0 0 24 24">{stage.icon}</svg></i>
           <div>
             <h3>{stage.title}</h3>
             <p>{stage.description}</p>
@@ -463,7 +481,7 @@ function HomePage() {
       <Journey />
 
       {/* 04: presentation visual 05 */}
-      <section className={`${styles.section} ${styles.tint} ${styles.onTint}`} id="mobile" aria-labelledby="mobile-title">
+      <section className={`${styles.section} ${styles.mobileSection}`} id="mobile" aria-labelledby="mobile-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <Slide name="mobile-verification" className={styles.mobileArt} alt="A smartphone captures the asset tag on a point of sale printer">
             <div className={styles.evidenceSlip}>
@@ -474,14 +492,20 @@ function HomePage() {
             </div>
           </Slide>
           <div className={styles.copy}>
-            <Eyebrow>04 / Verification at the asset</Eyebrow>
+            <p className={styles.sectionBadge}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+              Verification at the asset
+            </p>
             <h2 id="mobile-title">A smartphone connects<br />the asset <em>to its evidence.</em></h2>
             <p className={styles.body}>Bring the verification record to the physical asset. Capture the findings where the asset stands, with the context reviewers need.</p>
-            <ol className={styles.numberedList}>
-              <li><strong>Scan the asset ID</strong><span>Identify the asset being verified.</span></li>
-              <li><strong>Record the physical findings</strong><span>Confirm condition and capture photos and location.</span></li>
-              <li><strong>Retain the verification context</strong><span>Keep the verifier and timestamp with the submission.</span></li>
-            </ol>
+            <ul className={`${styles.numberedList} ${styles.iconList}`}>
+              {mobileSteps.map(([title, text, icon]) => (
+                <li key={title}>
+                  <i className={styles.issueIcon} aria-hidden="true"><svg viewBox="0 0 24 24">{icon}</svg></i>
+                  <div><strong>{title}</strong><span>{text}</span></div>
+                </li>
+              ))}
+            </ul>
             <Link className={site.textLink} to="/#demo">Explore the complete journey <span aria-hidden="true">→</span></Link>
           </div>
         </div>

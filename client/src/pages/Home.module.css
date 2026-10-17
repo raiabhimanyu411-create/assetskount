@@ -284,6 +284,51 @@
 
 .verifies .evidenceArt { background: #fff; }
 
+/* Verification journey on grey: intro under the heading, icons in the tabs, black text. */
+.page .journey h2,
+.journey .stagePanel h3 { color: #000; }
+
+.journeyIntro {
+  max-width: 520px;
+  margin-top: 18px !important;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.tabIcon {
+  display: block;
+  width: 21px;
+  height: 21px;
+  margin-bottom: 10px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.journey .workflowTabs button[aria-selected="true"] { background: #fff; }
+.journey .workflowTabs button:hover { background: #fff; }
+
+/* Verification at the asset on white: icon steps and black text. */
+.page .mobileSection h2,
+.mobileSection .numberedList strong,
+.mobileSection .evidenceSlip strong,
+.mobileSection .copy > a { color: #000; }
+
+.iconList li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.iconList li::before { content: none; }
+
+.stageIcon { width: 54px; height: 54px; }
+.stageIcon svg { width: 25px; height: 25px; }
+
 .verifies .evidenceArt::after {
   background:
     linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .96) 6%, transparent 26%),
