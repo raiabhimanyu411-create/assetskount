@@ -108,6 +108,15 @@ const routeIcons = {
   "Independent reverification": <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>,
 };
 
+const industries = [
+  ["government", "Government", "Verify public assets, confirm custody and retain evidence for accountable reporting.", <path d="M3 21h18M4 10h16M12 3 3 8h18l-9-5ZM6 10v8M10 10v8M14 10v8M18 10v8M4 18h16" />, "An official verifies equipment with a tablet in a government building"],
+  ["manufacturing", "Manufacturing", "Verify machinery, tools and plant equipment with clear records of location, custody and condition.", <><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1Z" /></>, "An engineer checks plant machinery on a factory floor with a tablet"],
+  ["healthcare", "Healthcare", "Verify medical equipment across facilities, with physical evidence linked to every asset record.", <path d="M9 3h6v6h6v6h-6v6H9v-6H3V9h6V3Z" />, "Clinicians review medical equipment records on a tablet"],
+  ["education", "Education", "Verify laptops, lab equipment and campus assets across departments and locations.", <><path d="m2 9 10-5 10 5-10 5L2 9Z" /><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5M22 9v6" /></>, "A staff member verifies laptops in a campus computer lab"],
+  ["construction", "Construction", "Verify tools, equipment and vehicles across projects, yards and sites.", <><path d="M4 18v-3a8 8 0 0 1 16 0v3" /><path d="M2 18h20v2H2zM10 7V5h4v2M12 7v5" /></>, "A site worker checks a generator on a construction site with a tablet"],
+  ["retail", "Retail", "Verify POS terminals, store equipment and fixtures across outlets, warehouses and offices.", <><path d="M3 9 4.5 4h15L21 9M3 9h18v1.5a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0V9ZM5 13v8h14v-8M10 21v-5h4v5" /></>, "A store associate scans a point of sale terminal in a retail store"],
+];
+
 const stages = [
   { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria." },
   { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise." },
@@ -171,10 +180,10 @@ const pilotSteps = [
 ];
 
 const scopeItems = [
-  ["Your delivery model", "Full Service or Self Service."],
-  ["Your first scope", "Sites, asset classes and available records."],
-  ["Your control requirements", "Evidence, reviewers and completion criteria."],
-  ["Your proposal", "Responsibilities, schedule, deliverables and fees."],
+  ["Your delivery model", "Full Service or Self Service.", <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>],
+  ["Your first scope", "Sites, asset classes and available records.", <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>],
+  ["Your control requirements", "Evidence, reviewers and completion criteria.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
+  ["Your proposal", "Responsibilities, schedule, deliverables and fees.", <><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" /><path d="M14 3v5h5M9 13h6M9 17h4" /></>],
 ];
 
 const walkthrough = [
@@ -203,6 +212,19 @@ function Slide({ name, alt, className = "", children, priority = false }) {
       {children}
     </div>
   );
+}
+
+// Icons for the pill buttons, shared so every call to action looks the same.
+function RocketIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.6 3.4c2.6-1.5 5.6-1.9 7.6-1.6.3 2-.1 5-1.6 7.6-1 1.8-2.6 3.4-4.4 4.6l-.4 3.7a1 1 0 0 1-.5.8l-3 1.8a.6.6 0 0 1-.9-.6l.5-3.2-2.5-2.5-3.2.5a.6.6 0 0 1-.6-.9l1.8-3a1 1 0 0 1 .8-.5l3.7-.4c1.2-1.8 2.8-3.4 4.7-4.3Zm2.9 3.1a2 2 0 1 0 0 2.9 2 2 0 0 0 0-2.9ZM5.3 16.1c.7-.7 1.9-.7 2.6 0s.7 1.9 0 2.6c-.9.9-3.6 1.5-3.6 1.5s.5-2.7 1-4.1Z" /></svg>;
+}
+
+function PlayIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5-12-7.5Z" /></svg>;
+}
+
+function ArrowIcon() {
+  return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.2 5.3 19.9 12l-6.7 6.7-1.4-1.4 4.3-4.3H4v-2h12.1l-4.3-4.3 1.4-1.4Z" /></svg>;
 }
 
 function Badge({ children }) {
@@ -386,9 +408,7 @@ function Delivery() {
               <Icon className={styles.noteIcon}><><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></></Icon>
               {withBrand(model.responsibility)}
             </p>
-            <button className={site.textLink} type="button" onClick={() => openEnquiry(model.enquiry)}>
-              Discuss {model.name} <span aria-hidden="true">→</span>
-            </button>
+            <button className={styles.pillOutline} type="button" onClick={() => openEnquiry(model.enquiry)}>Discuss {model.name}<ArrowIcon /></button>
           </div>
         </div>
       </div>
@@ -414,7 +434,7 @@ function Walkthrough({ dialogRef }) {
       <button className={`${site.dialogClose} ${styles.walkthroughClose}`} type="button" onClick={close} aria-label="Close walkthrough">×</button>
       <div className={styles.walkthroughHeader}>
         <Eyebrow>Illustrative walkthrough</Eyebrow>
-        <h2 id="walkthrough-title">One asset.<br /><em>A controlled journey.</em></h2>
+        <h2 id="walkthrough-title">One sset.<br /><em>A controlled journey.</em></h2>
         <p className={styles.body}>Explore the stages, then book a live demo to see <Brand /> in operation.</p>
       </div>
       <div className={styles.walkthroughContent}>
@@ -542,16 +562,8 @@ function HomePage() {
             <h1 id="hero-title">Your ERP says<br />what should exist.<br /><em><Brand /><br />proves what does.</em></h1>
             <p className={styles.heroDescription}>Connect your fixed asset register to physical evidence of existence, location, custody and condition.</p>
             <div className={styles.actions}>
-              <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12.6 3.4c2.6-1.5 5.6-1.9 7.6-1.6.3 2-.1 5-1.6 7.6-1 1.8-2.6 3.4-4.4 4.6l-.4 3.7a1 1 0 0 1-.5.8l-3 1.8a.6.6 0 0 1-.9-.6l.5-3.2-2.5-2.5-3.2.5a.6.6 0 0 1-.6-.9l1.8-3a1 1 0 0 1 .8-.5l3.7-.4c1.2-1.8 2.8-3.4 4.7-4.3Zm2.9 3.1a2 2 0 1 0 0 2.9 2 2 0 0 0 0-2.9ZM5.3 16.1c.7-.7 1.9-.7 2.6 0s.7 1.9 0 2.6c-.9.9-3.6 1.5-3.6 1.5s.5-2.7 1-4.1Z" />
-                </svg>
-                Get Started
-              </button>
-              <Link className={styles.pillOutline} to="/#journey">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5-12-7.5Z" /></svg>
-                Learn More
-              </Link>
+              <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Get Started</button>
+              <Link className={styles.pillOutline} to="/#journey"><PlayIcon />Learn More</Link>
             </div>
           </div>
           <Slide name="hero" priority className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations" />
@@ -633,7 +645,7 @@ function HomePage() {
                 <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
               ))}
             </ul>
-            <Link className={site.textLink} to="/#demo">Explore the complete journey <span aria-hidden="true">→</span></Link>
+            <Link className={styles.pillOutline} to="/#demo">Explore the complete journey<ArrowIcon /></Link>
           </div>
         </div>
       </section>
@@ -665,10 +677,7 @@ function HomePage() {
                 <div key={who}><Icon className={styles.roleIcon}>{icon}</Icon><p><strong>{who}</strong>{task}</p></div>
               ))}
             </div>
-            <Link className={`${styles.pillOutline} ${styles.flowLink}`} to="/#controls">
-              Explore review controls
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-            </Link>
+            <Link className={styles.pillOutline} to="/#controls">Explore review controls<ArrowIcon /></Link>
           </div>
           <Slide name="exceptions" className={styles.exceptionsArt} alt="A warehouse verifier and supervisor examine asset findings together on a tablet" />
         </div>
@@ -731,7 +740,7 @@ function HomePage() {
                 <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
               ))}
             </ul>
-            <button className={site.button} type="button" onClick={() => openEnquiry("Pilot discussion")}>Discuss your Pilot <span aria-hidden="true">↗</span></button>
+            <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Pilot discussion")}><RocketIcon />Discuss your Pilot</button>
           </div>
           <Slide name="pilot" className={styles.pilotArt} alt="A customer and project lead plan a focused verification pilot using asset records and location photographs" />
         </div>
@@ -745,13 +754,38 @@ function HomePage() {
           </div>
           <div className={styles.copy}>
             <Badge>See <Brand /> in action</Badge>
-            <h2 id="demo-title">One asset.<br /><em>The complete<br />verification journey.</em></h2>
+            <h2 id="demo-title">One Asset.<br /><em>The complete<br />verification journey.</em></h2>
             <p className={styles.body}>See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
             <div className={styles.actions}>
-              <button className={site.button} type="button" onClick={() => openEnquiry("Live product demo")}>Book a Live Demo <span aria-hidden="true">↗</span></button>
+              <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Book a Live Demo</button>
               {/* <button className={site.textLink} type="button" onClick={openWalkthrough}>Explore the Walkthrough <span aria-hidden="true">→</span></button> */}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.industries}`} id="industries" aria-labelledby="industries-title">
+        <div className={site.container}>
+          <div className={styles.industriesHead}>
+            <Badge>Industries We Serve</Badge>
+            <h2 id="industries-title">Asset Verification For <em>Every Sector</em></h2>
+            <p className={styles.journeyIntro}>One platform to verify physical assets, capture evidence and strengthen accountability across every location.</p>
+          </div>
+          <div className={styles.industryGrid}>
+            {industries.map(([key, name, text, icon, alt]) => (
+              <article key={key}>
+                <div className={styles.industryPhoto}>
+                  <img src={`${IMG}/industry-${key}.webp`} width="388" height="170" alt={alt} loading="lazy" decoding="async" />
+                </div>
+                <div className={styles.industryBody}>
+                  <Icon className={styles.industryIcon}>{icon}</Icon>
+                  <h3>{name}</h3>
+                  <p>{text}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <p className={styles.industrySignOff}><span>Because <em>Every Asset Matters.</em></span></p>
         </div>
       </section>
 
@@ -759,22 +793,34 @@ function HomePage() {
       <section className={`${styles.section} ${styles.nextStep}`} id="contact" aria-labelledby="contact-title">
         <div className={`${site.container} ${styles.contactGrid}`}>
           <div>
-            <Eyebrow className={styles.eyebrowLight}>11 / Your next step</Eyebrow>
+            <p className={`${styles.sectionBadge} ${styles.badgeDark}`}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+              Your Next Step
+            </p>
             <h2 id="contact-title">Let’s define your first<br /><em>verification exercise.</em></h2>
             <p className={styles.body}>A 30-minute scoping call to discuss your sites, asset classes, delivery model and starting records. Then agree a practical plan before work begins.</p>
-            <button className={`${site.button} ${site.buttonWhite}`} type="button" onClick={() => openEnquiry("30-minute scoping call")}>Request a scoping call <span aria-hidden="true">↗</span></button>
-            <a className={styles.contactEmail} href="mailto:contact@acrebis.com">contact@acrebis.com <span aria-hidden="true">↗</span></a>
+            <div className={styles.contactActions}>
+              <button className={styles.pillOutline} type="button" onClick={() => openEnquiry("30-minute scoping call")}><RocketIcon />Request a scoping call</button>
+              <a className={styles.contactEmail} href="mailto:contact@acrebis.com">
+                <Icon className={styles.mailIcon}><><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></></Icon>
+                <span><small>Prefer email?</small>contact@acrebis.com</span>
+              </a>
+            </div>
           </div>
           <div className={styles.scopeSummary}>
             <p className={styles.scopeLabel}>A clear plan before we start</p>
             <ol>
-              {scopeItems.map(([title, text], index) => (
-                <li key={title}><span>{pad(index)}</span><div><strong>{title}</strong><p>{text}</p></div></li>
+              {scopeItems.map(([title, text, icon], index) => (
+                <li key={title}>
+                  <Icon className={styles.scopeIcon}>{icon}</Icon>
+                  <div><strong>{title}</strong><p>{text}</p></div>
+                  <span className={styles.scopeStep}>{pad(index)}</span>
+                </li>
               ))}
             </ol>
           </div>
         </div>
-        <div className={`${site.container} ${styles.signOff}`}>Because Every Asset Matters.</div>
+        <div className={`${site.container} ${styles.signOff}`}><span>Because <em>Every Asset Matters.</em></span></div>
       </section>
 
       <Walkthrough dialogRef={walkthroughDialog} />

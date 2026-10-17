@@ -1214,10 +1214,6 @@
 .roleIcon { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--secondary); background: #fff; }
 .roleIcon svg { width: 18px; height: 18px; fill: none; stroke: var(--secondary); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-.page .flowLink { margin-top: 26px; font-size: 14px; }
-.flowLink svg { stroke: var(--secondary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none !important; }
-.flowLink:hover svg { stroke: #fff; }
-.exceptions .copy > a.flowLink:hover { color: #fff; }
 
 @media (max-width: 900px) {
   .reviewFlow { grid-template-columns: 1fr; gap: 18px; }
@@ -1419,6 +1415,104 @@
   .recolor .erpSequence strong { font-size: 11px; }
 }
 
+/* Industries we serve: six photo cards and a brand sign-off. */
+.industriesHead { margin-bottom: 40px; }
+
+.industryGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+.industryGrid article {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 26px rgba(23, 63, 98, .06);
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.industryGrid article:hover { transform: translateY(-4px); border-color: #e3c6cb; box-shadow: 0 20px 40px rgba(23, 63, 98, .12); }
+
+.industryPhoto { position: relative; aspect-ratio: 388 / 170; overflow: hidden; background: var(--tint); }
+.industryPhoto img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.industryGrid article:hover .industryPhoto img { transform: scale(1.05); }
+.industryPhoto::after { content: ""; position: absolute; inset: auto 0 0; height: 38%; background: linear-gradient(0deg, #fff, transparent); }
+
+.industryBody { display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; align-items: center; padding: 4px 22px 24px; }
+.industryIcon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--secondary); background: #fff; }
+.industryIcon svg { width: 21px; height: 21px; fill: none; stroke: var(--secondary); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.page .industryBody h3 { font-size: 20px; color: #000; }
+.industryBody p { grid-column: 1 / -1; margin-top: 12px !important; font-size: 13px; line-height: 1.7; color: var(--muted); }
+
+.industrySignOff { display: flex; align-items: center; gap: 20px; margin-top: 44px !important; font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: #000; }
+.industrySignOff::before, .industrySignOff::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+@media (max-width: 1000px) {
+  .industryGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .industryGrid { grid-template-columns: 1fr; }
+  .industrySignOff { font-size: 18px; gap: 12px; }
+}
+
+/* Next step (navy): dark badge, glass plan cards with icons, email chip, sign-off. */
+.nextStep { background: radial-gradient(110% 120% at 100% 0%, #1d4a73 0%, #0e2d49 60%) !important; }
+
+.badgeDark { border-color: rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: #f0c9cf; }
+
+.nextStep .contactGrid { align-items: center; }
+.contactActions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 4px; }
+.page .contactGrid .contactActions > .pillOutline { margin-top: 0; min-height: 54px; }
+.contactActions > .contactEmail { min-height: 54px; }
+
+.contactEmail {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  padding: 8px 16px 8px 8px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background .2s, border-color .2s;
+}
+
+.contactEmail:hover { background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .32); }
+.contactEmail small { display: block; font-size: 11px; font-weight: 400; color: #a9c1d6; }
+.contactEmail span { margin: 0; line-height: 1.35; }
+
+.mailIcon { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 255, 255, .12); }
+.mailIcon svg { width: 17px; height: 17px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.scopeSummary { padding: 24px; border: 1px solid rgba(255, 255, 255, .12); border-radius: 16px; background: rgba(255, 255, 255, .04); }
+.scopeSummary ol { display: grid; gap: 10px; }
+
+.scopeSummary li {
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .05);
+  transition: background .2s, transform .2s;
+}
+
+.scopeSummary li:hover { background: rgba(255, 255, 255, .09); transform: translateX(3px); }
+.scopeSummary li > div { flex: 1; }
+
+.scopeIcon { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--secondary); }
+.scopeIcon svg { width: 19px; height: 19px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.scopeSummary li > .scopeStep { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: #a9c1d6; }
+
+.nextStep .signOff em { color: #f0c9cf; }
+
+@media (max-width: 760px) {
+  .scopeSummary { padding: 16px; }
+}
+
 /* One size for every bullet list (title + line below), matching The Asset Reality Gap.
    Placed last so it holds at every breakpoint. */
 .page .issueList strong,
@@ -1434,3 +1528,23 @@
 .page .scopeSummary p { font-size: 13px; line-height: 1.7; }
 
 .page .dimensionList h3 { margin-bottom: 3px; }
+
+/* Every call to action uses the hero pill buttons; these win over section text-link rules. */
+.page .copy > .pillPrimary,
+.page .copy > .pillOutline,
+.page .actions > .pillPrimary,
+.page .actions > .pillOutline,
+.page .contactGrid .pillOutline { margin-top: 26px; font-size: 15px; }
+
+.page .actions > .pillPrimary,
+.page .actions > .pillOutline { margin-top: 0; }
+
+.page .copy > .pillOutline,
+.page .actions > .pillOutline,
+.page .contactGrid .pillOutline { color: #000; }
+
+.page .copy > .pillOutline:hover,
+.page .actions > .pillOutline:hover,
+.page .contactGrid .pillOutline:hover { color: #fff; }
+
+.page .contactGrid .pillOutline { border-color: #fff; }
