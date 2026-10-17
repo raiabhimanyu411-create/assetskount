@@ -90,6 +90,17 @@ const rtLocations = [
   ["IT Department", 0, 8, "Not Started"],
 ];
 
+const reviewFlow = [
+  ["Field finding", "Missing, moved or changed asset recorded at source.", <path d="M5 21V4M5 4h11l-2 4 2 4H5" />],
+  ["Evidence review", "Photos, location, verifier and timestamp checked.", <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.5 11l1.8 1.8 3.2-3.3" /></>],
+  ["Follow-up", "Resolved, reassigned or escalated with a full trail.", <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>],
+];
+
+const reviewRoles = [
+  ["Field teams", "Record findings at the asset.", <><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></>],
+  ["Supervisors", "Review the evidence and decide.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
+];
+
 const stages = [
   { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria." },
   { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise." },
@@ -126,7 +137,7 @@ const models = [
     note: "Our teams execute",
     title: ["Our teams lead", "your verification."],
     description: "We manage and execute the verification at your premises using ASSETKOUNT.",
-    items: ["Project management and site coordination", "Physical verification at your premises", "Evidence capture and exception review", "Reporting and agreed closeout"],
+    items: [["Project management and site coordination", <><rect x="4" y="5" width="16" height="16" rx="2" /><path d="M8 3v4M16 3v4M4 10h16M8 14h3M8 17h6" /></>], ["Physical verification at your premises", <><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" /><circle cx="12" cy="9.5" r="2.5" /></>], ["Evidence capture and exception review", <><path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" /><circle cx="12" cy="13" r="3.5" /></>], ["Reporting and agreed closeout", <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />]],
     responsibility: "Your team provides records, access and approvals.",
     image: "full-service",
     alt: "A service team conducting an asset verification exercise at a customer's premises",
@@ -138,7 +149,7 @@ const models = [
     note: "Your teams execute",
     title: ["Your people.", "ASSETKOUNT platform."],
     description: "Your representatives set up and verify assets on the ASSETKOUNT platform.",
-    items: ["Configure the exercise scope and roles", "Assign your teams and capture evidence", "Review findings and reconcile differences", "Approve outcomes and complete the workflow"],
+    items: [["Configure the exercise scope and roles", <path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0M14 4v4M8 10v4M16 16v4" />], ["Assign your teams and capture evidence", <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>], ["Review findings and reconcile differences", <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />], ["Approve outcomes and complete the workflow", <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>]],
     responsibility: "Customer-led execution using ASSETKOUNT.",
     image: "self-service",
     alt: "A customer employee uses a smartphone to verify a tagged printer",
@@ -275,8 +286,8 @@ function Controls() {
           <div>
             <Badge>Assurance to match your controls</Badge>
             <h2 id="controls-title">The right review.<br /><em>For each verification.</em></h2>
+            <p className={styles.journeyIntro}>Choose the review approach that fits the exercise and your organisation’s control requirements.</p>
           </div>
-          <p>Choose the review approach that fits the exercise and your organisation’s control requirements.</p>
         </div>
         <div className={styles.controlsLayout}>
           <div>
@@ -328,8 +339,8 @@ function Delivery() {
           <div>
             <Badge>Two ways to work with <Brand /></Badge>
             <h2 id="delivery-title">One platform.<br /><em>Your delivery model.</em></h2>
+            <p className={styles.journeyIntro}>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
           </div>
-          <p>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
         </div>
         <div className={styles.deliverySelector} role="tablist" aria-label="Delivery models">
           {models.map((item, index) => (
@@ -355,10 +366,15 @@ function Delivery() {
           <div className={styles.copy}>
             <h3 className={styles.modelTitle}>{withBrand(model.title[0])}<br />{withBrand(model.title[1])}</h3>
             <p className={styles.body}>{withBrand(model.description)}</p>
-            <ul className={styles.checkList}>
-              {model.items.map((item) => <li key={item}>{item}</li>)}
+            <ul className={styles.featureGrid}>
+              {model.items.map(([item, icon]) => (
+                <li key={item}><Icon className={styles.featureIcon}>{icon}</Icon><span>{item}</span></li>
+              ))}
             </ul>
-            <p className={styles.modelResponsibility}>{withBrand(model.responsibility)}</p>
+            <p className={styles.modelResponsibility}>
+              <Icon className={styles.noteIcon}><><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></></Icon>
+              {withBrand(model.responsibility)}
+            </p>
             <button className={site.textLink} type="button" onClick={() => openEnquiry(model.enquiry)}>
               Discuss {model.name} <span aria-hidden="true">→</span>
             </button>
@@ -598,7 +614,7 @@ function HomePage() {
             </div>
           </Slide>
           <div className={styles.copy}>
-            <Badge>Verification at the asset</Badge>
+            <Badge>Verification at the Asset</Badge>
             <h2 id="mobile-title">A smartphone connects<br />the asset <em>to its evidence.</em></h2>
             <p className={styles.body}>Bring the verification record to the physical asset. Capture the findings where the asset stands, with the context reviewers need.</p>
             <ul className={`${styles.numberedList} ${styles.iconList}`}>
@@ -623,11 +639,25 @@ function HomePage() {
             </p>
             <h2 id="exceptions-title">Every discrepancy<br /><em>has a review path.</em></h2>
             <p className={styles.body}>Missing asset. Wrong location. Changed condition. Record the finding, attach the evidence and give reviewers a clear basis for follow-up.</p>
-            <div className={styles.reviewPath}>
-              <span>Field finding</span><i aria-hidden="true">→</i><span>Evidence review</span><i aria-hidden="true">→</i><span>Follow-up</span>
+            <ol className={styles.reviewFlow}>
+              {reviewFlow.map(([title, text, icon], index) => (
+                <li key={title}>
+                  <Icon className={styles.flowIcon}>{icon}</Icon>
+                  <small>Step {pad(index)}</small>
+                  <strong>{title}</strong>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ol>
+            <div className={styles.roleSplit}>
+              {reviewRoles.map(([who, task, icon]) => (
+                <div key={who}><Icon className={styles.roleIcon}>{icon}</Icon><p><strong>{who}</strong>{task}</p></div>
+              ))}
             </div>
-            <p className={styles.closingLine}>Field teams record findings.<br />Supervisors review the evidence.</p>
-            <Link className={site.textLink} to="/#controls">Explore review controls <span aria-hidden="true">→</span></Link>
+            <Link className={`${styles.pillOutline} ${styles.flowLink}`} to="/#controls">
+              Explore review controls
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </Link>
           </div>
           <Slide name="exceptions" className={styles.exceptionsArt} alt="A warehouse verifier and supervisor examine asset findings together on a tablet" />
         </div>

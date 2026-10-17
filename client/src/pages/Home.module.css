@@ -1176,6 +1176,100 @@
   .rtProps article + article { border-left: 0; }
 }
 
+/* Exceptions: connected review flow, role cards and an outlined call to action. */
+.reviewFlow {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reviewFlow::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  left: 23px;
+  right: calc(33.333% - 31px);
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--secondary) 0 6px, transparent 6px 11px);
+  opacity: .45;
+}
+
+.reviewFlow li { position: relative; display: flex; flex-direction: column; padding-right: 8px; }
+.reviewFlow small { margin-top: 14px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--secondary); }
+.reviewFlow strong { margin-top: 4px; font-size: 15px; color: #000; }
+.reviewFlow span { margin-top: 4px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+.flowIcon { position: relative; z-index: 1; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--secondary); box-shadow: 0 0 0 5px #fff; }
+.flowIcon svg { width: 21px; height: 21px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.roleSplit { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 26px; }
+.roleSplit > div { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--tint); }
+.roleSplit p { font-size: 13px; line-height: 1.5; color: var(--muted); }
+.roleSplit strong { display: block; font-size: 14px; color: #000; }
+.roleIcon { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--secondary); background: #fff; }
+.roleIcon svg { width: 18px; height: 18px; fill: none; stroke: var(--secondary); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.page .flowLink { margin-top: 26px; font-size: 14px; }
+.flowLink svg { stroke: var(--secondary); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; fill: none !important; }
+.flowLink:hover svg { stroke: #fff; }
+.exceptions .copy > a.flowLink:hover { color: #fff; }
+
+@media (max-width: 900px) {
+  .reviewFlow { grid-template-columns: 1fr; gap: 18px; }
+  .reviewFlow::before { top: 22px; bottom: 22px; left: 22px; right: auto; width: 2px; height: auto; background: repeating-linear-gradient(180deg, var(--secondary) 0 6px, transparent 6px 11px); }
+  .reviewFlow li { display: grid; grid-template-columns: 46px 1fr; column-gap: 16px; }
+  .reviewFlow li > i { grid-row: span 3; }
+  .reviewFlow small { margin-top: 0; }
+}
+
+@media (max-width: 480px) {
+  .roleSplit { grid-template-columns: 1fr; }
+}
+
+/* Delivery models: feature cards with icons and a responsibility note. */
+.featureGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0 18px; padding: 0; list-style: none; }
+
+.featureGrid li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #000;
+  transition: border-color .18s, box-shadow .18s, transform .18s;
+}
+
+.featureGrid li:hover { border-color: #e3c6cb; box-shadow: 0 10px 24px rgba(23, 63, 98, .08); transform: translateY(-2px); }
+
+.featureIcon { display: grid; place-items: center; flex-shrink: 0; width: 38px; height: 38px; border-radius: 9px; background: #f6ebed; }
+.featureIcon svg { width: 19px; height: 19px; fill: none; stroke: var(--secondary); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.delivery .modelResponsibility {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px dashed #c9d3dc;
+}
+
+.noteIcon { display: grid; place-items: center; flex-shrink: 0; }
+.noteIcon svg { width: 18px; height: 18px; fill: none; stroke: var(--secondary); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 480px) {
+  .featureGrid { grid-template-columns: 1fr; }
+}
+
 /* One size for every bullet list (title + line below), matching The Asset Reality Gap.
    Placed last so it holds at every breakpoint. */
 .page .issueList strong,
