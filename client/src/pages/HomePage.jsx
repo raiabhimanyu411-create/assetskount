@@ -51,18 +51,47 @@ const dimensions = [
 ];
 
 const mobileSteps = [
-  ["Scan the asset ID", "Identify the asset being verified.", (
+  ["Scan The Asset ID", "Identify the asset being verified.", (
     <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />
   )],
-  ["Record the physical findings", "Confirm condition and capture photos and location.", (
+  ["Record Physical Findings", "Confirm condition and capture photos and location.", (
     <>
       <path d="M4 8a2 2 0 0 1 2-2h2l1.5-2h5L16 6h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" />
       <circle cx="12" cy="13" r="3.5" />
     </>
   )],
-  ["Retain the verification context", "Keep the verifier and timestamp with the submission.", (
+  ["Retain Verification Context", "Keep the verifier and timestamp with the submission.", (
     <path d="M9 4H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2M10 3h4a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1ZM9 14l2 2 4-4" />
   )],
+];
+
+const evidenceChecks = [
+  "QR / Barcode / RFID / NFC Scan Evidence",
+  "GPS Location And Geofence Confirmation",
+  "Photo Or Video Proof Of Physical Existence",
+  "Serial Number / Nameplate OCR Capture",
+  "Asset Condition And Damage Checklist",
+  "Custodian Confirmation And Digital Signature",
+  "Timestamp, Verifier ID, Device ID And Full Audit Trail",
+];
+
+const valueProps = [
+  ["Capture At Source", "Trust It Forever.", <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />],
+  ["Verify With Context", "Control Everywhere.", <><circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="3" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></>],
+  ["Review With Confidence", "Smarter Decisions.", <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></>],
+  ["Act With Clarity", "Defensible Evidence.", <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />],
+];
+
+const phoneStats = [["My Tasks", "12", "Pending"], ["Verified Assets", "1,245", "Today"], ["Exceptions", "28", "Review"], ["Pending Review", "15", "Submissions"]];
+const phoneActivity = [["POS Printer · Floor 3", "Verified by Sarah M.", "2m ago", false], ["Monitor · IT", "Exception found: 1 issue", "18m ago", true], ["Laptop · Finance", "Verified by Daniel K.", "1h ago", false]];
+const consoleTiles = [["Total Assets", "11,450"], ["Verified Assets", "8,392"], ["Pending Review", "1,245"], ["Exceptions", "413"]];
+const consoleNav = ["Dashboard", "Asset Verification", "Assets", "Locations", "People & Custodians", "Verification Tasks", "Exceptions", "Audit Trail", "Settings"];
+const consoleRows = [
+  ["POS Printer · Floor 3", "Verified", "New York · Store 12", "2m ago"],
+  ["Monitor · IT", "Exception", "Head Office", "18m ago"],
+  ["Laptop · Finance", "Verified", "London · HQ", "1h ago"],
+  ["Barcode Scanner", "Pending", "Chicago · Store 08", "3h ago"],
+  ["Network Switch", "Verified", "Frankfurt · DC", "5h ago"],
 ];
 
 const stages = [
@@ -202,9 +231,9 @@ function Journey() {
           <div>
             <p className={styles.sectionBadge}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-              The verification journey
+              The verification Journey
             </p>
-            <h2 id="journey-title">A controlled process.<br /><em>From scope to lock.</em></h2>
+            <h2 id="journey-title">Controlled Verification Process.<br /><em>From Scoping to  Successful Completion.</em></h2>
             <p className={styles.journeyIntro}>Give every exercise a defined scope, clear responsibilities and a controlled route to completion.</p>
           </div>
         </div>
@@ -409,6 +438,67 @@ function Walkthrough({ dialogRef }) {
   );
 }
 
+// Illustrative phone app and web control centre, drawn in markup so the text stays crisp.
+function DeviceShowcase() {
+  return (
+    <div className={styles.devices} aria-label="Illustration of the ASSETKOUNT mobile app and web control centre" role="img">
+      <div className={styles.laptop} aria-hidden="true">
+        <div className={styles.laptopScreen}>
+          <aside className={styles.consoleNav}>
+            <img src="/assets/deck/image2.png" alt="" width="584" height="207" />
+            {consoleNav.map((item, index) => <span key={item} className={index === 0 ? styles.consoleNavActive : undefined}>{item}</span>)}
+          </aside>
+          <div className={styles.consoleMain}>
+            <strong className={styles.consoleTitle}>Control Centre</strong>
+            <small>Monitor verification progress and asset status</small>
+            <div className={styles.consoleTiles}>
+              {consoleTiles.map(([label, value]) => <div key={label}><small>{label}</small><b>{value}</b></div>)}
+            </div>
+            <div className={styles.consoleTable}>
+              <div className={styles.consoleTableHead}><span>Recent Verification Activity</span><span>View all</span></div>
+              <div className={styles.consoleRow}><span>Asset Name</span><span>Status</span><span>Location</span><span>Date</span></div>
+              {consoleRows.map(([name, status, place, time]) => (
+                <div className={styles.consoleRow} key={name}>
+                  <span>{name}</span>
+                  <span><i className={styles[`pill${status}`]}>{status}</i></span>
+                  <span>{place}</span>
+                  <span>{time}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className={styles.laptopBase} />
+      </div>
+
+      <div className={styles.phone} aria-hidden="true">
+        <div className={styles.phoneNotch} />
+        <div className={styles.phoneBar}><span>9:41</span><b>Dashboard</b><span>•••</span></div>
+        <div className={styles.phoneBody}>
+          <p className={styles.phoneHello}>Hello, John<small>Here’s your verification overview</small></p>
+          <div className={styles.phoneStats}>
+            {phoneStats.map(([label, value, note]) => <div key={label}><small>{label}</small><b>{value}</b><em>{note}</em></div>)}
+          </div>
+          <div className={styles.phoneProgress}>
+            <small>Verification Progress</small>
+            <div>
+              <span className={styles.donut}><b>68%</b></span>
+              <ul><li><i />Completed 68%</li><li><i />In Progress 24%</li><li><i />Pending 8%</li></ul>
+            </div>
+          </div>
+          <div className={styles.phoneActivity}>
+            <small>Recent Activities</small>
+            {phoneActivity.map(([name, note, time, alert]) => (
+              <div key={name}><i className={alert ? styles.dotAlert : styles.dotOk} /><span>{name}<em className={alert ? styles.textAlert : undefined}>{note}</em></span><time>{time}</time></div>
+            ))}
+          </div>
+        </div>
+        <div className={styles.phoneTabs}><span>Home</span><span>Scan</span><b /><span>Assets</span><span>More</span></div>
+      </div>
+    </div>
+  );
+}
+
 function HomePage() {
   const walkthroughDialog = useRef(null);
   const openWalkthrough = () => {
@@ -502,31 +592,42 @@ function HomePage() {
 
       {/* 04: presentation visual 05 */}
       <section className={`${styles.section} ${styles.mobileSection}`} id="mobile" aria-labelledby="mobile-title">
-        <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
-          <Slide name="mobile-verification" className={styles.mobileArt} alt="A smartphone captures the asset tag on a point of sale printer">
-            <div className={styles.evidenceSlip}>
-              <small>Evidence linked to the asset</small>
-              <strong>Asset ID + photograph</strong>
-              <span>Location · Condition</span>
-              <span>Verifier · Timestamp</span>
+        <div className={site.container}>
+          <div className={styles.mobileHead}>
+            <Badge>Verification at the asset</Badge>
+            <h2 id="mobile-title">Mobile Evidence + <em>Real-Time Control</em></h2>
+            <p className={styles.mobileSub}>A Smartphone Connects The Asset To Its Evidence.</p>
+            <p className={styles.body}>Capture physical findings where the asset stands, with the context reviewers need.</p>
+          </div>
+
+          <div className={styles.mobileGrid}>
+            <Slide name="mobile-verification" className={styles.mobileArt} alt="A smartphone captures the asset tag on a point of sale printer" />
+
+            <div className={styles.evidenceChecks}>
+              <h3>Evidence Captured At The Point Of Verification</h3>
+              <ul>
+                {evidenceChecks.map((item) => (
+                  <li key={item}><Icon className={styles.checkDot}><path d="m7.5 12.5 3 3 6-6.5" /></Icon>{item}</li>
+                ))}
+              </ul>
             </div>
-          </Slide>
-          <div className={styles.copy}>
-            <p className={styles.sectionBadge}>
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-              Verification at the asset
-            </p>
-            <h2 id="mobile-title">A smartphone connects<br />the asset <em>to its evidence.</em></h2>
-            <p className={styles.body}>Bring the verification record to the physical asset. Capture the findings where the asset stands, with the context reviewers need.</p>
-            <ul className={`${styles.numberedList} ${styles.iconList}`}>
-              {mobileSteps.map(([title, text, icon]) => (
-                <li key={title}>
-                  <i className={styles.issueIcon} aria-hidden="true"><svg viewBox="0 0 24 24">{icon}</svg></i>
-                  <div><strong>{title}</strong><span>{text}</span></div>
-                </li>
+
+            <DeviceShowcase />
+
+            <div className={styles.mobileSteps}>
+              <div className={styles.mobileStepRow}>
+                {mobileSteps.map(([title, text, icon]) => (
+                  <article key={title}><Icon className={styles.ringIcon}>{icon}</Icon><h3>{title}</h3><p>{text}</p></article>
+                ))}
+              </div>
+              <Link className={site.textLink} to="/#journey">Explore The Verification Journey <span aria-hidden="true">→</span></Link>
+            </div>
+
+            <div className={styles.valueProps}>
+              {valueProps.map(([title, text, icon]) => (
+                <article key={title}><Icon className={styles.ringIcon}>{icon}</Icon><div><h3>{title}</h3><p>{text}</p></div></article>
               ))}
-            </ul>
-            <Link className={site.textLink} to="/#demo">Explore the complete journey <span aria-hidden="true">→</span></Link>
+            </div>
           </div>
         </div>
       </section>
