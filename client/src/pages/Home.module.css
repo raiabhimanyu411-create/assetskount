@@ -279,7 +279,6 @@
 .page .verifies h2,
 .verifies .dimensionList h3 { color: #000; }
 
-.page .verifies h2 { font-size: clamp(25px, 2.4vw, 34px); }
 .verifies .dimensionList article { align-items: center; }
 
 .verifies .evidenceArt { background: #fff; }
@@ -296,7 +295,6 @@
   line-height: 1.85;
 }
 
-.page .journey h2 { font-size: clamp(25px, 2.4vw, 34px); }
 .journey .workflowTabs button { font-size: 14px; }
 .journey .stagePanel h3 { font-size: 20px; }
 .journey .stagePanel p { font-size: 14px; }
@@ -333,7 +331,6 @@
 .exceptions .closingLine,
 .exceptions .copy > a { color: #000; }
 
-.page .exceptions h2 { font-size: clamp(25px, 2.4vw, 34px); }
 .exceptions .copy > p.body { font-size: 14px; }
 .exceptions .reviewPath { font-size: 12px; }
 .exceptions .closingLine { font-size: 14px; }
@@ -1035,7 +1032,6 @@
 /* Assurance → Demo: brand blue text turns black, numbers become icons, type matches earlier sections. */
 .recolor { --primary: #000; }
 
-.page .recolor h2 { font-size: clamp(25px, 2.4vw, 34px); }
 .recolor .heading > p,
 .recolor .copy > p.body { font-size: 14px; }
 .recolor .copy > a,
@@ -1078,7 +1074,6 @@
 .mobileSection .evidenceSlip strong,
 .mobileSection .copy > a { color: #000; }
 
-.page .mobileSection h2 { font-size: clamp(25px, 2.4vw, 34px); }
 .mobileSection .copy > p.body { font-size: 14px; }
 .mobileSection .evidenceSlip strong { font-size: 14px; }
 .mobileSection .evidenceSlip > span { font-size: 12px; }
@@ -1086,7 +1081,7 @@
 
 /* Mobile Evidence + Real-Time Control: phone, evidence checklist, web control centre. */
 .rtHead { margin-bottom: 44px; }
-.page .rtSection h2 { font-size: clamp(26px, 2.6vw, 36px); color: #000; }
+.page .rtSection h2 { color: #000; }
 .rtRule { position: relative; display: block; width: min(420px, 70%); height: 1px; margin: 14px 0 14px; background: linear-gradient(90deg, var(--secondary) 0 40%, var(--line) 40%); }
 .rtRule i { position: absolute; left: 40%; top: 50%; width: 7px; height: 7px; border-radius: 50%; background: var(--secondary); transform: translate(-50%, -50%); }
 .rtHead > p { font-size: 15px; color: var(--muted); }
