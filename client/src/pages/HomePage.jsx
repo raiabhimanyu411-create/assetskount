@@ -371,7 +371,7 @@ function Delivery() {
         <div className={styles.heading}>
           <div>
             <Badge>Two Ways To Work With <Brand /></Badge>
-            <h2 id="delivery-title">One platform.<br /><em>Your delivery model.</em></h2>
+            <h2 id="delivery-title">One Platform.<br /><em>Your delivery model.</em></h2>
             <p className={styles.journeyIntro}>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
           </div>
         </div>

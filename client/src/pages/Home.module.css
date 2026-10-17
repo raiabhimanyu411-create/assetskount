@@ -731,8 +731,6 @@
   margin: 25px 0 28px;
 }
 
-.contactEmail { display: block; width: max-content; margin-top: 20px; font-size: 14px; color: #dce7f0; }
-.contactEmail span { margin-left: 10px; }
 
 .scopeLabel { text-transform: uppercase; font-size: 11px; letter-spacing: .13em; color: #c3d3df; margin-bottom: 20px !important; }
 
@@ -1457,12 +1455,12 @@
 /* Next step (navy): dark badge, glass plan cards with icons, email chip, sign-off. */
 .nextStep { background: radial-gradient(110% 120% at 100% 0%, #1d4a73 0%, #0e2d49 60%) !important; }
 
-.badgeDark { border-color: rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: #f0c9cf; }
+.badgeDark { border-color: rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: #fff; }
 
 .nextStep .contactGrid { align-items: center; }
 .contactActions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 4px; }
 .page .contactGrid .contactActions > .pillOutline { margin-top: 0; min-height: 54px; }
-.contactActions > .contactEmail { min-height: 54px; }
+.contactActions > .contactEmail { min-height: 54px; margin: 0; }
 
 .contactEmail {
   display: inline-flex;
@@ -1492,22 +1490,24 @@
   align-items: center;
   gap: 14px;
   padding: 14px 16px;
-  border: 1px solid rgba(255, 255, 255, .1);
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border: 1px solid #fff;
   border-radius: 12px;
-  background: rgba(255, 255, 255, .05);
-  transition: background .2s, transform .2s;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(5, 20, 36, .18);
+  transition: box-shadow .2s, transform .2s;
 }
 
-.scopeSummary li:hover { background: rgba(255, 255, 255, .09); transform: translateX(3px); }
+.scopeSummary li:hover { box-shadow: 0 14px 28px rgba(5, 20, 36, .28); transform: translateX(3px); }
+.page .scopeSummary li strong { color: #000; }
+.page .scopeSummary li p { color: var(--muted); }
 .scopeSummary li > div { flex: 1; }
 
 .scopeIcon { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--secondary); }
 .scopeIcon svg { width: 19px; height: 19px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-.scopeSummary li > .scopeStep { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: #a9c1d6; }
+.scopeSummary li > .scopeStep { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--secondary); }
 
-.nextStep .signOff em { color: #f0c9cf; }
+.nextStep .signOff, .nextStep .signOff em { color: #fff; }
 
 @media (max-width: 760px) {
   .scopeSummary { padding: 16px; }
