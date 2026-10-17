@@ -91,12 +91,12 @@ const rtLocations = [
 ];
 
 const stages = [
-  { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria.", tag: "A clear starting point" },
-  { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise.", tag: "Accountability from the start" },
-  { name: "Verify", icon: <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />, title: "Connect the record to the physical asset.", description: "Scan the asset ID, record the physical findings and capture supporting photos, location, verifier and timestamp.", tag: "Evidence at the asset" },
-  { name: "Review", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></>, title: "Review the findings and the evidence.", description: "Use the selected review approach to examine submissions, investigate exceptions and agree the required follow-up.", tag: "Controls that fit the exercise" },
-  { name: "Reconcile", icon: <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />, title: "Resolve differences against the register.", description: "Compare the verification findings with recorded asset details. Review the differences and agree follow-up actions.", tag: "Reviewed differences" },
-  { name: "Lock", icon: <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>, title: "Complete the exercise with approved outcomes.", description: "Finish the authorised closeout workflow and retain the agreed verification outputs and supporting evidence.", tag: "A controlled finish" },
+  { name: "Scope", icon: <><circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1" /></>, title: "Define the scope before you start.", description: "Choose the sites and asset classes, bring in the register, and agree evidence requirements and completion criteria." },
+  { name: "Assign", icon: <><circle cx="9" cy="8" r="3.5" /><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 14.2a6.5 6.5 0 0 1 3 5.8" /></>, title: "Give each role a clear responsibility.", description: "Assign the people who will verify assets, review evidence and approve the outcomes for the selected exercise." },
+  { name: "Verify", icon: <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M11 9v6M13.5 9v6M16 9v6" />, title: "Connect the record to the physical asset.", description: "Scan the asset ID, record the physical findings and capture supporting photos, location, verifier and timestamp." },
+  { name: "Review", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></>, title: "Review the findings and the evidence.", description: "Use the selected review approach to examine submissions, investigate exceptions and agree the required follow-up." },
+  { name: "Reconcile", icon: <path d="M20 11a8 8 0 0 0-14.3-4.9L4 8M4 4v4h4M4 13a8 8 0 0 0 14.3 4.9L20 16M20 20v-4h-4" />, title: "Resolve differences against the register.", description: "Compare the verification findings with recorded asset details. Review the differences and agree follow-up actions." },
+  { name: "Lock", icon: <><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" /></>, title: "Complete the exercise with approved outcomes.", description: "Finish the authorised closeout workflow and retain the agreed verification outputs and supporting evidence." },
 ];
 
 const controls = [
@@ -227,7 +227,7 @@ function Journey() {
           <div>
             <p className={styles.sectionBadge}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-              The verification Journey
+              The Verification Journey
             </p>
             <h2 id="journey-title">Controlled Verification Process.<br /><em>From Scoping to  Successful Completion.</em></h2>
             <p className={styles.journeyIntro}>Give every exercise a defined scope, clear responsibilities and a controlled route to completion.</p>
@@ -256,7 +256,6 @@ function Journey() {
             <h3>{stage.title}</h3>
             <p>{stage.description}</p>
           </div>
-          <span className={styles.stageTag}>{stage.tag}</span>
         </div>
         <div className={styles.panorama}>
           <img src={`${IMG}/journey.webp`} width="1672" height="941" alt="Connected scenes of planning, warehouse asset verification and management review" loading="lazy" decoding="async" />
