@@ -118,9 +118,9 @@ const stages = [
 ];
 
 const controls = [
-  { name: "Rapid Verification", level: 1, levelLabel: "Fast turnaround", icon: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />, title: "Supervisor review", description: "Verification findings are reviewed by the supervisor before completion.", route: ["Verification", "Supervisor review"] },
-  { name: "Standard Control", level: 2, levelLabel: "Balanced control", icon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>, title: "Supervisor review + Finance approval", description: "Combine operational review with Finance approval for the verification exercise.", route: ["Verification", "Supervisor review", "Finance approval"] },
-  { name: "Independent Audit", level: 3, levelLabel: "Highest assurance", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>, title: "Independent re-verification + Finance approval", description: "Apply an independent re-verification and Finance approval to the selected exercise.", route: ["Verification", "Independent re-verification", "Finance approval"] },
+  { name: "Rapid Verification", level: 1, levelLabel: "Fast Turnaround", icon: <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z" />, title: "Supervisor review", description: "Verification findings are reviewed by the supervisor before completion.", route: ["Verification", "Supervisor review"] },
+  { name: "Standard Control", level: 2, levelLabel: "Balanced Control", icon: <><circle cx="12" cy="12" r="9" /><path d="m8.5 12 2.5 2.5 4.5-5" /></>, title: "Supervisor review + Finance approval", description: "Combine operational review with Finance approval for the verification exercise.", route: ["Verification", "Supervisor review", "Finance approval"] },
+  { name: "Independent Audit", level: 3, levelLabel: "Highest Assurance", icon: <><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4M8.3 11l1.9 1.9 3.3-3.4" /></>, title: "Independent reverification + Finance approval", description: "Apply an independent reverification and Finance approval to the selected exercise.", route: ["Verification", "Independent reverification", "Finance approval"] },
 ];
 
 const erpSteps = [

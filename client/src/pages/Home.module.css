@@ -1285,11 +1285,11 @@
 .panelTop { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
 .panelTop .eyebrowSmall { margin: 0 !important; }
 
-.levelMeter { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 999px; background: #f6ebed; color: var(--secondary); font-size: 11px; font-weight: 700; white-space: nowrap; }
-.levelMeter i { width: 5px; height: 12px; border-radius: 2px; background: #e3c6cb; }
+.levelMeter { display: inline-flex; align-items: center; gap: 4px; padding: 5px 10px; border-radius: 999px; background: #e8eff7; color: #173F62; font-size: 11px; font-weight: 700; white-space: nowrap; }
+.levelMeter i { width: 5px; height: 12px; border-radius: 2px; background: #c4d6e6; }
 .levelMeter i:nth-of-type(2) { height: 15px; }
 .levelMeter i:nth-of-type(3) { height: 18px; margin-right: 5px; }
-.levelMeter .levelOn { background: var(--secondary); }
+.levelMeter .levelOn { background: #173F62; }
 
 .routeSteps {
   position: relative;
