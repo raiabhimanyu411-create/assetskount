@@ -749,7 +749,7 @@ function HomePage() {
             <p className={styles.body}>See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
             <div className={styles.actions}>
               <button className={site.button} type="button" onClick={() => openEnquiry("Live product demo")}>Book a Live Demo <span aria-hidden="true">↗</span></button>
-              <button className={site.textLink} type="button" onClick={openWalkthrough}>Explore the Walkthrough <span aria-hidden="true">→</span></button>
+              {/* <button className={site.textLink} type="button" onClick={openWalkthrough}>Explore the Walkthrough <span aria-hidden="true">→</span></button> */}
             </div>
           </div>
         </div>
