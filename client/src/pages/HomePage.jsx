@@ -8,9 +8,24 @@ import styles from "./Home.module.css";
 const IMG = "/assets/enterprise";
 
 const issues = [
-  ["Ghost assets in the books", "Missing or disposed assets remain on the register."],
-  ["Location and custody mismatches", "Physical movements outpace record updates."],
-  ["Weak evidence and delayed reconciliation", "Unresolved differences surface when the pressure is on."],
+  ["Ghost assets in the books", "Missing or disposed assets remain on the register.", (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z" />
+      <path d="M14 3v5h5M10 12.5l4 4M14 12.5l-4 4" />
+    </>
+  )],
+  ["Location and custody mismatches", "Physical movements outpace record updates.", (
+    <>
+      <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z" />
+      <circle cx="12" cy="9.5" r="2.5" />
+    </>
+  )],
+  ["Weak evidence and delayed reconciliation", "Unresolved differences surface when the pressure is on.", (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  )],
 ];
 
 const dimensions = [
@@ -381,17 +396,22 @@ function HomePage() {
       <section className={`${styles.section} ${styles.tint} ${styles.reality}`} id="reality" aria-labelledby="reality-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <Slide name="reality-gap" className={styles.gapArt} alt="An asset register alongside a workplace with a missing asset and damaged equipment">
-            <div className={styles.gapLabel}><span>Book record</span><b aria-hidden="true">≠</b><span>Physical reality</span></div>
+            <div className={styles.gapLabel}><span>Book Record</span><b aria-hidden="true">≠</b><span>Physical Reality</span></div>
           </Slide>
           <div className={styles.copy}>
             <p className={styles.sectionBadge}>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-              The asset reality gap
+              The Asset Reality Gap
             </p>
             <h2 id="reality-title">Recorded in the books.<br /><em>Uncertain on the ground.</em></h2>
             <p className={styles.body}>Your register can record an asset long after its location, custodian or condition has changed. Verification brings those differences into view.</p>
             <ul className={styles.issueList}>
-              {issues.map(([title, text]) => <li key={title}><strong>{title}</strong><span>{text}</span></li>)}
+              {issues.map(([title, text, icon]) => (
+                <li key={title}>
+                  <i className={styles.issueIcon} aria-hidden="true"><svg viewBox="0 0 24 24">{icon}</svg></i>
+                  <div><strong>{title}</strong><span>{text}</span></div>
+                </li>
+              ))}
             </ul>
             <p className={styles.closingLine}>ASSETKOUNT connects asset records to physical evidence.</p>
           </div>
@@ -399,11 +419,14 @@ function HomePage() {
       </section>
 
       {/* 02: presentation visual 03 */}
-      <section className={`${styles.section} ${styles.tint}`} id="platform" aria-labelledby="platform-title">
+      <section className={`${styles.section} ${styles.verifies}`} id="platform" aria-labelledby="platform-title">
         <div className={site.container}>
           <div className={styles.heading}>
             <div>
-              <Eyebrow>02 / What ASSETKOUNT verifies</Eyebrow>
+              <p className={styles.sectionBadge}>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+                What ASSETKOUNT verifies
+              </p>
               <h2 id="platform-title">Evidence behind<br /><em>every asset record.</em></h2>
             </div>
             <p>Establish what is physically present, where it is, who is responsible and what condition it is in.</p>

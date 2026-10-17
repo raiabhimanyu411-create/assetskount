@@ -206,19 +206,31 @@
 .issueList { list-style: none; padding: 0; margin: 25px 0 24px; }
 
 .issueList li {
-  position: relative;
-  padding: 15px 0 15px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
   border-bottom: 1px solid var(--line);
 }
 
-.issueList li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 25px;
-  width: 5px;
-  height: 5px;
+.issueIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
   background: var(--secondary);
+}
+
+.issueIcon svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .issueList strong { display: block; font-size: 15px; line-height: 1.5; color: var(--primary); }
@@ -259,6 +271,23 @@
 .reality .closingLine,
 .reality .gapLabel { color: #000; }
 
+/* Brand navy label with white text and ≠. */
+.reality .gapLabel { background: var(--primary); border-color: var(--primary); color: #fff; font-weight: 600; }
+.reality .gapLabel b { color: #fff; }
+
+/* What ASSETKOUNT verifies on white, with black text. */
+.page .verifies h2,
+.verifies .dimensionList h3,
+.verifies .industryLine b { color: #000; }
+
+.verifies .evidenceArt { background: #fff; }
+
+.verifies .evidenceArt::after {
+  background:
+    linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, .96) 6%, transparent 26%),
+    linear-gradient(0deg, #fff 0%, transparent 12%);
+}
+
 .reality .gapArt::after {
   background:
     linear-gradient(90deg, var(--tint) 0%, rgba(245, 247, 249, .96) 6%, transparent 30%),
@@ -275,12 +304,10 @@
   border-radius: 999px;
   background: #fff;
   color: var(--secondary);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
   line-height: 1.4;
-  gap: 8px;
+  gap: 7px;
 }
 
 .sectionBadge svg { width: 13px; height: 13px; fill: currentColor; flex-shrink: 0; }
