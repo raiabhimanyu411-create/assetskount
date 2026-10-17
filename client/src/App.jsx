@@ -15,10 +15,10 @@ import AssetManagementPage from "./pages/AssetManagementPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 
 const navigation = [
-  { id: "platform", label: "The platform" },
-  { id: "journey", label: "How it works" },
-  { id: "delivery", label: "Delivery models" },
-  { id: "pilot", label: "Your pilot" },
+  { id: "platform", label: "The Platform" },
+  { id: "journey", label: "How It Works" },
+  { id: "delivery", label: "Delivery Models" },
+  { id: "pilot", label: "Your Pilot" },
 ];
 
 const titles = {
