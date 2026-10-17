@@ -354,14 +354,24 @@ function HomePage() {
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={`${site.container} ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
-            <Eyebrow>Enterprise Asset Verification</Eyebrow>
+            <p className={styles.heroBadge}>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+              Enterprise Asset Verification
+            </p>
             <h1 id="hero-title">Your ERP says<br />what should exist.<br /><em>ASSETKOUNT<br />proves what does.</em></h1>
             <p className={styles.heroDescription}>Connect your fixed asset register to physical evidence of existence, location, custody and condition.</p>
             <div className={styles.actions}>
-              <button className={site.button} type="button" onClick={() => openEnquiry("Live product demo")}>Book a live demo <span aria-hidden="true">↗</span></button>
-              <Link className={site.textLink} to="/#journey">Learn more <span aria-hidden="true">→</span></Link>
+              <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12.6 3.4c2.6-1.5 5.6-1.9 7.6-1.6.3 2-.1 5-1.6 7.6-1 1.8-2.6 3.4-4.4 4.6l-.4 3.7a1 1 0 0 1-.5.8l-3 1.8a.6.6 0 0 1-.9-.6l.5-3.2-2.5-2.5-3.2.5a.6.6 0 0 1-.6-.9l1.8-3a1 1 0 0 1 .8-.5l3.7-.4c1.2-1.8 2.8-3.4 4.7-4.3Zm2.9 3.1a2 2 0 1 0 0 2.9 2 2 0 0 0 0-2.9ZM5.3 16.1c.7-.7 1.9-.7 2.6 0s.7 1.9 0 2.6c-.9.9-3.6 1.5-3.6 1.5s.5-2.7 1-4.1Z" />
+                </svg>
+                Get Started
+              </button>
+              <Link className={styles.pillOutline} to="/#journey">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l12-7.5-12-7.5Z" /></svg>
+                Learn More
+              </Link>
             </div>
-            <p className={styles.heroNote}>Mobile verification. Controlled review. Approved outcomes.</p>
           </div>
           <Slide name="hero" priority className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations">
             <div className={styles.imageNote}>
