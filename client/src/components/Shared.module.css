@@ -310,6 +310,28 @@
   animation: pageIn .8s var(--ease-out) both;
 }
 
+/* Paper curtain that lifts off the next page after a route change. */
+.routeCurtain {
+  position: fixed;
+  inset: 0;
+  z-index: 25;
+  background: var(--paper);
+  pointer-events: none;
+  animation: curtainUp .75s .05s cubic-bezier(.7, 0, .2, 1) forwards;
+}
+
+.routeCurtain::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  background: var(--crimson);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeCurtain { display: none; }
+}
+
 /* ---------- Footer ---------- */
 
 .footer {

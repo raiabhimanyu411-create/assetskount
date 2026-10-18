@@ -112,8 +112,26 @@ function SiteHeader() {
     return () => observer.disconnect();
   }, [location.pathname]);
 
+  // Tuck the header away while scrolling down; bring it back on the way up.
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (Math.abs(y - lastY) < 6) return;
+      setHidden(y > lastY && y > 160);
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <header className={site.header} ref={header}>
+    <header
+      className={`${site.header} ${hidden && !menuOpen ? site.headerHidden : ""}`}
+      ref={header}
+      onFocusCapture={() => setHidden(false)}
+    >
       <div className={`${site.container} ${site.headerInner}`}>
         <Link className={site.brand} to="/" aria-label="ASSETKOUNT home">
           <img src="/assets/deck/image2.png" width="584" height="207" alt="ASSETKOUNT" />
@@ -223,11 +241,18 @@ function RouteEffects() {
 function RouteTransition() {
   const location = useLocation();
   const scope = useRef(null);
+  // The first page is revealed by the preloader; later pages by a curtain.
+  const firstPath = useRef(location.pathname);
+  const navigated = useRef(false);
+  if (location.pathname !== firstPath.current) navigated.current = true;
   usePageAnimations(scope, location.pathname);
   return (
-    <div key={location.pathname} ref={scope} className={shell.pageTransition}>
-      <Outlet />
-    </div>
+    <>
+      {navigated.current && <div key={`curtain-${location.pathname}`} className={shell.routeCurtain} aria-hidden="true" />}
+      <div key={location.pathname} ref={scope} className={shell.pageTransition}>
+        <Outlet />
+      </div>
+    </>
   );
 }
 

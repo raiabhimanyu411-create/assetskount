@@ -66,6 +66,10 @@ export function lockScroll(locked) {
  *   data-stagger        children fade and rise one after another, tipping up in 3D
  *   data-clip           wrapper wipes open, its image settles from a zoom
  *   data-parallax="n"   image drifts by n * 100% of its overflow while scrolling
+ *   data-draw-icons     outlined svg icons inside trace their strokes in
+ *   data-draw           gains data-drawn on entering view, so CSS can draw lines
+ *   data-count="n"      text counts up from 0 to n (data-count-suffix appended)
+ *   data-grow           bar fills from the left
  */
 export function usePageAnimations(scopeRef, key) {
   useLayoutEffect(() => {
@@ -142,6 +146,72 @@ export function usePageAnimations(scopeRef, key) {
           yPercent: amount * 100,
           ease: "none",
           scrollTrigger: { trigger: image.parentElement, start: "top bottom", end: "bottom top", scrub: true },
+        });
+      });
+
+      // Outlined icons trace their strokes in, one icon after another.
+      gsap.utils.toArray("[data-draw-icons]", scope).forEach((group) => {
+        const icons = gsap.utils.toArray("svg", group).map((svg) => (
+          [...svg.querySelectorAll("path, circle, rect, line, polyline")].filter((shape) => {
+            if (getComputedStyle(shape).stroke === "none") return false;
+            try {
+              shape.dataset.length = Math.ceil(shape.getTotalLength()) + 1;
+              return true;
+            } catch {
+              return false;
+            }
+          })
+        )).filter((shapes) => shapes.length);
+        if (!icons.length) return;
+
+        const timeline = gsap.timeline({ scrollTrigger: { trigger: group, start: "top 82%" } });
+        icons.forEach((shapes, index) => {
+          timeline.fromTo(shapes, {
+            strokeDasharray: (_, shape) => shape.dataset.length,
+            strokeDashoffset: (_, shape) => shape.dataset.length,
+          }, {
+            strokeDashoffset: 0,
+            duration: 1.1,
+            ease: "power2.inOut",
+            clearProps: "strokeDasharray,strokeDashoffset",
+          }, 0.2 + index * 0.12);
+        });
+      });
+
+      // Connector lines are drawn by CSS; this flags when they enter view.
+      gsap.utils.toArray("[data-draw]", scope).forEach((element) => {
+        ScrollTrigger.create({
+          trigger: element,
+          start: "top 82%",
+          once: true,
+          onEnter: () => element.setAttribute("data-drawn", ""),
+        });
+      });
+
+      // Numbers count up from zero; data-count-suffix is appended as-is.
+      gsap.utils.toArray("[data-count]", scope).forEach((element) => {
+        const target = Number(element.dataset.count) || 0;
+        const suffix = element.dataset.countSuffix ?? "";
+        const counter = { value: 0 };
+        gsap.to(counter, {
+          value: target,
+          duration: 1.6,
+          ease: "power2.out",
+          scrollTrigger: { trigger: element, start: "top 90%" },
+          onStart: () => { element.textContent = `0${suffix}`; },
+          onUpdate: () => { element.textContent = `${Math.round(counter.value)}${suffix}`; },
+        });
+      });
+
+      // Progress bars fill from empty.
+      gsap.utils.toArray("[data-grow]", scope).forEach((bar) => {
+        gsap.from(bar, {
+          scaleX: 0,
+          transformOrigin: "0% 50%",
+          duration: 1.6,
+          ease: "power2.out",
+          clearProps: "transform",
+          scrollTrigger: { trigger: bar, start: "top 90%" },
         });
       });
     }, scope);

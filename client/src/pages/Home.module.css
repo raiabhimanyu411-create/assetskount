@@ -82,11 +82,97 @@
 .heroCopy a,
 .heroCopy button { pointer-events: auto; }
 
-.page .hero h1 {
+.page .hero :is(h1, .heroTitle) {
   color: #000;
   font-size: clamp(34px, 3.6vw, 50px);
   line-height: 1.06;
   letter-spacing: -.045em;
+}
+
+.page .hero .heroTitle { font-weight: 700; }
+
+/*
+ * Rotating hero messages share one grid cell. Lines of the outgoing slide
+ * lift out of their masks, then the incoming lines rise in one by one.
+ */
+.heroSlides { display: grid; }
+
+.heroSlide {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.heroSlideActive { visibility: visible; }
+
+/* Stay visible while the exit plays, then hide. */
+.heroSlideLeaving { transition: visibility 0s .6s; }
+
+.heroLine {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .12em;
+  margin-bottom: -.12em;
+}
+
+.heroLine > span {
+  display: block;
+  transform: translateY(115%);
+}
+
+.heroSlideActive .heroLine > span {
+  transform: none;
+  transition: transform 1.1s var(--ease-out);
+  transition-delay: calc(.45s + var(--line, 0) * .09s);
+}
+
+.heroSlideLeaving .heroLine > span {
+  transform: translateY(-115%);
+  transition: transform .55s cubic-bezier(.6, 0, .8, .2);
+  transition-delay: calc(var(--line, 0) * .04s);
+}
+
+.heroFade {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.heroSlideActive .heroFade {
+  opacity: 1;
+  transform: none;
+  transition: opacity .8s ease, transform 1s var(--ease-out);
+  transition-delay: calc(.75s + var(--delay, 0s));
+}
+
+.heroSlideLeaving .heroFade {
+  transform: translateY(-10px);
+  transition: opacity .4s ease, transform .5s ease-in;
+}
+
+/* Masked heading line used by <Lines>; descenders get room via padding. */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .12em;
+  margin-bottom: -.12em;
+}
+
+.line > span { display: block; }
+
+.heroSubtitle {
+  margin-top: 18px !important;
+  color: var(--primary);
+  font-size: clamp(21px, 2.1vw, 29px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -.03em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroSlide,
+  .heroSlide * { transition: none !important; }
+  .heroSlide .heroLine > span,
+  .heroSlide .heroFade { transform: none; }
+  .heroSlideLeaving { visibility: hidden; }
 }
 
 .heroBadge {
@@ -855,7 +941,7 @@
 
 @media (max-width: 1150px) {
   .heroInner { min-height: 630px; }
-  .page .hero h1 { font-size: 44px; }
+  .page .hero :is(h1, .heroTitle) { font-size: 44px; }
   .heroArt { width: 63%; right: -50px; }
   .heroCopy { width: 58%; }
   .heroDescription { max-width: 365px; font-size: 15px; }
@@ -869,7 +955,7 @@
 }
 
 @media (max-width: 900px) {
-  .page .hero h1 { font-size: 40px; }
+  .page .hero :is(h1, .heroTitle) { font-size: 40px; }
   .heroInner { min-height: 590px; }
   .heroCopy { width: 60%; }
   .heroDescription { max-width: 325px; }
@@ -910,7 +996,7 @@
 @media (max-width: 760px) {
   .heroInner { min-height: 0; flex-direction: column; align-items: stretch; }
   .heroCopy { width: 100%; padding: 41px 0 0; pointer-events: auto; }
-  .page .hero h1 { font-size: clamp(31px, 7vw, 44px); }
+  .page .hero :is(h1, .heroTitle) { font-size: clamp(31px, 7vw, 44px); }
   .heroDescription { font-size: 15px; max-width: 450px; margin: 22px 0 !important; }
 
   .heroArt {
@@ -1006,7 +1092,7 @@
 }
 
 @media (max-width: 390px) {
-  .page .hero h1 { font-size: 30px; }
+  .page .hero :is(h1, .heroTitle) { font-size: 30px; }
   .heroDescription { font-size: 14px; }
   .hero .actions { gap: 16px; }
   .page h2 { font-size: 28px; }
@@ -1342,10 +1428,50 @@
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 8px 22px rgba(23, 63, 98, .05);
-  transition: border-color .2s, box-shadow .2s, transform .2s;
+  position: relative;
+  overflow: hidden;
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(var(--lift, 0px));
+  transition: border-color .3s, box-shadow .3s, transform .5s var(--ease-out);
 }
 
-.recolor .outputList article:hover { border-color: #9fb6cb; box-shadow: 0 16px 32px rgba(23, 63, 98, .12); transform: translateY(-3px); }
+.recolor .outputList article:hover { --lift: -3px; border-color: #9fb6cb; box-shadow: 0 16px 32px rgba(23, 63, 98, .12); }
+
+/* Soft glare that follows the pointer on tilting cards (set by useTilt). */
+.industryGrid article::after,
+.recolor .outputList article::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, .45), transparent 55%);
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+
+.industryGrid article:hover::after,
+.recolor .outputList article:hover::after { opacity: 1; }
+
+/*
+ * Connector lines draw across once their row scrolls into view (data-drawn
+ * comes from motion.js). Without motion they simply stay drawn.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .reviewFlow[data-draw]::before,
+  .recolor .erpSequence[data-draw]::before {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1.6s var(--ease-out) .35s;
+  }
+
+  .reviewFlow[data-drawn]::before,
+  .recolor .erpSequence[data-drawn]::before { transform: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) and (max-width: 900px) {
+  .reviewFlow[data-draw]::before { transform: scaleY(0); transform-origin: center top; }
+  .reviewFlow[data-drawn]::before { transform: none; }
+}
 
 .outputTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
 .outputTop small { padding: 4px 9px; border-radius: 999px; background: #e8eff7; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #173F62; }
@@ -1415,22 +1541,25 @@
 
 /* Industries we serve: six photo cards and a brand sign-off. */
 .industriesHead { margin-bottom: 40px; }
+.page .industriesHead h2 { color: #000; }
 
 .industryGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 
 .industryGrid article {
+  position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 10px 26px rgba(23, 63, 98, .06);
-  transition: transform .25s, box-shadow .25s, border-color .25s;
+  transform: perspective(900px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(var(--lift, 0px));
+  transition: transform .5s var(--ease-out), box-shadow .4s, border-color .4s;
 }
 
-.industryGrid article:hover { transform: translateY(-4px); border-color: #e3c6cb; box-shadow: 0 20px 40px rgba(23, 63, 98, .12); }
+.industryGrid article:hover { --lift: -4px; border-color: #e3c6cb; box-shadow: 0 20px 40px rgba(23, 63, 98, .12); }
 
 .industryPhoto { position: relative; aspect-ratio: 388 / 170; overflow: hidden; background: var(--tint); }
-.industryPhoto img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.industryPhoto img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s var(--ease-out); }
 .industryGrid article:hover .industryPhoto img { transform: scale(1.05); }
 .industryPhoto::after { content: ""; position: absolute; inset: auto 0 0; height: 38%; background: linear-gradient(0deg, #fff, transparent); }
 

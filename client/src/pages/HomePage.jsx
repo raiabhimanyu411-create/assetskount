@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { openEnquiry } from "../components/Enquiry.jsx";
 import site from "../components/Site.module.css";
-import { lockScroll } from "../lib/motion.js";
+import { lockScroll, whenIntroDone } from "../lib/motion.js";
 import styles from "./Home.module.css";
 import { Brand, withBrand } from "../components/Brand.jsx";
 
@@ -197,9 +197,10 @@ const walkthrough = [
 
 const pad = (index) => String(index + 1).padStart(2, "0");
 
-function Slide({ name, alt, className = "", children, priority = false }) {
+// Slides wipe open as they scroll into view; the hero passes reveal={false}.
+function Slide({ name, alt, className = "", children, priority = false, reveal = true, ...props }) {
   return (
-    <div className={`${styles.slideCrop} ${className}`}>
+    <div className={`${styles.slideCrop} ${className}`} data-clip={reveal ? "" : undefined} {...props}>
       <img
         src={`${IMG}/${name}.webp`}
         width="1672"
@@ -229,7 +230,7 @@ function ArrowIcon() {
 
 function Badge({ children }) {
   return (
-    <p className={styles.sectionBadge}>
+    <p className={styles.sectionBadge} data-reveal="">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
       {children}
     </p>
@@ -265,15 +266,15 @@ function Journey() {
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
-            <p className={styles.sectionBadge}>
+            <p className={styles.sectionBadge} data-reveal="">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
               The Verification Journey
             </p>
-            <h2 id="journey-title">Controlled Verification Process.<br /><em>From Scoping to  Successful Completion.</em></h2>
-            <p className={styles.journeyIntro}>Give every exercise a defined scope, clear responsibilities and a controlled route to completion.</p>
+            <Lines id="journey-title" lines={["Controlled Verification Process.", <em key="a">From Scoping to Successful Completion.</em>]} />
+            <p className={styles.journeyIntro} data-reveal="">Give every exercise a defined scope, clear responsibilities and a controlled route to completion.</p>
           </div>
         </div>
-        <div className={styles.workflowTabs} role="tablist" aria-label="Verification stages">
+        <div className={styles.workflowTabs} data-stagger="" data-draw-icons="" role="tablist" aria-label="Verification stages">
           {stages.map((item, index) => (
             <button
               key={item.name}
@@ -290,15 +291,15 @@ function Journey() {
             </button>
           ))}
         </div>
-        <div className={styles.stagePanel} id="stage-panel" role="tabpanel" aria-labelledby={`stage-tab-${active}`} tabIndex={0}>
+        <div className={styles.stagePanel} data-reveal="" id="stage-panel" role="tabpanel" aria-labelledby={`stage-tab-${active}`} tabIndex={0}>
           <i className={`${styles.issueIcon} ${styles.stageIcon}`} aria-hidden="true"><svg viewBox="0 0 24 24">{stage.icon}</svg></i>
           <div>
             <h3>{stage.title}</h3>
             <p>{stage.description}</p>
           </div>
         </div>
-        <div className={styles.panorama}>
-          <img src={`${IMG}/journey.webp`} width="1672" height="941" alt="Connected scenes of planning, warehouse asset verification and management review" loading="lazy" decoding="async" />
+        <div className={styles.panorama} data-reveal="">
+          <img data-parallax=".04" src={`${IMG}/journey.webp`} width="1672" height="941" alt="Connected scenes of planning, warehouse asset verification and management review" loading="lazy" decoding="async" />
         </div>
       </div>
     </section>
@@ -314,13 +315,13 @@ function Controls() {
         <div className={styles.heading}>
           <div>
             <Badge>Assurance To Match Your Controls</Badge>
-            <h2 id="controls-title">The right review.<br /><em>For each verification.</em></h2>
-            <p className={styles.journeyIntro}>Choose the review approach that fits the exercise and your organisation’s control requirements.</p>
+            <Lines id="controls-title" lines={["The right review.", <em key="a">For each verification.</em>]} />
+            <p className={styles.journeyIntro} data-reveal="">Choose the review approach that fits the exercise and your organisation’s control requirements.</p>
           </div>
         </div>
         <div className={styles.controlsLayout}>
           <div>
-            <div className={styles.controlTabs} role="tablist" aria-label="Assurance approaches">
+            <div className={styles.controlTabs} data-stagger="" data-draw-icons="" role="tablist" aria-label="Assurance approaches">
               {controls.map((item, index) => (
                 <button
                   key={item.name}
@@ -337,7 +338,7 @@ function Controls() {
                 </button>
               ))}
             </div>
-            <div className={styles.controlPanel} id="control-panel" role="tabpanel" aria-labelledby={`control-tab-${active}`} tabIndex={0}>
+            <div className={styles.controlPanel} data-reveal="" id="control-panel" role="tabpanel" aria-labelledby={`control-tab-${active}`} tabIndex={0}>
               <div className={styles.panelTop}>
                 <Eyebrow className={styles.eyebrowSmall}>Selected review approach</Eyebrow>
                 <span className={styles.levelMeter} aria-label={`Assurance level ${control.level} of 3`}>
@@ -371,11 +372,11 @@ function Delivery() {
         <div className={styles.heading}>
           <div>
             <Badge>Two Ways To Work With <Brand /></Badge>
-            <h2 id="delivery-title">One Platform.<br /><em>Your delivery model.</em></h2>
-            <p className={styles.journeyIntro}>Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
+            <Lines id="delivery-title" lines={["One Platform.", <em key="a">Your delivery model.</em>]} />
+            <p className={styles.journeyIntro} data-reveal="">Choose who leads the exercise. Keep physical evidence, review and reconciliation at the centre.</p>
           </div>
         </div>
-        <div className={styles.deliverySelector} role="tablist" aria-label="Delivery models">
+        <div className={styles.deliverySelector} data-reveal="" role="tablist" aria-label="Delivery models">
           {models.map((item, index) => (
             <button
               key={item.key}
@@ -393,22 +394,22 @@ function Delivery() {
           ))}
         </div>
         <div className={`${styles.split} ${styles.deliveryPanel} ${styles.copyFirst}`} id="model-panel" role="tabpanel" aria-labelledby={`model-tab-${model.key}`} tabIndex={0}>
-          <div className={styles.modelPhoto}>
+          <div className={styles.modelPhoto} data-clip="">
             <img src={`${IMG}/${model.image}.webp`} width="1672" height="941" alt={model.alt} loading="lazy" decoding="async" />
           </div>
           <div className={styles.copy}>
             <h3 className={styles.modelTitle}>{withBrand(model.title[0])}<br />{withBrand(model.title[1])}</h3>
-            <p className={styles.body}>{withBrand(model.description)}</p>
-            <ul className={styles.featureGrid}>
+            <p className={styles.body} data-reveal="">{withBrand(model.description)}</p>
+            <ul className={styles.featureGrid} data-stagger="" data-draw-icons="">
               {model.items.map(([item, icon]) => (
                 <li key={item}><Icon className={styles.featureIcon}>{icon}</Icon><span>{item}</span></li>
               ))}
             </ul>
-            <p className={styles.modelResponsibility}>
+            <p className={styles.modelResponsibility} data-reveal="">
               <Icon className={styles.noteIcon}><><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></></Icon>
               {withBrand(model.responsibility)}
             </p>
-            <button className={styles.pillOutline} type="button" onClick={() => openEnquiry(model.enquiry)}>Discuss {model.name}<ArrowIcon /></button>
+            <button className={styles.pillOutline} data-magnetic="" type="button" onClick={() => openEnquiry(model.enquiry)}>Discuss {model.name}<ArrowIcon /></button>
           </div>
         </div>
       </div>
@@ -434,7 +435,7 @@ function Walkthrough({ dialogRef }) {
       <button className={`${site.dialogClose} ${styles.walkthroughClose}`} type="button" onClick={close} aria-label="Close walkthrough">×</button>
       <div className={styles.walkthroughHeader}>
         <Eyebrow>Illustrative walkthrough</Eyebrow>
-        <h2 id="walkthrough-title">One sset.<br /><em>A controlled journey.</em></h2>
+        <h2 id="walkthrough-title">One Asset.<br /><em>A controlled journey.</em></h2>
         <p className={styles.body}>Explore the stages, then book a live demo to see <Brand /> in operation.</p>
       </div>
       <div className={styles.walkthroughContent}>
@@ -449,7 +450,7 @@ function Walkthrough({ dialogRef }) {
         <div className={styles.walkthroughCopy}>
           <Eyebrow>Step {pad(step)} of 06</Eyebrow>
           <h3>{item.title}</h3>
-          <p className={styles.body}>{item.description}</p>
+          <p className={styles.body} data-reveal="">{item.description}</p>
           <p className={styles.walkthroughOutcome}>Outcome: {item.outcome}</p>
           <div className={styles.walkthroughProgress} aria-label="Walkthrough progress">
             {walkthrough.map((entry, index) => (
@@ -483,7 +484,7 @@ function Walkthrough({ dialogRef }) {
 // Product screens: the field app on a phone and the campaign control centre on a laptop.
 function RtPhone() {
   return (
-    <div className={styles.rtPhone}>
+    <div className={styles.rtPhone} data-reveal="">
       <img src={`${IMG}/control-centre-app.webp`} width="362" height="809" alt="The ASSETKOUNT mobile app home screen with assigned, verified and remaining assets" loading="lazy" decoding="async" />
     </div>
   );
@@ -491,15 +492,15 @@ function RtPhone() {
 
 function RtLaptop() {
   return (
-    <div className={styles.rtLaptop}>
+    <div className={styles.rtLaptop} data-reveal="">
       <div className={styles.rtScreen}>
         <img src={`${IMG}/control-centre-web.webp`} width="888" height="392" alt="The ASSETKOUNT campaign control centre showing verification progress gauges" loading="lazy" decoding="async" />
         <div className={styles.rtScreenMore} aria-hidden="true">
           {rtLocations.map(([place, done, total, state]) => (
             <div key={place}>
               <span>{place}</span>
-              <i><b style={{ width: `${(done / total) * 100}%` }} /></i>
-              <span>{done} / {total}</span>
+              <i><b data-grow="" style={{ width: `${(done / total) * 100}%` }} /></i>
+              <span data-count={done} data-count-suffix={` / ${total}`}>{done} / {total}</span>
               <em className={styles[`rtState${state.replace(" ", "")}`]}>{state}</em>
             </div>
           ))}
@@ -514,24 +515,24 @@ function RealTimeControl() {
   return (
     <section className={`${styles.section} ${styles.tint} ${styles.rtSection}`} id="control-centre" aria-labelledby="rt-title">
       <div className={site.container}>
-        <div className={styles.rtHead}>
-          <h2 id="rt-title">Mobile Evidence + Real-Time Control</h2>
+        <div className={styles.rtHead} data-reveal="">
+          <Lines id="rt-title" lines={["Mobile Evidence + Real-Time Control"]} />
           <span className={styles.rtRule} aria-hidden="true"><i /></span>
           <p>Every verification activity produces defensible evidence and live management visibility.</p>
         </div>
         <div className={styles.rtGrid}>
           <RtPhone />
           <div className={styles.rtChecks}>
-            <div className={styles.rtChecksHead}>
+            <div className={styles.rtChecksHead} data-reveal="">
               <Icon className={styles.rtShield}><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" /></Icon>
               <h3>Evidence captured at the point of verification</h3>
             </div>
-            <ul>
+            <ul data-stagger="">
               {rtChecks.map((item) => <li key={item}><Icon className={styles.rtCheck}><path d="m7.5 12.5 3 3 6-6.5" /></Icon>{item}</li>)}
             </ul>
           </div>
           <RtLaptop />
-          <div className={styles.rtProps}>
+          <div className={styles.rtProps} data-stagger="" data-draw-icons="">
             {rtProps.map(([first, second, icon]) => (
               <article key={first}><Icon className={styles.rtPropIcon}>{icon}</Icon><p>{first}<br />{second}</p></article>
             ))}
@@ -539,6 +540,73 @@ function RealTimeControl() {
         </div>
       </div>
     </section>
+  );
+}
+
+// The hero alternates between its two messages; both stay stacked in one grid
+// cell so the buttons below never jump when the text changes.
+const HERO_INTERVAL = 4000;
+
+function HeroHeadings() {
+  // -1 until the preloader lifts, so the first heading rises into view.
+  const [{ active, leaving }, setSlides] = useState({ active: -1, leaving: -1 });
+
+  useEffect(() => {
+    let timer;
+    let cancelled = false;
+    whenIntroDone().then(() => {
+      if (cancelled) return;
+      setSlides({ active: 0, leaving: -1 });
+      timer = window.setInterval(() => {
+        setSlides(({ active: current }) => ({ active: (current + 1) % 2, leaving: current }));
+      }, HERO_INTERVAL);
+    });
+    return () => {
+      cancelled = true;
+      window.clearInterval(timer);
+    };
+  }, []);
+
+  const slide = (index) => [
+    styles.heroSlide,
+    active === index && styles.heroSlideActive,
+    leaving === index && styles.heroSlideLeaving,
+  ].filter(Boolean).join(" ");
+
+  return (
+    <div className={styles.heroSlides}>
+      <div className={slide(0)} aria-hidden={active !== 0}>
+        <HeroLines as="h1" id="hero-title" lines={["Your ERP says", "what should exist.", <em key="a"><Brand /></em>, <em key="b">proves what does.</em>]} />
+        <p className={`${styles.heroDescription} ${styles.heroFade}`}>Connect your fixed asset register to physical evidence of existence, location, custody and condition.</p>
+      </div>
+      <div className={slide(1)} aria-hidden={active !== 1}>
+        <HeroLines className={styles.heroTitle} lines={["Every Asset.", "Everywhere.", <em key="a">One Clear View.</em>]} />
+        <p className={`${styles.heroSubtitle} ${styles.heroFade}`}>Your Central, Customisable Source of Truth.</p>
+        <p className={`${styles.heroDescription} ${styles.heroFade}`} style={{ "--delay": ".12s" }}>Bring asset tracking, automated inspections and compliance evidence together in one platform—for complete operational accountability, without chasing spreadsheets.</p>
+      </div>
+    </div>
+  );
+}
+
+// Hero lines rise from a mask each time their slide becomes active.
+function HeroLines({ as: Tag = "p", lines, ...props }) {
+  return (
+    <Tag {...props}>
+      {lines.map((line, index) => (
+        <span className={styles.heroLine} key={index}><span style={{ "--line": index }}>{line}</span></span>
+      ))}
+    </Tag>
+  );
+}
+
+// Section headings whose lines rise from a mask as they scroll into view.
+function Lines({ as: Tag = "h2", lines, ...props }) {
+  return (
+    <Tag {...props} data-lines="">
+      {lines.map((line, index) => (
+        <span className={styles.line} data-line="" key={index}><span>{line}</span></span>
+      ))}
+    </Tag>
   );
 }
 
@@ -555,18 +623,17 @@ function HomePage() {
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={`${site.container} ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
-            <p className={styles.heroBadge}>
+            <p className={styles.heroBadge} data-hero-item="">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
               Enterprise Asset Verification
             </p>
-            <h1 id="hero-title">Your ERP says<br />what should exist.<br /><em><Brand /><br />proves what does.</em></h1>
-            <p className={styles.heroDescription}>Connect your fixed asset register to physical evidence of existence, location, custody and condition.</p>
-            <div className={styles.actions}>
-              <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Get Started</button>
-              <Link className={styles.pillOutline} to="/#journey"><PlayIcon />Learn More</Link>
+            <HeroHeadings />
+            <div className={styles.actions} data-hero-item="">
+              <button className={styles.pillPrimary} data-magnetic="" type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Get Started</button>
+              <Link className={styles.pillOutline} data-magnetic="" to="/#journey"><PlayIcon />Learn More</Link>
             </div>
           </div>
-          <Slide name="hero" priority className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations" />
+          <Slide name="hero" priority reveal={false} data-hero-item="" className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations" />
         </div>
       </section>
 
@@ -577,13 +644,13 @@ function HomePage() {
             <div className={styles.gapLabel}><span>Book Record</span><b aria-hidden="true">≠</b><span>Physical Reality</span></div>
           </Slide>
           <div className={styles.copy}>
-            <p className={styles.sectionBadge}>
+            <p className={styles.sectionBadge} data-reveal="">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
               The Asset Reality Gap
             </p>
-            <h2 id="reality-title">Recorded in the books.<br /><em>Uncertain on the ground.</em></h2>
-            <p className={styles.body}>Your fixed asset register can record an asset long after its location, custodian or condition has changed. Verification brings those differences into view.</p>
-            <ul className={styles.issueList}>
+            <Lines id="reality-title" lines={["Recorded in the books.", <em key="a">Uncertain on the ground.</em>]} />
+            <p className={styles.body} data-reveal="">Your fixed asset register can record an asset long after its location, custodian or condition has changed. Verification brings those differences into view.</p>
+            <ul className={styles.issueList} data-stagger="" data-draw-icons="">
               {issues.map(([title, text, icon]) => (
                 <li key={title}>
                   <i className={styles.issueIcon} aria-hidden="true"><svg viewBox="0 0 24 24">{icon}</svg></i>
@@ -591,7 +658,7 @@ function HomePage() {
                 </li>
               ))}
             </ul>
-            <p className={styles.closingLine}><Brand /> connects asset records to physical evidence seamlessly.</p>
+            <p className={styles.closingLine} data-reveal=""><Brand /> connects asset records to physical evidence seamlessly.</p>
           </div>
         </div>
       </section>
@@ -601,15 +668,15 @@ function HomePage() {
         <div className={site.container}>
           <div className={styles.heading}>
             <div>
-              <p className={styles.sectionBadge}>
+              <p className={styles.sectionBadge} data-reveal="">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
                 What <Brand /> Verifies
               </p>
-              <h2 id="platform-title">Evidence behind<br /><em>every asset record.</em></h2>
+              <Lines id="platform-title" lines={["Evidence behind", <em key="a">every asset record.</em>]} />
             </div>
           </div>
           <div className={styles.evidenceLayout}>
-            <div className={styles.dimensionList}>
+            <div className={styles.dimensionList} data-stagger="" data-draw-icons="">
               {dimensions.map(([title, text, icon]) => (
                 <article key={title}>
                   <i className={styles.issueIcon} aria-hidden="true"><svg viewBox="0 0 24 24">{icon}</svg></i>
@@ -638,14 +705,14 @@ function HomePage() {
           </Slide>
           <div className={styles.copy}>
             <Badge>Verification at the Asset</Badge>
-            <h2 id="mobile-title">A smartphone connects<br />the asset <em>to its evidence.</em></h2>
-            <p className={styles.body}>Bring the verification record to the physical asset. Capture the findings where the asset stands, with the context reviewers need.</p>
-            <ul className={`${styles.numberedList} ${styles.iconList}`}>
+            <Lines id="mobile-title" lines={["A smartphone connects", <>the asset <em>to its evidence.</em></>]} />
+            <p className={styles.body} data-reveal="">Bring the verification record to the physical asset. Capture the findings where the asset stands, with the context reviewers need.</p>
+            <ul className={`${styles.numberedList} ${styles.iconList}`} data-stagger="" data-draw-icons="">
               {mobileSteps.map(([title, text, icon]) => (
                 <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
               ))}
             </ul>
-            <Link className={styles.pillOutline} to="/#demo">Explore the complete journey<ArrowIcon /></Link>
+            <Link className={styles.pillOutline} data-magnetic="" to="/#demo">Explore the complete journey<ArrowIcon /></Link>
           </div>
         </div>
       </section>
@@ -656,13 +723,13 @@ function HomePage() {
       <section className={`${styles.section} ${styles.exceptions}`} id="exceptions" aria-labelledby="exceptions-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
-            <p className={styles.sectionBadge}>
+            <p className={styles.sectionBadge} data-reveal="">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
               Exceptions with Accountability
             </p>
-            <h2 id="exceptions-title">Every discrepancy<br /><em>has a review path.</em></h2>
-            <p className={styles.body}>Missing asset. Wrong location. Changed condition. Record the finding, attach the evidence and give reviewers a clear basis for follow-up.</p>
-            <ol className={styles.reviewFlow}>
+            <Lines id="exceptions-title" lines={["Every discrepancy", <em key="a">has a review path.</em>]} />
+            <p className={styles.body} data-reveal="">Missing asset. Wrong location. Changed condition. Record the finding, attach the evidence and give reviewers a clear basis for follow-up.</p>
+            <ol className={styles.reviewFlow} data-stagger="" data-draw="" data-draw-icons="">
               {reviewFlow.map(([title, text, icon], index) => (
                 <li key={title}>
                   <Icon className={styles.flowIcon}>{icon}</Icon>
@@ -672,12 +739,12 @@ function HomePage() {
                 </li>
               ))}
             </ol>
-            <div className={styles.roleSplit}>
+            <div className={styles.roleSplit} data-stagger="">
               {reviewRoles.map(([who, task, icon]) => (
                 <div key={who}><Icon className={styles.roleIcon}>{icon}</Icon><p><strong>{who}</strong>{task}</p></div>
               ))}
             </div>
-            <Link className={styles.pillOutline} to="/#controls">Explore review controls<ArrowIcon /></Link>
+            <Link className={styles.pillOutline} data-magnetic="" to="/#controls">Explore review controls<ArrowIcon /></Link>
           </div>
           <Slide name="exceptions" className={styles.exceptionsArt} alt="A warehouse verifier and supervisor examine asset findings together on a tablet" />
         </div>
@@ -692,10 +759,10 @@ function HomePage() {
           <div className={styles.split}>
             <div className={styles.copy}>
               <Badge>Verification to Action</Badge>
-              <h2 id="reconciliation-title">Physical Evidence.<br /><em>Financial Clarity.</em></h2>
-              <p className={styles.leadLine}><Brand /> Complements and Integrates with your ERP.</p>
-              <p className={styles.body}>Import the asset register. Verify physical assets. Reconcile the findings and release approved outcomes for the next agreed action.</p>
-              <div className={styles.erpSequence}>
+              <Lines id="reconciliation-title" lines={["Physical Evidence.", <em key="a">Financial Clarity.</em>]} />
+              <p className={styles.leadLine} data-reveal=""><Brand /> Complements and Integrates with your ERP.</p>
+              <p className={styles.body} data-reveal="">Import the asset register. Verify physical assets. Reconcile the findings and release approved outcomes for the next agreed action.</p>
+              <div className={styles.erpSequence} data-stagger="" data-draw="" data-draw-icons="">
                 {erpSteps.map(([label, icon], index) => (
                   <div key={label}>
                     <Icon className={styles.seqIcon}>{icon}</Icon>
@@ -708,13 +775,13 @@ function HomePage() {
             <Slide name="reconciliation" className={styles.reconciliationArt} alt="A tagged device is checked against an asset register displayed on a laptop" />
           </div>
           <div className={styles.outputs}>
-            <div className={styles.outputsHead}>
+            <div className={styles.outputsHead} data-reveal="">
               <Eyebrow className={styles.outputsEyebrow}>What you receive</Eyebrow>
               <h3>Clear evidence. <em>Actionable outputs.</em></h3>
             </div>
-            <div className={styles.outputList}>
+            <div className={styles.outputList} data-stagger="" data-draw-icons="">
               {outputs.map(([title, text, icon]) => (
-                <article key={title}>
+                <article key={title} data-tilt="5">
                   <div className={styles.outputTop}><Icon>{icon}</Icon></div>
                   <h3>{title}</h3>
                   <p>{text}</p>
@@ -733,14 +800,14 @@ function HomePage() {
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
             <Badge>Focused Pilot</Badge>
-            <h2 id="pilot-title">Clear Scope.<br /><em>Measurable findings.</em></h2>
-            <p className={styles.body}>Start with representative assets and locations. Use the pilot to see how the verification workflow, evidence and review requirements fit your organisation.</p>
-            <ul className={`${styles.numberedList} ${styles.iconList}`}>
+            <Lines id="pilot-title" lines={["Clear Scope.", <em key="a">Measurable findings.</em>]} />
+            <p className={styles.body} data-reveal="">Start with representative assets and locations. Use the pilot to see how the verification workflow, evidence and review requirements fit your organisation.</p>
+            <ul className={`${styles.numberedList} ${styles.iconList}`} data-stagger="" data-draw-icons="">
               {pilotSteps.map(([title, text, icon]) => (
                 <li key={title}><Icon>{icon}</Icon><div><strong>{title}</strong><span>{text}</span></div></li>
               ))}
             </ul>
-            <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Pilot discussion")}><RocketIcon />Discuss your Pilot</button>
+            <button className={styles.pillPrimary} data-magnetic="" type="button" onClick={() => openEnquiry("Pilot discussion")}><RocketIcon />Discuss your Pilot</button>
           </div>
           <Slide name="pilot" className={styles.pilotArt} alt="A customer and project lead plan a focused verification pilot using asset records and location photographs" />
         </div>
@@ -754,10 +821,10 @@ function HomePage() {
           </div>
           <div className={styles.copy}>
             <Badge>See <Brand /> in action</Badge>
-            <h2 id="demo-title">One Asset.<br /><em>The complete<br />verification journey.</em></h2>
-            <p className={styles.body}>See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
-            <div className={styles.actions}>
-              <button className={styles.pillPrimary} type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Book a Live Demo</button>
+            <Lines id="demo-title" lines={["One Asset.", <em key="a">The complete</em>, <em key="b">verification journey.</em>]} />
+            <p className={styles.body} data-reveal="">See how an asset moves from campaign setup and mobile verification to evidence review, exception handling, reconciliation and approved closeout.</p>
+            <div className={styles.actions} data-reveal="">
+              <button className={styles.pillPrimary} data-magnetic="" type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Book a Live Demo</button>
               {/* <button className={site.textLink} type="button" onClick={openWalkthrough}>Explore the Walkthrough <span aria-hidden="true">→</span></button> */}
             </div>
           </div>
@@ -768,12 +835,12 @@ function HomePage() {
         <div className={site.container}>
           <div className={styles.industriesHead}>
             <Badge>Industries We Serve</Badge>
-            <h2 id="industries-title">Asset Verification For <em>Every Sector</em></h2>
-            <p className={styles.journeyIntro}>One platform to verify physical assets, capture evidence and strengthen accountability across every location.</p>
+            <Lines id="industries-title" lines={[<>Asset Verification For <em>Every Sector</em></>]} />
+            <p className={styles.journeyIntro} data-reveal="">One platform to verify physical assets, capture evidence and strengthen accountability across every location.</p>
           </div>
-          <div className={styles.industryGrid}>
+          <div className={styles.industryGrid} data-stagger="" data-draw-icons="">
             {industries.map(([key, name, text, icon, alt]) => (
-              <article key={key}>
+              <article key={key} data-tilt="5">
                 <div className={styles.industryPhoto}>
                   <img src={`${IMG}/industry-${key}.webp`} width="388" height="170" alt={alt} loading="lazy" decoding="async" />
                 </div>
@@ -785,7 +852,7 @@ function HomePage() {
               </article>
             ))}
           </div>
-          <p className={styles.industrySignOff}><span>Because <em>Every Asset Matters.</em></span></p>
+          <p className={styles.industrySignOff} data-reveal=""><span>Because <em>Every Asset Matters.</em></span></p>
         </div>
       </section>
 
@@ -793,23 +860,23 @@ function HomePage() {
       <section className={`${styles.section} ${styles.nextStep}`} id="contact" aria-labelledby="contact-title">
         <div className={`${site.container} ${styles.contactGrid}`}>
           <div>
-            <p className={`${styles.sectionBadge} ${styles.badgeDark}`}>
+            <p className={`${styles.sectionBadge} ${styles.badgeDark}`} data-reveal="">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
               Your Next Step
             </p>
-            <h2 id="contact-title">Let’s define your first<br /><em>verification exercise.</em></h2>
-            <p className={styles.body}>A 30-minute scoping call to discuss your sites, asset classes, delivery model and starting records. Then agree a practical plan before work begins.</p>
-            <div className={styles.contactActions}>
-              <button className={styles.pillOutline} type="button" onClick={() => openEnquiry("30-minute scoping call")}><RocketIcon />Request a scoping call</button>
+            <Lines id="contact-title" lines={["Let’s define your first", <em key="a">verification exercise.</em>]} />
+            <p className={styles.body} data-reveal="">A 30-minute scoping call to discuss your sites, asset classes, delivery model and starting records. Then agree a practical plan before work begins.</p>
+            <div className={styles.contactActions} data-reveal="">
+              <button className={styles.pillOutline} data-magnetic="" type="button" onClick={() => openEnquiry("30-minute scoping call")}><RocketIcon />Request a scoping call</button>
               <a className={styles.contactEmail} href="mailto:contact@acrebis.com">
                 <Icon className={styles.mailIcon}><><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></></Icon>
                 <span><small>Prefer email?</small>contact@acrebis.com</span>
               </a>
             </div>
           </div>
-          <div className={styles.scopeSummary}>
+          <div className={styles.scopeSummary} data-reveal="">
             <p className={styles.scopeLabel}>A clear plan before we start</p>
-            <ol>
+            <ol data-stagger="" data-draw-icons="">
               {scopeItems.map(([title, text, icon], index) => (
                 <li key={title}>
                   <Icon className={styles.scopeIcon}>{icon}</Icon>
@@ -820,7 +887,7 @@ function HomePage() {
             </ol>
           </div>
         </div>
-        <div className={`${site.container} ${styles.signOff}`}><span>Because <em>Every Asset Matters.</em></span></div>
+        <div className={`${site.container} ${styles.signOff}`} data-reveal=""><span>Because <em>Every Asset Matters.</em></span></div>
       </section>
 
       <Walkthrough dialogRef={walkthroughDialog} />
