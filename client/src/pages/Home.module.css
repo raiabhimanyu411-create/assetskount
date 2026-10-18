@@ -159,7 +159,7 @@
 
 .heroSubtitle {
   margin-top: 18px !important;
-  color: var(--primary);
+  color: #000;
   font-size: clamp(21px, 2.1vw, 29px);
   font-weight: 700;
   line-height: 1.18;
@@ -780,7 +780,6 @@
 .nextStep {
   position: relative;
   overflow: hidden;
-  padding-bottom: 0;
   background: #0e2d49;
   color: #fff;
 }
@@ -1635,6 +1634,8 @@
 .scopeSummary ol { display: grid; gap: 10px; }
 
 .scopeSummary li {
+  display: grid;
+  grid-template-columns: 40px 1fr 22px;
   align-items: center;
   gap: 14px;
   padding: 14px 16px;
@@ -1645,15 +1646,15 @@
   transition: box-shadow .2s, transform .2s;
 }
 
-.scopeSummary li:hover { box-shadow: 0 14px 28px rgba(5, 20, 36, .28); transform: translateX(3px); }
+.scopeSummary li:hover { box-shadow: 0 14px 28px rgba(5, 20, 36, .28); transform: translateY(-2px); }
 .page .scopeSummary li strong { color: #000; }
 .page .scopeSummary li p { color: var(--muted); }
-.scopeSummary li > div { flex: 1; }
+.scopeSummary li > div { min-width: 0; }
 
 .scopeIcon { display: grid; place-items: center; flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--secondary); }
 .scopeIcon svg { width: 19px; height: 19px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-.scopeSummary li > .scopeStep { align-self: flex-start; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--secondary); }
+.scopeSummary li > .scopeStep { align-self: start; justify-self: end; font-variant-numeric: tabular-nums; font-size: 11px; font-weight: 700; letter-spacing: .1em; color: var(--secondary); }
 
 .nextStep .signOff, .nextStep .signOff em { color: #fff; }
 

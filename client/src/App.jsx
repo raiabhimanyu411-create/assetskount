@@ -171,31 +171,31 @@ function SiteFooter() {
           <Link className={site.brand} to="/" aria-label="ASSETKOUNT home">
             <img src="/assets/deck/image2.png" width="584" height="207" alt="ASSETKOUNT" />
           </Link>
-          <p>Enterprise asset verification.<br />Physical evidence. Controlled outcomes.</p>
+          <p>Enterprise Asset Verification.<br />Asset Lifecycle Management.<br />Physical Evidence. Controlled Outcomes.</p>
         </div>
         <div>
           <h3>Explore</h3>
-          <Link to="/#platform">The platform</Link>
-          <Link to="/#journey">Verification journey</Link>
-          <Link to="/#controls">Review controls</Link>
+          <Link to="/#platform">The Platform</Link>
+          <Link to="/#journey">Verification Journey</Link>
+          <Link to="/#controls">Review Controls</Link>
         </div>
         <div>
-          <h3>Work with us</h3>
+          <h3>Work With Us</h3>
           <Link to="/#delivery">Full Service &amp; Self Service</Link>
-          <Link to="/#pilot">A focused pilot</Link>
-          <button className={site.footerLink} type="button" onClick={() => openEnquiry("Live product demo")}>Book a live demo</button>
+          <Link to="/#pilot">Focused Pilot</Link>
+          <button className={site.footerLink} type="button" onClick={() => openEnquiry("Live product demo")}>Book a Live Demo</button>
         </div>
         <div>
-          <h3>Get in touch</h3>
+          <h3>Get In Touch</h3>
           <a href="mailto:contact@acrebis.com">contact@acrebis.com</a>
           <a href="tel:+6597157555">+65 9715 7555</a>
           <a href="https://www.acrebis.com/" target="_blank" rel="noopener noreferrer">Visit ACREBIS <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <div className={`${site.container} ${site.footerBottom}`}>
-        <span>© {new Date().getFullYear()} ACREBIS. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} ACREBIS. All Rights Reserved.</span>
         <span><Brand /> · Because Every Asset Matters.</span>
-        <button type="button" onClick={() => scrollToTop(false)}>Back to top ↑</button>
+        <button type="button" onClick={() => scrollToTop(false)}>Back to Top ↑</button>
       </div>
     </footer>
   );

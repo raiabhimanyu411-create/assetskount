@@ -294,7 +294,7 @@ function Blueprint() {
       <div className={site.container}>
         <div className={styles.blueprintHead}>
           <Badge>Platform Blueprint</Badge>
-          <Lines id="blueprint-title" lines={["A complete asset truth layer", <em key="a">between physical assets and enterprise systems.</em>]} />
+          <Lines id="blueprint-title" lines={[" Complete Asset Truth Layer", <em key="a">between physical assets and enterprise systems.</em>]} />
           <p className={styles.journeyIntro} data-reveal=""><Brand /> is designed to go beyond asset tracking. It connects the physical reality on the ground with ERP, finance, audit and operations.</p>
         </div>
         <div className={styles.blueprintGrid} data-stagger="" data-draw-icons="">
@@ -600,9 +600,11 @@ function RealTimeControl() {
 // cell so the buttons below never jump when the text changes.
 const HERO_INTERVAL = 5000;
 const HERO_SLIDES = 3;
+const HERO_BADGES = ["Enterprise Asset Verification", "Asset Lifecycle Management"];
 
-function HeroHeadings() {
-  // -1 until the preloader lifts, so the first heading rises into view.
+// Steps through `count` hero items on the shared interval. Returns a class
+// builder for each item; -1 until the preloader lifts so the first one enters.
+function useHeroRotation(count) {
   const [{ active, leaving }, setSlides] = useState({ active: -1, leaving: -1 });
 
   useEffect(() => {
@@ -612,20 +614,42 @@ function HeroHeadings() {
       if (cancelled) return;
       setSlides({ active: 0, leaving: -1 });
       timer = window.setInterval(() => {
-        setSlides(({ active: current }) => ({ active: (current + 1) % HERO_SLIDES, leaving: current }));
+        setSlides(({ active: current }) => ({ active: (current + 1) % count, leaving: current }));
       }, HERO_INTERVAL);
     });
     return () => {
       cancelled = true;
       window.clearInterval(timer);
     };
-  }, []);
+  }, [count]);
 
   const slide = (index) => [
     styles.heroSlide,
     active === index && styles.heroSlideActive,
     leaving === index && styles.heroSlideLeaving,
   ].filter(Boolean).join(" ");
+
+  return { active, slide };
+}
+
+function HeroBadge() {
+  const { active, slide } = useHeroRotation(HERO_BADGES.length);
+  return (
+    <p className={styles.heroBadge} data-hero-item="">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
+      <span className={styles.heroSlides}>
+        {HERO_BADGES.map((label, index) => (
+          <span key={label} className={slide(index)} aria-hidden={active !== index}>
+            <span className={styles.heroLine}><span>{label}</span></span>
+          </span>
+        ))}
+      </span>
+    </p>
+  );
+}
+
+function HeroHeadings() {
+  const { active, slide } = useHeroRotation(HERO_SLIDES);
 
   return (
     <div className={styles.heroSlides}>
@@ -681,10 +705,7 @@ function HomePage() {
       <section className={styles.hero} aria-labelledby="hero-title">
         <div className={`${site.container} ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
-            <p className={styles.heroBadge} data-hero-item="">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 2 4 13.5h6.5L9.5 22 20 9.5h-6.5L13.5 2Z" /></svg>
-              Enterprise Asset Verification
-            </p>
+            <HeroBadge />
             <HeroHeadings />
             <div className={styles.actions} data-hero-item="">
               <button className={styles.pillPrimary} data-magnetic="" type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Get Started</button>
@@ -947,7 +968,6 @@ function HomePage() {
             </ol>
           </div>
         </div>
-        <div className={`${site.container} ${styles.signOff}`} data-reveal=""><span>Because <em>Every Asset Matters.</em></span></div>
       </section>
 
       <Walkthrough dialogRef={walkthroughDialog} />
