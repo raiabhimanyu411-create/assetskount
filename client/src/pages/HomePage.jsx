@@ -29,6 +29,36 @@ const issues = [
   )],
 ];
 
+const blueprint = [
+  ["Enterprise Asset Register", "Centralised asset master with categories, tags, serial numbers, locations, custodians, cost centres, book values, attachments and lifecycle history.", (
+    <>
+      <ellipse cx="12" cy="5.5" rx="7.5" ry="3" />
+      <path d="M4.5 5.5v13c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-13M4.5 12c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3" />
+    </>
+  )],
+  ["Mobile Verification", "Verify assets using smartphone camera, QR, barcode, RFID-ready workflows, GPS, photos, digital signatures, condition checklists and offline sync.", (
+    <>
+      <rect x="6.5" y="2.5" width="11" height="19" rx="2" />
+      <path d="M11 18h2" />
+    </>
+  )],
+  ["Verification Events", "Plan and run structured physical verification events by location, zone, asset class, team, approval rule and audit sample requirement.", (
+    <>
+      <rect x="3.5" y="4.5" width="17" height="16" rx="2" />
+      <path d="M8 2.5v4M16 2.5v4M3.5 10h17M9 15l2 2 4-4" />
+    </>
+  )],
+  ["ERP Reconciliation", "Compare book records against physical findings to identify ghost assets, unrecorded assets, wrong locations, cost centre mismatches and disposal candidates.", (
+    <path d="M7 3.5 3.5 7 7 10.5M3.5 7h13M17 13.5l3.5 3.5-3.5 3.5M20.5 17h-13" />
+  )],
+  ["Audit Evidence Centre", "Every verification is backed by user ID, timestamp, GPS, photo evidence, scan details, approval trail and immutable activity history.", (
+    <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3ZM9 12l2 2 4-4" />
+  )],
+  ["AI Asset Intelligence", "Detect duplicate records, repeated missing assets, location drift, high-risk custodians, ageing assets, condition deterioration and audit gaps.", (
+    <path d="M10 3.5 11.8 8.2 16.5 10l-4.7 1.8L10 16.5l-1.8-4.7L3.5 10l4.7-1.8L10 3.5ZM18 14v6M15 17h6" />
+  )],
+];
+
 const dimensions = [
   ["Existence", "Is the recorded asset physically present?", (
     <path d="M21 8 12 3 3 8v8l9 5 9-5V8ZM3 8l9 5 9-5M12 13v8" />
@@ -258,11 +288,34 @@ function onTabKeys(event, index, count, select) {
   event.currentTarget.parentElement.children[next]?.focus();
 }
 
+function Blueprint() {
+  return (
+    <section className={`${styles.section} ${styles.tint} ${styles.blueprint}`} id="blueprint" aria-labelledby="blueprint-title">
+      <div className={site.container}>
+        <div className={styles.blueprintHead}>
+          <Badge>Platform Blueprint</Badge>
+          <Lines id="blueprint-title" lines={["A complete asset truth layer", <em key="a">between physical assets and enterprise systems.</em>]} />
+          <p className={styles.journeyIntro} data-reveal=""><Brand /> is designed to go beyond asset tracking. It connects the physical reality on the ground with ERP, finance, audit and operations.</p>
+        </div>
+        <div className={styles.blueprintGrid} data-stagger="" data-draw-icons="">
+          {blueprint.map(([title, text, icon]) => (
+            <article key={title} data-tilt="5">
+              <Icon>{icon}</Icon>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Journey() {
   const [active, setActive] = useState(0);
   const stage = stages[active];
   return (
-    <section className={`${styles.section} ${styles.tint} ${styles.journey}`} id="journey" aria-labelledby="journey-title">
+    <section className={`${styles.section} ${styles.journey}`} id="journey" aria-labelledby="journey-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
@@ -310,7 +363,7 @@ function Controls() {
   const [active, setActive] = useState(0);
   const control = controls[active];
   return (
-    <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="controls" aria-labelledby="controls-title">
+    <section className={`${styles.section} ${styles.recolor}`} id="controls" aria-labelledby="controls-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
@@ -367,7 +420,7 @@ function Delivery() {
   const [active, setActive] = useState(0);
   const model = models[active];
   return (
-    <section className={`${styles.section} ${styles.tint} ${styles.recolor} ${styles.delivery}`} id="delivery" aria-labelledby="delivery-title">
+    <section className={`${styles.section} ${styles.recolor} ${styles.delivery}`} id="delivery" aria-labelledby="delivery-title">
       <div className={site.container}>
         <div className={styles.heading}>
           <div>
@@ -513,7 +566,7 @@ function RtLaptop() {
 
 function RealTimeControl() {
   return (
-    <section className={`${styles.section} ${styles.tint} ${styles.rtSection}`} id="control-centre" aria-labelledby="rt-title">
+    <section className={`${styles.section} ${styles.rtSection}`} id="control-centre" aria-labelledby="rt-title">
       <div className={site.container}>
         <div className={styles.rtHead} data-reveal="">
           <Lines id="rt-title" lines={["Mobile Evidence + Real-Time Control"]} />
@@ -545,7 +598,8 @@ function RealTimeControl() {
 
 // The hero alternates between its two messages; both stay stacked in one grid
 // cell so the buttons below never jump when the text changes.
-const HERO_INTERVAL = 4000;
+const HERO_INTERVAL = 5000;
+const HERO_SLIDES = 3;
 
 function HeroHeadings() {
   // -1 until the preloader lifts, so the first heading rises into view.
@@ -558,7 +612,7 @@ function HeroHeadings() {
       if (cancelled) return;
       setSlides({ active: 0, leaving: -1 });
       timer = window.setInterval(() => {
-        setSlides(({ active: current }) => ({ active: (current + 1) % 2, leaving: current }));
+        setSlides(({ active: current }) => ({ active: (current + 1) % HERO_SLIDES, leaving: current }));
       }, HERO_INTERVAL);
     });
     return () => {
@@ -583,6 +637,10 @@ function HeroHeadings() {
         <HeroLines className={styles.heroTitle} lines={["Every Asset.", "Everywhere.", <em key="a">One Clear View.</em>]} />
         <p className={`${styles.heroSubtitle} ${styles.heroFade}`}>Your Central, Customisable Source of Truth.</p>
         <p className={`${styles.heroDescription} ${styles.heroFade}`} style={{ "--delay": ".12s" }}>Bring asset tracking, automated inspections and compliance evidence together in one platform—for complete operational accountability, without chasing spreadsheets.</p>
+      </div>
+      <div className={slide(2)} aria-hidden={active !== 2}>
+        <HeroLines className={styles.heroTitle} lines={["Every asset verified.", "Every movement tracked.", <em key="a">Every record audit-ready.</em>]} />
+        <p className={`${styles.heroDescription} ${styles.heroFade}`}><Brand /> gives enterprises a mobile-first platform to verify physical assets, capture evidence, reconcile with ERP and create a trusted asset truth layer across every location.</p>
       </div>
     </div>
   );
@@ -637,8 +695,10 @@ function HomePage() {
         </div>
       </section>
 
+      <Blueprint />
+
       {/* 01: presentation visuals 02 / 02A */}
-      <section className={`${styles.section} ${styles.tint} ${styles.reality}`} id="reality" aria-labelledby="reality-title">
+      <section className={`${styles.section} ${styles.reality}`} id="reality" aria-labelledby="reality-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <Slide name="reality-gap" className={styles.gapArt} alt="An asset register alongside a workplace with a missing asset and damaged equipment">
             <div className={styles.gapLabel}><span>Book Record</span><b aria-hidden="true">≠</b><span>Physical Reality</span></div>
@@ -664,7 +724,7 @@ function HomePage() {
       </section>
 
       {/* 02: presentation visual 03 */}
-      <section className={`${styles.section} ${styles.verifies}`} id="platform" aria-labelledby="platform-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.verifies}`} id="platform" aria-labelledby="platform-title">
         <div className={site.container}>
           <div className={styles.heading}>
             <div>
@@ -693,7 +753,7 @@ function HomePage() {
       <Journey />
 
       {/* 04: presentation visual 05 */}
-      <section className={`${styles.section} ${styles.mobileSection}`} id="mobile" aria-labelledby="mobile-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.mobileSection}`} id="mobile" aria-labelledby="mobile-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <Slide name="mobile-verification" className={styles.mobileArt} alt="A smartphone captures the asset tag on a point of sale printer">
             <div className={styles.evidenceSlip}>
@@ -720,7 +780,7 @@ function HomePage() {
       <RealTimeControl />
 
       {/* 05: presentation visual 06 */}
-      <section className={`${styles.section} ${styles.exceptions}`} id="exceptions" aria-labelledby="exceptions-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.exceptions}`} id="exceptions" aria-labelledby="exceptions-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
             <p className={styles.sectionBadge} data-reveal="">
@@ -754,7 +814,7 @@ function HomePage() {
       <Controls />
 
       {/* 07: presentation visuals 08 and 14 */}
-      <section className={`${styles.section} ${styles.recolor}`} id="reconciliation" aria-labelledby="reconciliation-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.recolor}`} id="reconciliation" aria-labelledby="reconciliation-title">
         <div className={site.container}>
           <div className={styles.split}>
             <div className={styles.copy}>
@@ -796,7 +856,7 @@ function HomePage() {
       <Delivery />
 
       {/* 09: presentation visual 09 */}
-      <section className={`${styles.section} ${styles.recolor}`} id="pilot" aria-labelledby="pilot-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.recolor}`} id="pilot" aria-labelledby="pilot-title">
         <div className={`${site.container} ${styles.split}`}>
           <div className={styles.copy}>
             <Badge>Focused Pilot</Badge>
@@ -814,7 +874,7 @@ function HomePage() {
       </section>
 
       {/* 10: presentation visual 10 */}
-      <section className={`${styles.section} ${styles.tint} ${styles.onTint} ${styles.recolor}`} id="demo" aria-labelledby="demo-title">
+      <section className={`${styles.section} ${styles.recolor}`} id="demo" aria-labelledby="demo-title">
         <div className={`${site.container} ${styles.split} ${styles.copyFirst}`}>
           <div className={styles.demoVisual}>
             <Slide name="demo" alt="A smartphone and laptop show the connection between a tagged physical asset and its verification record" />
@@ -831,7 +891,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className={`${styles.section} ${styles.industries}`} id="industries" aria-labelledby="industries-title">
+      <section className={`${styles.section} ${styles.tint} ${styles.industries}`} id="industries" aria-labelledby="industries-title">
         <div className={site.container}>
           <div className={styles.industriesHead}>
             <Badge>Industries We Serve</Badge>
