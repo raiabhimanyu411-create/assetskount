@@ -33,6 +33,9 @@ const titles = {
   "/contact": "Request a demo — ASSETKOUNT",
 };
 
+// Workspace sign-in address; the header button stays inert until this is set.
+const SIGN_IN_URL = "";
+
 const INTRO_KEY = "assetkount-intro-seen";
 
 function readIntroSeen() {
@@ -157,6 +160,14 @@ function SiteHeader() {
             </svg>
             Request Demo
           </button>
+          <a
+            className={site.signIn}
+            href={SIGN_IN_URL || "#"}
+            onClick={(event) => { if (!SIGN_IN_URL) event.preventDefault(); }}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" /><path d="M4 21a8 8 0 0 1 16 0" /></svg>
+            Sign In
+          </a>
         </nav>
       </div>
     </header>

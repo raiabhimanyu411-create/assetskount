@@ -164,6 +164,28 @@
 .requestDemo:hover svg { fill: #fff; }
 .requestDemo:hover { background: var(--secondary); color: #fff; transform: translateY(-1px); }
 
+/* Filled partner to Request Demo; .nav > prefix outranks the nav link rules. */
+.nav > .signIn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 20px;
+  border: 1.5px solid var(--secondary);
+  border-radius: 999px;
+  background: var(--secondary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background .18s, border-color .18s, transform .18s;
+}
+
+.nav > .signIn::after { display: none; }
+.nav > .signIn svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; flex-shrink: 0; }
+.nav > .signIn:hover { background: #6f202a; border-color: #6f202a; transform: translateY(-1px); }
+
 /* Footer */
 .footer { background: #fff; padding-top: 55px; color: var(--primary); }
 
@@ -346,6 +368,7 @@
   .nav > a { padding: 14px 0; font-size: 15px; border-bottom: 1px solid var(--line); }
   .nav > a::after { display: none; }
   .nav .requestDemo { margin-top: 15px; align-self: flex-start; }
+  .nav > .signIn { margin-top: 10px; align-self: flex-start; padding: 9px 20px; font-size: 14px; border-bottom: 1.5px solid var(--secondary); }
 
   .footerMain { grid-template-columns: 1fr 1fr; gap: 25px 35px; padding-bottom: 35px; }
   .footerBrand { grid-column: 1 / -1; }
