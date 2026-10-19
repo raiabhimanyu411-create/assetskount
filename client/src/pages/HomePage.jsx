@@ -692,11 +692,49 @@ function Lines({ as: Tag = "h2", lines, ...props }) {
   );
 }
 
+// Product film, loaded only when the dialog opens so it adds nothing to page weight.
+function VideoDialog({ dialogRef }) {
+  const video = useRef(null);
+  const close = () => dialogRef.current?.close();
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className={styles.videoDialog}
+      aria-label="AssetKount product video"
+      data-lenis-prevent=""
+      onClose={() => {
+        lockScroll(false);
+        video.current?.pause();
+        if (video.current) video.current.currentTime = 0;
+      }}
+      onClick={(event) => { if (event.target === dialogRef.current) close(); }}
+    >
+      <button className={`${site.dialogClose} ${styles.videoClose}`} type="button" onClick={close} aria-label="Close video">×</button>
+      <video
+        ref={video}
+        className={styles.video}
+        src="/assets/videos/assetkount-intro.mp4"
+        poster="/assets/videos/assetkount-intro-poster.jpg"
+        preload="none"
+        controls
+        playsInline
+      />
+    </dialog>
+  );
+}
+
 function HomePage() {
   const walkthroughDialog = useRef(null);
   const openWalkthrough = () => {
     walkthroughDialog.current?.showModal();
     lockScroll(true);
+  };
+  const videoDialog = useRef(null);
+  const openVideo = () => {
+    videoDialog.current?.showModal();
+    lockScroll(true);
+    videoDialog.current?.querySelector("video")?.play().catch(() => {});
   };
 
   return (
@@ -709,7 +747,7 @@ function HomePage() {
             <HeroHeadings />
             <div className={styles.actions} data-hero-item="">
               <button className={styles.pillPrimary} data-magnetic="" type="button" onClick={() => openEnquiry("Live product demo")}><RocketIcon />Get Started</button>
-              <Link className={styles.pillOutline} data-magnetic="" to="/#journey"><PlayIcon />Learn More</Link>
+              <button className={styles.pillOutline} data-magnetic="" type="button" onClick={openVideo}><PlayIcon />Learn More</button>
             </div>
           </div>
           <Slide name="hero" priority reveal={false} data-hero-item="" className={styles.heroArt} alt="People using smartphones to verify tagged equipment across business locations" />
@@ -971,6 +1009,7 @@ function HomePage() {
       </section>
 
       <Walkthrough dialogRef={walkthroughDialog} />
+      <VideoDialog dialogRef={videoDialog} />
     </main>
   );
 }

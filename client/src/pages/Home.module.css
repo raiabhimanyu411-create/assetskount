@@ -822,6 +822,35 @@
   letter-spacing: -.025em;
 }
 
+/* Video dialog */
+.videoDialog {
+  border: 0;
+  padding: 0;
+  background: #000;
+  border-radius: 8px;
+  width: min(1100px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  overflow: visible;
+  box-shadow: 0 25px 100px #071b3a40;
+}
+
+.videoDialog::backdrop { background: #071c34d9; backdrop-filter: blur(4px); }
+
+.video {
+  display: block;
+  width: 100%;
+  max-height: calc(100dvh - 48px);
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  background: #000;
+}
+
+.videoClose { top: -16px; right: -16px; z-index: 1; }
+
+@media (max-width: 640px) {
+  .videoClose { top: -46px; right: 0; }
+}
+
 /* Walkthrough dialog */
 .walkthroughDialog {
   border: 0;
